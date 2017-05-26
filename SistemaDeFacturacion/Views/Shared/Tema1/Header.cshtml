@@ -1,0 +1,37 @@
+﻿@using Microsoft.AspNet.Identity
+@{ 
+    //FacturacionMVC.Models.Usuarios user = new FacturacionMVC.Models.Usuarios();
+    //var user = Session["Usuario"] as FacturacionMVC.Models.Usuarios;
+    //@ViewBag.userName = user.nombre;
+}
+
+    <header class="main-header bg-black-gradient">
+        <!-- Logo -->
+        
+            <a href="@Url.Action("About","Home")" class="logo bg-red-gradient">
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                <span class="logo-mini"><b>F</b>S</span>
+                <!-- logo for regular state and mobile devices -->
+                <span class="logo-lg"><b>Facturacion Soft </b>SF</span>
+            </a>
+        
+        <!-- Header Navbar: style can be found in header.less -->
+        
+            <nav class="navbar navbar-static-top bg-black-gradient">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+
+                <div class="col-lg-11">
+                    
+                    @Html.Partial("_LoginPartial")
+                </div>
+            </nav>
+       
+    </header>
+
+    <!-- =============================================== -->

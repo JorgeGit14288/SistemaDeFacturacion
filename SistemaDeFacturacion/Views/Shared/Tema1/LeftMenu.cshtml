@@ -1,0 +1,164 @@
+﻿<!-- Left side column. contains the sidebar -->
+<aside class="main-sidebar skin-red bg-black-gradient ">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- Sidebar user panel 
+        <div class="user-panel">
+            <div class="pull-left image">
+                <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+            </div>
+            <div class="pull-left info">
+                <p>@ViewBag.Usuario</p>
+                <a href="#"><i class="fa fa-circle text-success"></i> Activo</a>
+            </div>
+
+        </div>
+            -->
+        <!-- search form -->
+        <form action="#" method="get" class="sidebar-form">
+            <div class="input-group">
+                <input type="text" name="q" class="form-control" placeholder="Search...">
+                <span class="input-group-btn">
+                    <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </span>
+            </div>
+        </form>
+        <!-- /.search form -->
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu bg-black-gradient">
+            <li class="header bg-black-gradient"><center>MENU DE OPCIONES</center></li>
+            <li class="treeview">
+                <a href="@Url.Action("Index","Home")">
+                    <i class="fa fa-dashboard"></i> <span>Inicio</span>
+                </a>
+            </li>
+            
+            <li class="treeview bg-red-gradient">
+                <a href="@Url.Action("Facturar","Facturar")">
+                    <i class="fa fa-cart-plus"></i> <span>Nueva venta</span>
+                </a>
+            </li>
+            <li class="treeview">
+                <a href="">
+                    <i class="fa fa-table"></i>
+                    <span>Facturas</span>
+                    <span class="pull-right-container">
+                        <span class="label label-primary pull-right bg-green">
+                            <i class="fa fa-angle-down pull-right"></i>
+                        </span>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="@Url.Action("Index","Facturas")"><i class="fa fa-circle-o"></i>Lista de Facturas</a></li>
+                    <li><a href="@Url.Action("Busqueda","Facturas")"><i class="fa fa-circle-o"></i> Buscar Facturas</a></li>
+                    <li><a href="@Url.Action("FacturasHOy","Facturas")"><i class="fa fa-circle-o"></i>Facturas de hoy </a></li>
+                    <li><a href="@Url.Action("FacturasPorFecha","Facturas")"><i class="fa fa-circle-o"></i>Facturas por fecha</a></li>                   
+                </ul>
+            </li>
+            <li class="treeview bg-blue-gradient">
+                <a href="@Url.Action("CrearCompra","AgregarCompra")">
+                    <i class="fa fa-cart-plus"></i> <span>Ingresar Mercaderia</span>
+                </a>
+            </li>
+            <li class="treeview">
+                <a href="">
+                    <i class="fa fa-bookmark"></i>
+                    <span>Compras</span>
+                    <span class="pull-right-container">
+                        <span class="label label-primary pull-right bg-green">
+                            <i class="fa fa-angle-down pull-right"></i>
+                        </span>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="@Url.Action("Index","Compras")"><i class="fa fa-circle-o"></i>Todas las compras</a></li>
+                    <li><a href="@Url.Action("ComprasMes","Compras")"><i class="fa fa-circle-o"></i>Compras del mes</a></li>
+                    <li><a href="@Url.Action("BuscarCompras","Compras")"><i class="fa fa-circle-o"></i>Busqueda por fechas</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="">
+                    <i class="fa  fa-plus"></i>
+                    <span>Productos</span>
+                    <span class="pull-right-container">
+                        <span class="label label-primary pull-right bg-green">
+                            <i class="fa fa-angle-down pull-right"></i>
+                            </span>
+                     </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="@Url.Action("Index","Productos")"><i class="fa fa-circle-o"></i> Productos Existentes</a></li>
+                    <li><a href="@Url.Action("Create","Productos")"><i class="fa fa-circle-o"></i> Registrar Nuevo</a></li>
+                    <li><a href="@Url.Action("Index","Categorias")"><i class="fa fa-circle-o"></i>Categorias</a></li>                                                                                         
+                    
+                </ul>
+            </li>
+
+            <li class="treeview">
+                <a href="">
+                    <i class="fa fa-users"></i>
+                    <span>Cartera de Clientes</span>
+                    <span class="pull-right-container">
+                        <span class="label label-primary pull-right bg-green">
+                            <i class="fa fa-angle-down pull-right"></i>
+                        </span>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="@Url.Action("Index","Clientes")"><i class="fa fa-circle-o"></i>Clientes Registrados</a></li>
+                    <li><a href="@Url.Action("Create","Clientes")"><i class="fa fa-circle-o"></i>Registrar Nuevo</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="">
+                    <i class="fa fa-briefcase"></i>
+                    <span>Cartera de Proveedores</span>
+                    <span class="pull-right-container">
+                        <span class="label label-primary pull-right bg-green">
+                            <i class="fa fa-angle-down pull-right"></i>
+                        </span>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="@Url.Action("Index","Proveedores")"><i class="fa fa-circle-o"></i>Proveedores Registrados</a></li>
+                    <li><a href="@Url.Action("Create","Proveedores")"><i class="fa fa-circle-o"></i>Registrar Nuevo</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="">
+                    <i class="fa fa-files-o"></i>
+                    <span>Reportes</span>
+                    <span class="pull-right-container">
+                        <span class="label label-primary pull-right bg-green">
+                            <i class="fa fa-angle-down pull-right"></i>
+                        </span>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="@Url.Action("Index","Reportes")"><i class="fa fa-circle-o"></i>Reportes Disponibles</a></li>
+                    <li><a href="@Url.Action("Busqueda","Reporte")"><i class="fa fa-circle-o"></i>Reportes Facturas del ria</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="">
+                    <i class="fa fa-users"></i>
+                    <span>Usuarios</span>
+                    <span class="pull-right-container">
+                        <span class="label label-primary pull-right bg-green">
+                            <i class="fa fa-angle-down pull-right"></i>
+                        </span>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="@Url.Action("Index","Usuarios")"><i class="fa fa-circle-o"></i>Usuarios </a></li>
+                  
+                    
+                </ul>
+            </li>
+        </ul>
+    </section>
+    <!-- /.sidebar -->
+</aside>
+<!-- =============================================== -->
