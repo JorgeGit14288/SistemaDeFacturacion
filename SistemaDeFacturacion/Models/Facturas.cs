@@ -18,12 +18,12 @@ namespace SistemaDeFacturacion.Models
         public string nitCliente { get; set; }
         public string nombre { get; set; }
         public string direccion { get; set; }
-        public string fecha { get; set; }
+        public System.DateTime fecha { get; set; }
         public Nullable<decimal> subTotal { get; set; }
         public Nullable<decimal> descuento { get; set; }
         public Nullable<decimal> total { get; set; }
         public Nullable<int> idCotizacion { get; set; }
-        public byte[] usuario { get; set; }
+        public string usuario { get; set; }
         public Nullable<int> tipoPago { get; set; }
         public string idPago { get; set; }
     

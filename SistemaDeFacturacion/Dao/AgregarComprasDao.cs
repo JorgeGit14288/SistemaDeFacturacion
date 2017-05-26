@@ -7,7 +7,7 @@ using System.Transactions;
 using System.Data.Entity;
 using SistemaDeFacturacion.Dao;
 
-namespace SSistemaDeFacturacion.Dao
+namespace SistemaDeFacturacion.Dao
 {
    
     public class AgregarComprasDao : IAgregarComprasDao

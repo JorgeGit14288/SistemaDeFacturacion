@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="FacturacionDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="FacturacionDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AspNetRoles">
           <Key>
             <PropertyRef Name="Id" />
@@ -142,12 +142,12 @@
           <Property Name="nitCliente" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="direccion" Type="varchar" MaxLength="50" />
-          <Property Name="fecha" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="fecha" Type="date" Nullable="false" />
           <Property Name="subTotal" Type="decimal" Precision="9" Scale="2" />
           <Property Name="descuento" Type="decimal" Precision="9" Scale="2" />
           <Property Name="total" Type="decimal" Precision="9" Scale="2" />
           <Property Name="idCotizacion" Type="int" />
-          <Property Name="usuario" Type="varbinary" MaxLength="75" />
+          <Property Name="usuario" Type="varchar" MaxLength="75" />
           <Property Name="tipoPago" Type="int" />
           <Property Name="idPago" Type="varchar" MaxLength="50" />
         </EntityType>
@@ -449,8 +449,7 @@
             <End Role="Productos" EntitySet="Productos" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="FacturacionDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -599,12 +598,12 @@
           <Property Name="nitCliente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="fecha" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="subTotal" Type="Decimal" Precision="9" Scale="2" />
           <Property Name="descuento" Type="Decimal" Precision="9" Scale="2" />
           <Property Name="total" Type="Decimal" Precision="9" Scale="2" />
           <Property Name="idCotizacion" Type="Int32" />
-          <Property Name="usuario" Type="Binary" MaxLength="75" FixedLength="false" />
+          <Property Name="usuario" Type="String" MaxLength="75" Unicode="false" FixedLength="false" />
           <Property Name="tipoPago" Type="Int32" />
           <Property Name="idPago" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Clientes" Relationship="Self.FK_Facturas_Clientes" FromRole="Facturas" ToRole="Clientes" />
