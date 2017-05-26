@@ -1,0 +1,75 @@
+﻿@model SistemaDeFacturacion.Models.Proveedores
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/Plantilla1.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Proveedores</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.empresa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.empresa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.direccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.direccion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.telefono)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.telefono)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.creado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.creado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.modificado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.modificado)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idProveedor }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

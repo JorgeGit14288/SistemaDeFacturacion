@@ -1,0 +1,107 @@
+﻿@model SistemaDeFacturacion.Models.Facturas
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/Plantilla1.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Facturas</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.direccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.direccion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.subTotal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.subTotal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.descuento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descuento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.total)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.total)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.idPago)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idPago)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Clientes.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Clientes.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cotizaciones.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cotizaciones.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoPago1.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoPago1.nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idFactura }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

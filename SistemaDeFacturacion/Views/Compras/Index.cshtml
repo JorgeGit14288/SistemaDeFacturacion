@@ -1,0 +1,64 @@
+﻿@model IEnumerable<SistemaDeFacturacion.Models.Compras>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Plantilla1.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.idFactura)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.total)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.modificado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.usuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Proveedores.empresa)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.idFactura)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.total)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.modificado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.usuario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Proveedores.empresa)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idCompra }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idCompra }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idCompra })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,70 @@
+﻿@model IEnumerable<SistemaDeFacturacion.Models.Proveedores>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Plantilla1.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.empresa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.direccion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.telefono)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.creado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.modificado)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.empresa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.direccion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.telefono)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.creado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.modificado)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idProveedor }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idProveedor }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idProveedor })
+        </td>
+    </tr>
+}
+
+</table>
