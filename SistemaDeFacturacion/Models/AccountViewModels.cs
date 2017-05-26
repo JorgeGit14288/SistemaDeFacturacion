@@ -49,7 +49,7 @@ namespace SistemaDeFacturacion.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Correo electrónico")]
+        [Display(Name = "Email")]
         [EmailAddress]
         public string Email { get; set; }
 
@@ -66,7 +66,7 @@ namespace SistemaDeFacturacion.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Correo electrónico")]
+        [Display(Name = "Email")]
         public string Email { get; set; }
 
         [Required]
@@ -79,6 +79,21 @@ namespace SistemaDeFacturacion.Models
         [Display(Name = "Confirmar contraseña")]
         [Compare("Password", ErrorMessage = "La contraseña y la contraseña de confirmación no coinciden.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [DataType(DataType.Text)]
+        [Display(Name = "Nombre de Usuario")]
+        public string nombre { get; set; }
+
+        [Required]
+
+        [DataType(DataType.PhoneNumber)]
+        public string direccion { get; set; }
+
+        [Required]
+        [DataType(DataType.PhoneNumber)]
+        [Display(Name = "Telefono")]
+        public string PhoneNumber { get; set; }
     }
 
     public class ResetPasswordViewModel

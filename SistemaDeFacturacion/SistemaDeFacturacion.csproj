@@ -52,6 +52,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -195,22 +197,100 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AspNetRoles.cs">
+      <DependentUpon>FacturacionModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserClaims.cs">
+      <DependentUpon>FacturacionModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserLogins.cs">
+      <DependentUpon>FacturacionModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUsers.cs">
+      <DependentUpon>FacturacionModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Categorias.cs">
+      <DependentUpon>FacturacionModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Clientes.cs">
+      <DependentUpon>FacturacionModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Compras.cs">
+      <DependentUpon>FacturacionModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Cotizaciones.cs">
+      <DependentUpon>FacturacionModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DetallesCompra.cs">
+      <DependentUpon>FacturacionModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DetallesCotizacion.cs">
+      <DependentUpon>FacturacionModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FacturacionModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FacturacionModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FacturacionModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FacturacionModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FacturacionModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FacturacionModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Facturas.cs">
+      <DependentUpon>FacturacionModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Productos.cs">
+      <DependentUpon>FacturacionModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Proveedores.cs">
+      <DependentUpon>FacturacionModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Sucursal.cs">
+      <DependentUpon>FacturacionModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TipoPago.cs">
+      <DependentUpon>FacturacionModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\rojooscuro.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\FacturacionModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FacturacionModel.edmx</DependentUpon>
+      <LastGenOutput>FacturacionModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\FacturacionModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FacturacionModel.edmx</DependentUpon>
+      <LastGenOutput>FacturacionModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <EntityDeploy Include="Models\FacturacionModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FacturacionModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\FacturacionModel.edmx.diagram">
+      <DependentUpon>FacturacionModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -1563,6 +1643,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
