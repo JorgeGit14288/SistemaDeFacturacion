@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using SistemaDeFacturacion.Models;
+using Microsoft.AspNet.Identity;
+
 namespace SistemaDeFacturacion.Dao.Helpers
 {
     public class IniciarEntidades
@@ -10,19 +12,8 @@ namespace SistemaDeFacturacion.Dao.Helpers
         FacturacionDbEntities db = new FacturacionDbEntities();
         public void CrearEntidades()
         {
-            // crea la primaera sucursal
-            if (db.Sucursales.Count() == 0)
-            {
-                Sucursales s = new Sucursales();
-                s.idSucursal = 1;
-                s.nombre = "Sucursal1";
-                s.direccion = "Modifique los valores en la vista sucursales";
-                s.telefono1 = "00000";
-                s.telefono2 = "00000";
-
-                db.Sucursales.Add(s);
-                db.SaveChanges();
-            }
+           
+           
             //crea el primer tipo de pago
             if (db.TipoPago.Count() == 0)
             {

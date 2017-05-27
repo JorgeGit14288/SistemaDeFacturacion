@@ -1,107 +1,129 @@
 ﻿@model SistemaDeFacturacion.Models.Facturas
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalles de Factura";
+    ViewBag.TituloControlador = "Facturas";
+    ViewBag.InfoPagina = "Informacion de Facturas";
+    ViewBag.TituloVentana = "Datos de la venta y detalles de los productos";
+    ViewBag.FooterVentana = "No se pueden eliminar las facturas ni tampoco modificar, por integridad del sistema";
     Layout = "~/Views/Shared/Plantilla1.cshtml";
 }
+<div class="row">
+    <div class="col-md-3">
+        <div class="panel-primary">
+            <div class="panel-heading"><strong>Factura</strong></div>
+            <div class="panel-body">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <td></td>
+                            <td>Informacion</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <strong>Nit:</strong>
+                            </td>
 
-<h2>Details</h2>
+                            <td>
+                                @Html.DisplayFor(model => model.nitCliente)
+                            </td>
 
-<div>
-    <h4>Facturas</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.nombre)
-        </dt>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Nombre:</strong>
+                            </td>
 
-        <dd>
-            @Html.DisplayFor(model => model.nombre)
-        </dd>
+                            <td>
+                                @Html.DisplayFor(model => model.nombre)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Direccion:</strong>
+                            </td>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.direccion)
-        </dt>
+                            <td>
+                                @Html.DisplayFor(model => model.direccion)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Fecha:</strong>
+                            </td>
 
-        <dd>
-            @Html.DisplayFor(model => model.direccion)
-        </dd>
+                            <td>
+                                @Html.DisplayFor(model => model.fecha)
+                            </td>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.fecha)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.fecha)
-        </dd>
+                        </tr>
+                        <tr>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.subTotal)
-        </dt>
+                            <td>
+                                <strong>Total :</strong>
+                            </td>
 
-        <dd>
-            @Html.DisplayFor(model => model.subTotal)
-        </dd>
+                            <td>
+                                Q. @Html.DisplayFor(model => model.total)
+                            </td>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.descuento)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.descuento)
-        </dd>
+                        </tr>
+                        <tr>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.total)
-        </dt>
+                            <td>
+                                <strong>Usuario:</strong>
+                            </td>
 
-        <dd>
-            @Html.DisplayFor(model => model.total)
-        </dd>
+                            <td>
+                                @Html.DisplayFor(model => model.usuario)
+                            </td>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.usuario)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.usuario)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.idPago)
-        </dt>
+                        </tr>
 
-        <dd>
-            @Html.DisplayFor(model => model.idPago)
-        </dd>
+                    </tbody>
+                </table>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Clientes.nombre)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Clientes.nombre)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Cotizaciones.nombre)
-        </dt>
+            </div>
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Cotizaciones.nombre)
-        </dd>
+    </div>
+    <div class="col-md-8">
+        <div class="row">
+            <div class="panel-primary">
+                <div class="panel-heading"><center> <strong>DETALLES DE LA FACTURA</strong></center></div>
+            </div>
+            @Html.Partial("_DetallesFactura")
+        </div>
+        <div class="row">
+            <div class="col-md-4">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TipoPago1.nombre)
-        </dt>
+            </div>
+            <div class="col-md-8">
+                <div class="col-md-4">
+                    <label>Total Cobrado</label>
+                </div>
+                <div class="col-md-4 bg-red-active">
+                    Q. @Html.DisplayFor(model => model.total)
+                </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.TipoPago1.nombre)
-        </dd>
+            </div>
 
-    </dl>
+        </div>
+
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.idFactura }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<div class="row">
+    <p>
+        <input type="button" disabled class="btn btn-info" value="Actualizar Registro" onclick="location.href='@Url.Action("Edit", "Facturas", new {id = Model.idFactura })'" /> |
+        <input type="button" disabled class="btn btn-danger" value="Eliminar Registro" onclick="location.href='@Url.Action("Delete", "Facturas", new {id = Model.idFactura })'" /> |
+        <a href="@Url.Action("Index","Facturas")" class="btn btn-success">Regresar a la lista</a>
+    </p>
+</div>

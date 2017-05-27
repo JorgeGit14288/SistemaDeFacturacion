@@ -1,64 +1,144 @@
 ﻿@model IEnumerable<SistemaDeFacturacion.Models.Compras>
-
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Compras Registradas";
+    ViewBag.TituloControlador = "COMPRAS";
+    ViewBag.InfoPagina = "Compras Registradas en el sistema";
+    ViewBag.TituloVentana = "Lista de compras realizadas";
+    ViewBag.FooterVentana = "Para ver el detalle completo de la compra, click en el boton Ver detalles";
     Layout = "~/Views/Shared/Plantilla1.cshtml";
 }
 
-<h2>Index</h2>
-
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-md-4">
+            @Html.ActionLink("Create", "Create")
+            <a href="@Url.Action("IgresarCompra","IngresoMercaderia")" class="btn btn-primary" role="button">Ingresar Compra</a>
+        </div>
+        <div class="col-md-8">
+            <form id="fBuscarId" action="Details" method="get" class="form-inline">
+                <div class="form-group">
+                    <label>No. Compra</label>
+                    <input type="number" min="1" size="6" name="id" id="id" required class="form-control" />
+                    <input type="submit" name="btnBuscar" value="Buscar" class="btn btn-info" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 <p>
-    @Html.ActionLink("Create New", "Create")
+
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.idFactura)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.total)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fecha)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.modificado)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.usuario)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Proveedores.empresa)
-        </th>
-        <th></th>
-    </tr>
+<table id="example1" class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.idCompra)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.idFactura)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.total)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fecha)
+            </th>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.idFactura)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.total)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fecha)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.modificado)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.usuario)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Proveedores.empresa)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.idCompra }) |
-            @Html.ActionLink("Details", "Details", new { id=item.idCompra }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.idCompra })
-        </td>
-    </tr>
-}
+            <th>
+                @Html.DisplayNameFor(model => model.modificado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Proveedores.empresa)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.idCompra)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.idFactura)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.total)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fecha)
+                </td>
 
+                <td>
+                    @Html.DisplayFor(modelItem => item.modificado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Proveedores.empresa)
+                </td>
+                <td>
+                    <form id="fDetalles" action="Details" method="get">
+                        <input type="hidden" id="id" name="id" value="@item.idCompra" />
+                        <input type="submit" id="btnDetalles" value="Ver Detalles" formaction="Details" class="btn btn-info" />
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
+
+@section scripts {
+    <script>
+            $(document).ready(function () {
+                $('#example1').DataTable({
+                    "language": {
+
+                        "sProcessing": "Procesando...",
+
+                        "sLengthMenu": "Mostrar _MENU_ registros",
+
+                        "sZeroRecords": "No se encontraron resultados",
+
+                        "sEmptyTable": "Ningún dato disponible en esta tabla",
+
+                        "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+
+                        "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+
+                        "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+
+                        "sInfoPostFix": "",
+
+                        "sSearch": "Buscar:",
+
+                        "sUrl": "",
+
+                        "sInfoThousands": ",",
+
+                        "sLoadingRecords": "Cargando...",
+
+                        "oPaginate": {
+
+                            "sFirst": "Primero",
+
+                            "sLast": "Último",
+
+                            "sNext": "Siguiente",
+
+                            "sPrevious": "Anterior"
+
+                        },
+
+                        "oAria": {
+
+                            "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+
+                            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+
+                        }
+
+                    }
+                });
+            });
+    </script>
+}

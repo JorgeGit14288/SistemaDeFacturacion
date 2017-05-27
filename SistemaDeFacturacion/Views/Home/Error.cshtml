@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Error";
+    ViewBag.TituloControlador = "INICIO";
+    ViewBag.InfoPagina = "Error al obtener un recurso";
+    ViewBag.TituloVentana = "Detalle del Error";
+    ViewBag.FooterVentana = "Contacte con el administrador del sistema o de ser necesario con el proveedor tecnico";
+
+}
+
+<div class="error-page">
+    <h2 class="headline text-red">No Autorizado</h2>
+
+    <div class="error-content">
+        <h3><i class="fa fa-warning text-red"></i> Oops! Ha ocuurido un error.</h3>
+
+        <p>
+            Verifique los permisos que el sistema le otorga como usuario, para poder tener acceso al recurso solicitado.
+            Contacte al administrador del sistema para que le conceda los permisos necesarios
+            <br />
+            <a href="@Url.Action("Index","Home")">Regresar al Inicio</a> 
+        </p>
+
+        
+    </div>
+</div>
+<!-- /.error-page -->

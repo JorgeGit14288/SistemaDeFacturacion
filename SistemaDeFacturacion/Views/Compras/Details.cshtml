@@ -1,67 +1,65 @@
 ﻿@model SistemaDeFacturacion.Models.Compras
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalle de Compras";
+    ViewBag.TituloControlador = "COMPRAS";
+    ViewBag.InfoPagina = "Informacion de Compras";
+    ViewBag.TituloVentana = "Datos de compras ingresadas al sistema";
+    ViewBag.FooterVentana = "Despues de ingresar una compra al sistema esta no se puede modificar, para garantizar la integridad de los datos";
     Layout = "~/Views/Shared/Plantilla1.cshtml";
 }
+<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-2">
+                <label>Id Compra: </label> <ins>@Html.DisplayFor(model => model.idCompra)</ins>
+            </div>
+            <div class="col-md-2">
+                <label>Id Factura: </label> <ins>@Html.DisplayFor(model => model.idFactura)</ins>
+            </div>
+            <div class="col-md-3">
+                <label>Fecha: </label> <ins>@Html.DisplayFor(model => model.fecha)</ins>
+            </div>
+            <div class="col-md-3">
+                <label>Total: </label> <ins>Q @Html.DisplayFor(model => model.total)   </ins>
 
-<h2>Details</h2>
+            </div>
 
-<div>
-    <h4>Compras</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.idFactura)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.idFactura)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.total)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.total)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.fecha)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.fecha)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.modificado)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.modificado)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.usuario)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.usuario)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Proveedores.empresa)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Proveedores.empresa)
-        </dd>
-
-    </dl>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <label>Proveedor: </label> <ins>@Html.DisplayFor(model => model.Proveedores.empresa)</ins>
+            </div>
+            <div class="col-md-3">
+                <label>Contacto: </label> <ins>@Html.DisplayFor(model => model.Proveedores.nombre)</ins>
+            </div>
+            <div class="col-md-3">
+                <label>Tel.: </label> <ins>@Html.DisplayFor(model => model.Proveedores.telefono)</ins>
+            </div>
+            <div class="col-d=md-3">
+                <label>Ingreso compra: </label> <ins>        </ins>
+            </div>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.idCompra }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<div class="row">
+    <div class="col-md-12">
+        @Html.Partial("_Detalles")
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-9">
+
+    </div>
+    <div class="col-md-3">
+        <label>Total Q.</label> @Html.DisplayFor(model => model.total)
+    </div>
+</div>
+<div class="row">
+    <p>
+        <input type="button" disabled class="btn btn-info" value="Actualizar Registro" onclick="location.href='@Url.Action("Edit", "Facturas", new {id = Model.idFactura })'" /> |
+        <input type="button" disabled class="btn btn-danger" value="Eliminar Registro" onclick="location.href='@Url.Action("Delete", "Facturas", new {id = Model.idFactura })'" /> |
+        <a href="@Url.Action("Index","Compras")" class="btn btn-success">Regresar a la lista</a>
+    </p>
+</div>

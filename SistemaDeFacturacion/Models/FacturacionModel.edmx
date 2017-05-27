@@ -166,7 +166,6 @@
           <Property Name="imagen" Type="image" />
           <Property Name="creado" Type="datetime" />
           <Property Name="modificado" Type="datetime" />
-          <Property Name="idSucursal" Type="int" />
         </EntityType>
         <EntityType Name="Proveedores">
           <Key>
@@ -180,16 +179,6 @@
           <Property Name="email" Type="varchar" MaxLength="50" />
           <Property Name="creado" Type="datetime" />
           <Property Name="modificado" Type="datetime" />
-        </EntityType>
-        <EntityType Name="Sucursales">
-          <Key>
-            <PropertyRef Name="idSucursal" />
-          </Key>
-          <Property Name="idSucursal" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nombre" Type="varchar" MaxLength="100" />
-          <Property Name="direccion" Type="varchar" MaxLength="100" />
-          <Property Name="telefono1" Type="varchar" MaxLength="50" />
-          <Property Name="telefono2" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="TipoPago">
           <Key>
@@ -363,18 +352,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Productos_Sucursal">
-          <End Role="Sucursales" Type="Self.Sucursales" Multiplicity="0..1" />
-          <End Role="Productos" Type="Self.Productos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Sucursales">
-              <PropertyRef Name="idSucursal" />
-            </Principal>
-            <Dependent Role="Productos">
-              <PropertyRef Name="idSucursal" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="FacturacionDbModelStoreContainer">
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
@@ -390,7 +367,6 @@
           <EntitySet Name="Facturas" EntityType="Self.Facturas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Productos" EntityType="Self.Productos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Proveedores" EntityType="Self.Proveedores" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Sucursales" EntityType="Self.Sucursales" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoPago" EntityType="Self.TipoPago" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Compras__idProve__45F365D3" Association="Self.FK__Compras__idProve__45F365D3">
             <End Role="Proveedores" EntitySet="Proveedores" />
@@ -442,10 +418,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_Productos_Categorias" Association="Self.FK_Productos_Categorias">
             <End Role="Categorias" EntitySet="Categorias" />
-            <End Role="Productos" EntitySet="Productos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Productos_Sucursal" Association="Self.FK_Productos_Sucursal">
-            <End Role="Sucursales" EntitySet="Sucursales" />
             <End Role="Productos" EntitySet="Productos" />
           </AssociationSet>
         </EntityContainer>
@@ -626,11 +598,9 @@
           <Property Name="imagen" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="creado" Type="DateTime" Precision="3" />
           <Property Name="modificado" Type="DateTime" Precision="3" />
-          <Property Name="idSucursal" Type="Int32" />
           <NavigationProperty Name="Categorias" Relationship="Self.FK_Productos_Categorias" FromRole="Productos" ToRole="Categorias" />
           <NavigationProperty Name="DetallesCompra" Relationship="Self.FK_DetallesCompra_Productos" FromRole="Productos" ToRole="DetallesCompra" />
           <NavigationProperty Name="DetallesCotizacion" Relationship="Self.FK_Detalles_Productos" FromRole="Productos" ToRole="DetallesCotizacion" />
-          <NavigationProperty Name="Sucursales" Relationship="Self.FK_Productos_Sucursal" FromRole="Productos" ToRole="Sucursales" />
         </EntityType>
         <EntityType Name="Proveedores">
           <Key>
@@ -645,17 +615,6 @@
           <Property Name="creado" Type="DateTime" Precision="3" />
           <Property Name="modificado" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Compras" Relationship="Self.FK__Compras__idProve__45F365D3" FromRole="Proveedores" ToRole="Compras" />
-        </EntityType>
-        <EntityType Name="Sucursales">
-          <Key>
-            <PropertyRef Name="idSucursal" />
-          </Key>
-          <Property Name="idSucursal" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="telefono1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="telefono2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Productos" Relationship="Self.FK_Productos_Sucursal" FromRole="Sucursales" ToRole="Productos" />
         </EntityType>
         <EntityType Name="TipoPago">
           <Key>
@@ -802,18 +761,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Productos_Sucursal">
-          <End Role="Sucursales" Type="Self.Sucursales" Multiplicity="0..1" />
-          <End Role="Productos" Type="Self.Productos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Sucursales">
-              <PropertyRef Name="idSucursal" />
-            </Principal>
-            <Dependent Role="Productos">
-              <PropertyRef Name="idSucursal" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="AspNetUserRoles">
           <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
@@ -832,7 +779,6 @@
           <EntitySet Name="Facturas" EntityType="Self.Facturas" />
           <EntitySet Name="Productos" EntityType="Self.Productos" />
           <EntitySet Name="Proveedores" EntityType="Self.Proveedores" />
-          <EntitySet Name="Sucursales" EntityType="Self.Sucursales" />
           <EntitySet Name="TipoPago" EntityType="Self.TipoPago" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -877,10 +823,6 @@
           <AssociationSet Name="FK_Facturas_TipoPago" Association="Self.FK_Facturas_TipoPago">
             <End Role="TipoPago" EntitySet="TipoPago" />
             <End Role="Facturas" EntitySet="Facturas" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Productos_Sucursal" Association="Self.FK_Productos_Sucursal">
-            <End Role="Sucursales" EntitySet="Sucursales" />
-            <End Role="Productos" EntitySet="Productos" />
           </AssociationSet>
           <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
@@ -1052,7 +994,6 @@
                 <ScalarProperty Name="imagen" ColumnName="imagen" />
                 <ScalarProperty Name="creado" ColumnName="creado" />
                 <ScalarProperty Name="modificado" ColumnName="modificado" />
-                <ScalarProperty Name="idSucursal" ColumnName="idSucursal" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1067,17 +1008,6 @@
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="creado" ColumnName="creado" />
                 <ScalarProperty Name="modificado" ColumnName="modificado" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Sucursales">
-            <EntityTypeMapping TypeName="FacturacionDbModel.Sucursales">
-              <MappingFragment StoreEntitySet="Sucursales">
-                <ScalarProperty Name="idSucursal" ColumnName="idSucursal" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="direccion" ColumnName="direccion" />
-                <ScalarProperty Name="telefono1" ColumnName="telefono1" />
-                <ScalarProperty Name="telefono2" ColumnName="telefono2" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

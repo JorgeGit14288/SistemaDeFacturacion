@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using SistemaDeFacturacion.Models;
 
+
 namespace SistemaDeFacturacion.Controllers
 {
     [Authorize]
@@ -57,13 +58,67 @@ namespace SistemaDeFacturacion.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
-            if (Request.IsAuthenticated)
+            try
             {
-                return RedirectToAction("Error", "Home");
-            }
+                FacturacionDbEntities ctx = new FacturacionDbEntities();
+                string email = "sistema@sistema.com";
+                if((ctx.AspNetUsers.Count()==0)||( ctx.AspNetUsers.SingleOrDefault(u=> u.Email== email)==null ))
+                {
+                    var user = new ApplicationUser { UserName = "sistema@sistema.com", Email = "sistema@sistema.com", nombre = "Sistema", direccion = "Email", PhoneNumber = "789789", Activo = true, };
+                    var result =  UserManager.CreateAsync(user, "Sistema.14288");
 
-            ViewBag.ReturnUrl = returnUrl;
-            return View();
+                    
+                    //agregamos el rol;
+                    if (ctx.AspNetRoles.Count() == 0)
+                    {
+                        AspNetRoles rol1 = new AspNetRoles();
+                        rol1.Id = "1";
+                        rol1.Name = "Administrador";
+                        AspNetRoles rol2 = new AspNetRoles();
+                        rol2.Id = "2";
+                        rol2.Name = "Ventas";
+                        AspNetRoles rol3 = new AspNetRoles();
+                        rol3.Id = "3";
+                        rol3.Name = "Bodega";
+                        AspNetRoles rol4 = new AspNetRoles();
+                        rol4.Id = "4";
+                        rol4.Name = "Reportes";
+                        //agregamos los roles
+                        ctx.AspNetRoles.Add(rol1);
+                        ctx.AspNetRoles.Add(rol2);
+                        ctx.AspNetRoles.Add(rol3);
+                        ctx.AspNetRoles.Add(rol4);
+                        ctx.SaveChanges();
+                    }
+                    // si el rol de administrador no existe, se crea
+                    AspNetRoles rol = new AspNetRoles();
+                    rol = ctx.AspNetRoles.SingleOrDefault(r => r.Name == "Administrador");
+                    if (String.IsNullOrEmpty(rol.Name))
+                    {
+                        rol.Id = "1";
+                        rol.Name = "Administrador";
+                        ctx.AspNetRoles.Add(rol);
+                        ctx.SaveChanges();
+                    }
+                    // se asigna el rol al usuario, este usuario aunque se elimine se vuelve a crear
+                    AspNetUsers usuarios = new AspNetUsers();
+                    usuarios = ctx.AspNetUsers.SingleOrDefault(u => u.Email == user.Email);
+                    usuarios.AspNetRoles.Add(rol);
+                    ctx.SaveChanges();
+                }
+                if (Request.IsAuthenticated)
+                {
+                    return RedirectToAction("Error", "Home");
+                }
+                ViewBag.ReturnUrl = returnUrl;
+                return View();
+            }
+            catch(Exception ex)
+            {
+                ViewBag.ReturnUrl = returnUrl;
+                ViewBag.Error = "Error " + ex.ToString();
+                return View();
+            }
         }
 
         //
@@ -167,33 +222,11 @@ namespace SistemaDeFacturacion.Controllers
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
             FacturacionDbEntities ctx = new FacturacionDbEntities();
-            ViewBag.NoUsers = ctx.AspNetUsers.Count();
-
-            if (ctx.AspNetRoles.Count() == 0)
-            {
-                AspNetRoles rol1 = new AspNetRoles();
-                rol1.Id = "1";
-                rol1.Name = "Administrador";
-                AspNetRoles rol2 = new AspNetRoles();
-                rol2.Id = "2";
-                rol2.Name = "Ventas";
-                AspNetRoles rol3 = new AspNetRoles();
-                rol3.Id = "3";
-                rol3.Name = "Bodega";
-                AspNetRoles rol4 = new AspNetRoles();
-                rol4.Id = "4";
-                rol4.Name = "Reportes";
-
-                //agregamos los roles
-                ctx.AspNetRoles.Add(rol1);
-                ctx.AspNetRoles.Add(rol2);
-                ctx.AspNetRoles.Add(rol3);
-                ctx.AspNetRoles.Add(rol4);
-                ctx.SaveChanges();
-            }
-
+            ViewBag.NoUsers = ctx.AspNetUsers.Count();           
+            
             if (ModelState.IsValid)
             {
+
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email, nombre = model.nombre, direccion = model.direccion, PhoneNumber = model.PhoneNumber, Activo = true, };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)

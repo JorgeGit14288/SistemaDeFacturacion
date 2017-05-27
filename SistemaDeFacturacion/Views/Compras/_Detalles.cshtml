@@ -1,0 +1,59 @@
+﻿@using SistemaDeFacturacion.Models;
+
+@{ 
+    List<DetallesCompra> detalles = new List<DetallesCompra>();
+    if (ViewBag.Detalles ==null)
+    {
+
+    }
+    else
+    {
+        detalles = (List<DetallesCompra>)ViewBag.Detalles;
+    }
+}
+<center><h3 class="h3">Detalles de la Compra</h3></center>
+<table class="table table-bordered table-responsive table-striped">
+    <thead>
+        <tr>
+            <th>
+                Id 
+            </th>
+            <th>
+                Cantidad
+            </th>
+            <th>
+                Producto
+            </th>
+            <th>
+               Precio
+            </th>
+            <th>
+               SubTotal
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in detalles)
+        {
+            <tr>
+                <td>
+                   @item.idDetalle
+                </td>
+                <td>
+                    @item.cantidad
+                </td>
+                <td>
+                    @item.idProducto , @item.Productos.nombre
+                </td>
+                <td>
+                   Q. @item.precio
+                </td>
+                <td>
+                    Q. @item.subTotal
+                </td>
+                
+            </tr>
+        }
+    </tbody>
+</table>

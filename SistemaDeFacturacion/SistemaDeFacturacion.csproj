@@ -210,7 +210,6 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductosController.cs" />
     <Compile Include="Controllers\ProveedoresController.cs" />
-    <Compile Include="Controllers\SucursalesController.cs" />
     <Compile Include="Controllers\TipoPagoesController.cs" />
     <Compile Include="Dao\AgregarComprasDao.cs" />
     <Compile Include="Dao\ClientesDao.cs" />
@@ -218,6 +217,7 @@
     <Compile Include="Dao\DetallesDao.cs" />
     <Compile Include="Dao\FacturarDao.cs" />
     <Compile Include="Dao\FacturasDao.cs" />
+    <Compile Include="Dao\Helpers\IniciarEntidades.cs" />
     <Compile Include="Dao\IAgregarComprasDao.cs" />
     <Compile Include="Dao\IClientesDao.cs" />
     <Compile Include="Dao\IComprasDao.cs" />
@@ -286,9 +286,6 @@
       <DependentUpon>FacturacionModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Proveedores.cs">
-      <DependentUpon>FacturacionModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Sucursales.cs">
       <DependentUpon>FacturacionModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TipoPago.cs">
@@ -1714,16 +1711,21 @@
     <Content Include="Views\Facturas\Details.cshtml" />
     <Content Include="Views\Facturas\Edit.cshtml" />
     <Content Include="Views\Facturas\Index.cshtml" />
+    <Content Include="Views\AgregarCompra\CrearCompra.cshtml" />
+    <Content Include="Views\AgregarCompra\_Compra.cshtml" />
+    <Content Include="Views\AgregarCompra\_Detalles.cshtml" />
+    <Content Include="Views\AgregarCompra\_Productos.cshtml" />
+    <Content Include="Views\AgregarCompra\_Proveedores.cshtml" />
+    <Content Include="Views\Home\Error.cshtml" />
+    <Content Include="Views\Home\Pruebas.cshtml" />
+    <Content Include="Views\Compras\_Detalles.cshtml" />
+    <Content Include="Views\Facturas\_DetallesFactura.cshtml" />
     <Content Include="Views\Productos\Create.cshtml" />
     <Content Include="Views\Productos\Delete.cshtml" />
     <Content Include="Views\Productos\Details.cshtml" />
     <Content Include="Views\Productos\Edit.cshtml" />
     <Content Include="Views\Productos\Index.cshtml" />
-    <Content Include="Views\Sucursales\Create.cshtml" />
-    <Content Include="Views\Sucursales\Delete.cshtml" />
-    <Content Include="Views\Sucursales\Details.cshtml" />
-    <Content Include="Views\Sucursales\Edit.cshtml" />
-    <Content Include="Views\Sucursales\Index.cshtml" />
+    <Content Include="Views\Productos\AgregarExistencia.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

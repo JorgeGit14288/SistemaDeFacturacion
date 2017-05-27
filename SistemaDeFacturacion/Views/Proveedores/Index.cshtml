@@ -1,70 +1,124 @@
 ﻿@model IEnumerable<SistemaDeFacturacion.Models.Proveedores>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Listado de Proveedores";
+    ViewBag.TituloControlador = "PROVEEDORES";
+    ViewBag.InfoPagina = "Proveedores Registrados en el sistema";
+    ViewBag.TituloVentana = "Listado de Proveedores Registrados";
+    ViewBag.FooterVentana = "Esta tabla muestra el registro de todos los proveedores de quienes se ha comprado mercaderia";
+
     Layout = "~/Views/Shared/Plantilla1.cshtml";
 }
-
-<h2>Index</h2>
-
 <p>
-    @Html.ActionLink("Create New", "Create")
+
+    <a href="@Url.Action("Create","Proveedores")" class="btn btn-primary" role="button">Crear Nuevo</a>
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.empresa)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.direccion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.telefono)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.creado)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.modificado)
-        </th>
-        <th></th>
-    </tr>
+<table class="table table-bordered table-responsive" id="tProveedores">
+    <thead>
+        <tr>
+            <th>
+                Empresa
+            </th>
+            <th>
+                Contacto
+            </th>
+            <th>
+                Direccion
+            </th>
+            <th>
+                Telefono
+            </th>
+            <th>
+                Email
+            </th>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.empresa)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.direccion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.telefono)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.creado)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.modificado)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.idProveedor }) |
-            @Html.ActionLink("Details", "Details", new { id=item.idProveedor }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.idProveedor })
-        </td>
-    </tr>
-}
 
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.empresa)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.direccion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.telefono)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.email)
+                </td>
+
+
+                <td>
+                    <input type="button" class="btn btn-info" value="Detalles" onclick="location.href='@Url.Action("Details", "Proveedores", new {id = item.idProveedor})'" />
+                </td>
+            </tr>
+
+        }
+    </tbody>
 </table>
+
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#tProveedores').DataTable({
+                "language": {
+
+                    "sProcessing": "Procesando...",
+
+                    "sLengthMenu": "Mostrar _MENU_ registros",
+
+                    "sZeroRecords": "No se encontraron resultados",
+
+                    "sEmptyTable": "Ningún dato disponible en esta tabla",
+
+                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+
+                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+
+                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+
+                    "sInfoPostFix": "",
+
+                    "sSearch": "Buscar:",
+
+                    "sUrl": "",
+
+                    "sInfoThousands": ",",
+
+                    "sLoadingRecords": "Cargando...",
+
+                    "oPaginate": {
+
+                        "sFirst": "Primero",
+
+                        "sLast": "Último",
+
+                        "sNext": "Siguiente",
+
+                        "sPrevious": "Anterior"
+
+                    },
+
+                    "oAria": {
+
+                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+
+                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                    }
+                }
+            });
+        });
+    </script>
+
+
+}

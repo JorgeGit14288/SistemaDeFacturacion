@@ -1,0 +1,45 @@
+﻿@using SistemaDeFacturacion.Models;
+@{
+    Compras compra = new Compras();
+    if (Session["Compra"] == null || Session["Compra"].ToString() == "")
+    {
+        compra = new Compras();
+    }
+    else
+    {
+        compra = (Compras)Session["Compra"];
+    }
+
+}
+<div class="row">
+    <div class="col-md-12">
+        <center><h4>Informacion de compra</h4></center>
+        <form id="fCargarCompra" action="CargarCompra" method="post" class="form-inline">
+            <div class="form-inline">
+                <div class="row col-md-12">
+                    <div class="col-md-3">
+                        <div class="col-md-4">
+                            Fecha:
+                        </div>
+                        <input type="tel" name="fecha" id="fecha" value="@DateTime.Now" size="10" required class="input-sm" readonly />
+                    </div>
+                    <div class="col-md-3">
+                        <div class="col-md-4">
+                           Compra
+                        </div>
+                        <input type="number" name="idCompra" id="idCompra" value="@Session["idCompra"]" size="6" required class="input-sm" readonly />
+                    </div>
+                    <div class="col-md-3">
+                        <div class="col-md-4">
+                            No.Doc
+                        </div>
+                        <input type="text" name="idFactura" id="idFactura" value="@compra.idFactura" size="9" required class=" input-sm" />
+                    </div>
+                    <div class="col-md-2">
+                        <input type="submit" value="Cargar Compra" formaction="CargarCompra" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

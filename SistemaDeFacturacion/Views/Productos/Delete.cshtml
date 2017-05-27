@@ -1,17 +1,31 @@
 ﻿@model SistemaDeFacturacion.Models.Productos
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Eliminar Producto";
+    ViewBag.TituloControlador = "PRODUCTOS";
+    ViewBag.InfoPagina = "Eliminar Registro de Proveedores";
+    ViewBag.TituloVentana = "Informacion a eliminar";
+    ViewBag.FooterVentana = "Puede que la base de datos no le permita eliminar el registro por estar enlazada a otras tablas, de ser asi, contacte con el tecnico";
     Layout = "~/Views/Shared/Plantilla1.cshtml";
 }
 
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
+<h3>Esta seguro que desea eliminar el Producto?</h3>
 <div>
-    <h4>Productos</h4>
-    <hr />
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.idProducto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idProducto)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.idCategoria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Categorias.nombre)
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.nombre)
         </dt>
@@ -19,7 +33,6 @@
         <dd>
             @Html.DisplayFor(model => model.nombre)
         </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.precioCompra)
         </dt>
@@ -27,21 +40,12 @@
         <dd>
             @Html.DisplayFor(model => model.precioCompra)
         </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.precio)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.precio)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.descuentoVenta)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.descuentoVenta)
         </dd>
 
         <dt>
@@ -59,15 +63,6 @@
         <dd>
             @Html.DisplayFor(model => model.observacion)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.imagen)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.imagen)
-        </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.creado)
         </dt>
@@ -75,7 +70,6 @@
         <dd>
             @Html.DisplayFor(model => model.creado)
         </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.modificado)
         </dt>
@@ -85,29 +79,23 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Categorias.nombre)
+            @Html.DisplayNameFor(model => model.imagen)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Categorias.nombre)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Sucursales.nombre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Sucursales.nombre)
+            <img width="280" height="250" src="@Url.Action("ConvertirImagen", "Productos", new {idProducto = Model.idProducto})" />
         </dd>
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+            <input type="button" class="btn btn-info" value="Editar Registro" onclick="location.href='@Url.Action("Edit", "Productos", new {id = Model.idProducto })'" /> |
+            <a href="@Url.Action("Index","Productos")" class="btn btn-success">Regresar a la lista</a>
         </div>
     }
 </div>

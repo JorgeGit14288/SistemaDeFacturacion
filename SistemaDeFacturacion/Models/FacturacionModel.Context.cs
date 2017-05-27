@@ -38,7 +38,6 @@ namespace SistemaDeFacturacion.Models
         public virtual DbSet<Facturas> Facturas { get; set; }
         public virtual DbSet<Productos> Productos { get; set; }
         public virtual DbSet<Proveedores> Proveedores { get; set; }
-        public virtual DbSet<Sucursales> Sucursales { get; set; }
         public virtual DbSet<TipoPago> TipoPago { get; set; }
     }
 }

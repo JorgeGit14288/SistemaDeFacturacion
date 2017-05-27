@@ -1,0 +1,37 @@
+﻿@using SistemaDeFacturacion.Models
+@{ 
+    List<DetallesCotizacion> detalles = new List<DetallesCotizacion>();
+    if(ViewBag.Detalles==null)
+    {
+
+    }
+    else
+    {
+        detalles = (List<DetallesCotizacion>)ViewBag.Detalles;
+
+       <table id="tDetalles" class="table table-bordered table-striped">
+           <thead>
+               <tr>
+                   <th>IdDetalle</th>
+                   <th>Cantidad</th>
+                   <th>Descripcion</th>
+                   <th>Precio</th>
+                   <th>Sub Total</th>
+               </tr>
+           </thead>
+           <tbody>
+               @foreach(var d in detalles)
+               {
+                   <tr>
+                       <td>@d.idDetalle </td>
+                       <td>@d.cantidad </td>
+                       <td>@d.Productos.nombre </td>
+                       <td>Q.@d.precio </td>
+                       <td>Q.@d.subTotal </td>
+                   </tr>
+               }
+           </tbody>
+       </table>
+    
+    }
+}

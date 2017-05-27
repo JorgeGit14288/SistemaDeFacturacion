@@ -1,0 +1,69 @@
+﻿@using SistemaDeFacturacion.Models;
+@{ 
+    List<DetallesCompra> detalles = new List<DetallesCompra>();
+    if (Session["detCompra"] == null || Session["detCompra"].ToString()=="" )
+    {
+
+    }
+    else
+    {
+        detalles = (List<DetallesCompra>)Session["detCompra"];
+}
+
+}
+
+<table class="table">
+    <tr>
+        <th>
+            Id Detalle
+        </th>
+        <th>
+            Cantidad
+        </th>
+        <th>
+            Producto
+        </th>
+        <th>
+            Precio
+        </th>
+        <th>
+            PreVenta
+        </th>
+        <th>
+            SubTotal
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in detalles)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.idDetalle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cantidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Productos.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.precio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.precioVenta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.subTotal)
+            </td>
+            
+            
+            <td>
+                @Html.ActionLink("Editar", "EditarDetalle", new { id = item.idDetalle }) |
+                @Html.ActionLink("Eliminar", "EliminarDetalle", new {id=item.idDetalle })
+            </td>
+        </tr>
+    }
+
+</table>
+

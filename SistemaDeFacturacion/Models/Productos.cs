@@ -32,13 +32,11 @@ namespace SistemaDeFacturacion.Models
         public byte[] imagen { get; set; }
         public Nullable<System.DateTime> creado { get; set; }
         public Nullable<System.DateTime> modificado { get; set; }
-        public Nullable<int> idSucursal { get; set; }
     
         public virtual Categorias Categorias { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DetallesCompra> DetallesCompra { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DetallesCotizacion> DetallesCotizacion { get; set; }
-        public virtual Sucursales Sucursales { get; set; }
     }
 }

@@ -1,46 +1,121 @@
 ﻿@model IEnumerable<SistemaDeFacturacion.Models.Categorias>
 
+
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Categorias de Productos";
+
+    ViewBag.TituloControlador = "CATEGORIAS DE PRODUCTOS";
+    ViewBag.InfoPagina = "Para tener un mejor control del tipo de productos del inventario";
+    ViewBag.TituloVentana = "Categorias Registradas";
+    ViewBag.FooterVentana = "Puede ver los detalles de cada producto pulsando en el boton detalles";
     Layout = "~/Views/Shared/Plantilla1.cshtml";
 }
 
-<h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <a href="@Url.Action("Create","Categorias")" class="btn btn-primary" role="button">Crear Nueva</a>
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.descripcion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.imagen)
-        </th>
-        <th></th>
-    </tr>
+<table class="table table-responsive table-bordered table-striped" id="example1">
+    <thead>
+        <tr>
+            <th>
+                IdCategoria
+            </th>
+            <th>
+                Nombre
+            </th>
+            <th>
+                Descripcion
+            </th>
+            <th>
+                Imagen
+            </th>
+            <th></th>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.descripcion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.imagen)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.idCategoria }) |
-            @Html.ActionLink("Details", "Details", new { id=item.idCategoria }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.idCategoria })
-        </td>
-    </tr>
-}
+        </tr>
+    </thead>
 
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.idCategoria)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.imagen)
+                </td>
+                <td>
+                    <form id="fDetalles" method="get" action="Details">
+                        <input type="hidden" name="id" id="id" value="@item.idCategoria" />
+                        <input type="submit" value="Ver Detalles" name="btnDetalles" class="btn btn-info" />
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
+
+@section scripts {
+    <script>
+            $(document).ready(function () {
+                $('#example1').DataTable({
+                    "language": {
+
+                        "sProcessing": "Procesando...",
+
+                        "sLengthMenu": "Mostrar _MENU_ registros",
+
+                        "sZeroRecords": "No se encontraron resultados",
+
+                        "sEmptyTable": "Ningún dato disponible en esta tabla",
+
+                        "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+
+                        "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+
+                        "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+
+                        "sInfoPostFix": "",
+
+                        "sSearch": "Buscar:",
+
+                        "sUrl": "",
+
+                        "sInfoThousands": ",",
+
+                        "sLoadingRecords": "Cargando...",
+
+                        "oPaginate": {
+
+                            "sFirst": "Primero",
+
+                            "sLast": "Último",
+
+                            "sNext": "Siguiente",
+
+                            "sPrevious": "Anterior"
+
+                        },
+
+                        "oAria": {
+
+                            "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+
+                            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+
+                        }
+
+                    }
+                });
+            });
+    </script>
+
+
+}

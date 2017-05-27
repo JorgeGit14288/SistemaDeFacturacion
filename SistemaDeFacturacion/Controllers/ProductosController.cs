@@ -18,7 +18,7 @@ namespace SistemaDeFacturacion.Controllers
         // GET: Productos
         public async Task<ActionResult> Index()
         {
-            var productos = db.Productos.Include(p => p.Categorias).Include(p => p.Sucursales);
+            var productos = db.Productos.Include(p => p.Categorias);
             return View(await productos.ToListAsync());
         }
 
@@ -41,7 +41,6 @@ namespace SistemaDeFacturacion.Controllers
         public ActionResult Create()
         {
             ViewBag.idCategoria = new SelectList(db.Categorias, "idCategoria", "nombre");
-            ViewBag.idSucursal = new SelectList(db.Sucursales, "idSucursal", "nombre");
             return View();
         }
 
@@ -50,7 +49,7 @@ namespace SistemaDeFacturacion.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "idProducto,nombre,precioCompra,precio,descuentoVenta,existencia,observacion,idCategoria,imagen,creado,modificado,idSucursal")] Productos productos)
+        public async Task<ActionResult> Create([Bind(Include = "idProducto,nombre,precioCompra,precio,descuentoVenta,existencia,observacion,idCategoria,imagen,creado,modificado")] Productos productos)
         {
             if (ModelState.IsValid)
             {
@@ -60,7 +59,6 @@ namespace SistemaDeFacturacion.Controllers
             }
 
             ViewBag.idCategoria = new SelectList(db.Categorias, "idCategoria", "nombre", productos.idCategoria);
-            ViewBag.idSucursal = new SelectList(db.Sucursales, "idSucursal", "nombre", productos.idSucursal);
             return View(productos);
         }
 
@@ -77,7 +75,6 @@ namespace SistemaDeFacturacion.Controllers
                 return HttpNotFound();
             }
             ViewBag.idCategoria = new SelectList(db.Categorias, "idCategoria", "nombre", productos.idCategoria);
-            ViewBag.idSucursal = new SelectList(db.Sucursales, "idSucursal", "nombre", productos.idSucursal);
             return View(productos);
         }
 
@@ -86,7 +83,7 @@ namespace SistemaDeFacturacion.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "idProducto,nombre,precioCompra,precio,descuentoVenta,existencia,observacion,idCategoria,imagen,creado,modificado,idSucursal")] Productos productos)
+        public async Task<ActionResult> Edit([Bind(Include = "idProducto,nombre,precioCompra,precio,descuentoVenta,existencia,observacion,idCategoria,imagen,creado,modificado")] Productos productos)
         {
             if (ModelState.IsValid)
             {
@@ -95,7 +92,6 @@ namespace SistemaDeFacturacion.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.idCategoria = new SelectList(db.Categorias, "idCategoria", "nombre", productos.idCategoria);
-            ViewBag.idSucursal = new SelectList(db.Sucursales, "idSucursal", "nombre", productos.idSucursal);
             return View(productos);
         }
 

@@ -1,94 +1,167 @@
 ﻿@model IEnumerable<SistemaDeFacturacion.Models.Productos>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Productos Registrados";
+    ViewBag.TituloControlador = "PRODUCTOS";
+    ViewBag.InfoPagina = "Stock de productos registrados en el sistema";
+    ViewBag.TituloVentana = "Listado de productos registrados";
+    ViewBag.FooterVentana = "Puede ver los detalles de cada producto pulsando en el boton detalles";
+
     Layout = "~/Views/Shared/Plantilla1.cshtml";
 }
-
-<h2>Index</h2>
-
 <p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.precioCompra)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.precio)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.descuentoVenta)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.existencia)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.observacion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.imagen)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.creado)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.modificado)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Categorias.nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Sucursales.nombre)
-        </th>
-        <th></th>
-    </tr>
+    <a href="@Url.Action("Create","Productos")" class="btn btn-primary" role="button">Crear Nuevo</a>
+    <a href="@Url.Action("Facturar","Facturar")" class="btn btn-info" role="button">Ir a Detalles de Factura</a>
+    <table id="example1" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>
+                    Id
+                </th>
+                <th>
+                    Nombre
+                </th>
+                <th>
+                    Categoria
+                </th>
+                <th>
+                    Precio
+                </th>
+                <th>
+                    Existencia
+                </th>
+                <th>Comprar</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.idProducto)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Categorias.nombre)
+                    </td>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.precioCompra)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.precio)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.descuentoVenta)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.existencia)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.observacion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.imagen)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.creado)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.modificado)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Categorias.nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Sucursales.nombre)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.idProducto }) |
-            @Html.ActionLink("Details", "Details", new { id=item.idProducto }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.idProducto })
-        </td>
-    </tr>
-}
+                    <td>
+                        Q.  @Html.DisplayFor(modelItem => item.precio)
+                    </td>
+                    <td>
+                        @{
+                            if (item.existencia == 0)
+                            {
+                                <div class="bg-red-active">
 
-</table>
+                                    @Html.DisplayFor(modelItem => item.existencia)
+
+                                </div>
+                            }
+                            if (item.existencia > 0 && item.existencia < 6)
+                            {
+                                <div class="bg-yellow-active">
+
+                                    @Html.DisplayFor(modelItem => item.existencia)
+                                </div>
+                            }
+                            if (item.existencia >= 6)
+                            {
+
+
+                                @Html.DisplayFor(modelItem => item.existencia)
+
+                            }
+                        }
+                    </td>
+                    <td>
+                        @{
+                            if (item.existencia == 0)
+                            {
+                                <form id="fAgregarProducto" method="get" action="@Url.Action("BuscarProducto","AgregarCompra")">
+                                    <input type="hidden" name="id" id="id" value="@item.idProducto" />
+                                    <input type="submit" value="Agregar" class="btn btn-danger" name="btnComprar" />
+                                </form>
+                            }
+                            else
+                            {
+                                <form id="fCargarProducto" method="post" action="@Url.Action("CargarProducto","Facturar")">
+                                    <input type="hidden" name="idProducto" id="idProducto" value="@item.idProducto" />
+                                    <input type="number" size="6" min="1" max="999" name="cantidad" id="cantidad" required />
+                                    <input type="submit" value="Comprar" name="btnComprar" class="btn btn-success" />
+                                </form>
+                            }
+                        }
+
+                    </td>
+                    <td>
+                        <form id="fDetalles" method="get" action="@Url.Action("Details","Productos")">
+                            <input type="hidden" name="id" id="id" value="@item.idProducto" />
+
+                            <input type="submit" value="Ver Detalles" name="btnDetalles" class="btn btn-info" />
+                        </form>
+                    </td>
+                </tr>
+                            }
+        </tbody>
+    </table>
+    @section scripts {
+        <script>
+            $(document).ready(function () {
+                $('#example1').DataTable({
+                    "language": {
+
+                        "sProcessing": "Procesando...",
+
+                        "sLengthMenu": "Mostrar _MENU_ registros",
+
+                        "sZeroRecords": "No se encontraron resultados",
+
+                        "sEmptyTable": "Ningún dato disponible en esta tabla",
+
+                        "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+
+                        "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+
+                        "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+
+                        "sInfoPostFix": "",
+
+                        "sSearch": "Buscar:",
+
+                        "sUrl": "",
+
+                        "sInfoThousands": ",",
+
+                        "sLoadingRecords": "Cargando...",
+
+                        "oPaginate": {
+
+                            "sFirst": "Primero",
+
+                            "sLast": "Último",
+
+                            "sNext": "Siguiente",
+
+                            "sPrevious": "Anterior"
+
+                        },
+
+                        "oAria": {
+
+                            "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+
+                            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+
+                        }
+
+                    }
+                });
+            });
+        </script>
+
+
+    }

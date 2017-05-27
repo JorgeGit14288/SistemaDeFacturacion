@@ -1,17 +1,26 @@
 ﻿@model SistemaDeFacturacion.Models.Facturas
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Eliminar Factura";
+    ViewBag.TituloControlador = "Facturas";
+    ViewBag.InfoPagina = "Eliminar Factura y sus detalles";
+    ViewBag.TituloVentana = "Informacion a eliminar";
+    ViewBag.FooterVentana = "Puede que la base de datos no le permita eliminar el regisro, de ser asi, contacte con el tecnico";
     Layout = "~/Views/Shared/Plantilla1.cshtml";
 }
 
-<h2>Delete</h2>
-
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>Facturas</h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nitCliente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nitCliente)
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.nombre)
         </dt>
@@ -37,22 +46,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.subTotal)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.subTotal)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.descuento)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.descuento)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.total)
         </dt>
 
@@ -68,46 +61,17 @@
             @Html.DisplayFor(model => model.usuario)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.idPago)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.idPago)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Clientes.nombre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Clientes.nombre)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Cotizaciones.nombre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Cotizaciones.nombre)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TipoPago1.nombre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TipoPago1.nombre)
-        </dd>
-
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" disabled value="Eliminar" class="btn btn-danger" /> |
+            <input type="button" disabled class="btn btn-info" value="Editar Registro" onclick="location.href='@Url.Action("Edit", "Facturas", new {id = Model.idFactura })'" /> |
+            <input type="button" class="btn btn-primary" value="Ver Detalles" onclick="location.href='@Url.Action("Details", "Facturas", new {id = Model.idFactura })'" /> |
+            <a href="@Url.Action("Index","Facturas")" class="btn btn-success">Regresar a la lista</a>
         </div>
     }
 </div>
