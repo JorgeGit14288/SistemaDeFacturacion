@@ -12,10 +12,10 @@ namespace SistemaDeFacturacion.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Sucursal
+    public partial class Sucursales
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Sucursal()
+        public Sucursales()
         {
             this.Productos = new HashSet<Productos>();
         }

@@ -18,7 +18,7 @@ namespace SistemaDeFacturacion.Controllers
         // GET: Productos
         public async Task<ActionResult> Index()
         {
-            var productos = db.Productos.Include(p => p.Categorias).Include(p => p.Sucursal);
+            var productos = db.Productos.Include(p => p.Categorias).Include(p => p.Sucursales);
             return View(await productos.ToListAsync());
         }
 
@@ -41,7 +41,7 @@ namespace SistemaDeFacturacion.Controllers
         public ActionResult Create()
         {
             ViewBag.idCategoria = new SelectList(db.Categorias, "idCategoria", "nombre");
-            ViewBag.idSucursal = new SelectList(db.Sucursal, "idSucursal", "nombre");
+            ViewBag.idSucursal = new SelectList(db.Sucursales, "idSucursal", "nombre");
             return View();
         }
 
@@ -60,7 +60,7 @@ namespace SistemaDeFacturacion.Controllers
             }
 
             ViewBag.idCategoria = new SelectList(db.Categorias, "idCategoria", "nombre", productos.idCategoria);
-            ViewBag.idSucursal = new SelectList(db.Sucursal, "idSucursal", "nombre", productos.idSucursal);
+            ViewBag.idSucursal = new SelectList(db.Sucursales, "idSucursal", "nombre", productos.idSucursal);
             return View(productos);
         }
 
@@ -77,7 +77,7 @@ namespace SistemaDeFacturacion.Controllers
                 return HttpNotFound();
             }
             ViewBag.idCategoria = new SelectList(db.Categorias, "idCategoria", "nombre", productos.idCategoria);
-            ViewBag.idSucursal = new SelectList(db.Sucursal, "idSucursal", "nombre", productos.idSucursal);
+            ViewBag.idSucursal = new SelectList(db.Sucursales, "idSucursal", "nombre", productos.idSucursal);
             return View(productos);
         }
 
@@ -95,7 +95,7 @@ namespace SistemaDeFacturacion.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.idCategoria = new SelectList(db.Categorias, "idCategoria", "nombre", productos.idCategoria);
-            ViewBag.idSucursal = new SelectList(db.Sucursal, "idSucursal", "nombre", productos.idSucursal);
+            ViewBag.idSucursal = new SelectList(db.Sucursales, "idSucursal", "nombre", productos.idSucursal);
             return View(productos);
         }
 

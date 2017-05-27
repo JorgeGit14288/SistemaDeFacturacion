@@ -210,7 +210,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductosController.cs" />
     <Compile Include="Controllers\ProveedoresController.cs" />
-    <Compile Include="Controllers\SucursalsController.cs" />
+    <Compile Include="Controllers\SucursalesController.cs" />
     <Compile Include="Controllers\TipoPagoesController.cs" />
     <Compile Include="Dao\AgregarComprasDao.cs" />
     <Compile Include="Dao\ClientesDao.cs" />
@@ -288,7 +288,7 @@
     <Compile Include="Models\Proveedores.cs">
       <DependentUpon>FacturacionModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Sucursal.cs">
+    <Compile Include="Models\Sucursales.cs">
       <DependentUpon>FacturacionModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TipoPago.cs">
@@ -1664,16 +1664,6 @@
     <Content Include="Views\Shared\PlantillaLogin.cshtml" />
     <Content Include="Views\Shared\PlantillaRegistro.cshtml" />
     <Content Include="Views\Shared\_MsjError.cshtml" />
-    <Content Include="Views\Sucursals\Create.cshtml" />
-    <Content Include="Views\Sucursals\Delete.cshtml" />
-    <Content Include="Views\Sucursals\Details.cshtml" />
-    <Content Include="Views\Sucursals\Edit.cshtml" />
-    <Content Include="Views\Sucursals\Index.cshtml" />
-    <Content Include="Views\Productos\Create.cshtml" />
-    <Content Include="Views\Productos\Delete.cshtml" />
-    <Content Include="Views\Productos\Details.cshtml" />
-    <Content Include="Views\Productos\Edit.cshtml" />
-    <Content Include="Views\Productos\Index.cshtml" />
     <Content Include="Views\Categorias\Create.cshtml" />
     <Content Include="Views\Categorias\Delete.cshtml" />
     <Content Include="Views\Categorias\Details.cshtml" />
@@ -1724,6 +1714,16 @@
     <Content Include="Views\Facturas\Details.cshtml" />
     <Content Include="Views\Facturas\Edit.cshtml" />
     <Content Include="Views\Facturas\Index.cshtml" />
+    <Content Include="Views\Productos\Create.cshtml" />
+    <Content Include="Views\Productos\Delete.cshtml" />
+    <Content Include="Views\Productos\Details.cshtml" />
+    <Content Include="Views\Productos\Edit.cshtml" />
+    <Content Include="Views\Productos\Index.cshtml" />
+    <Content Include="Views\Sucursales\Create.cshtml" />
+    <Content Include="Views\Sucursales\Delete.cshtml" />
+    <Content Include="Views\Sucursales\Details.cshtml" />
+    <Content Include="Views\Sucursales\Edit.cshtml" />
+    <Content Include="Views\Sucursales\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

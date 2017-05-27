@@ -11,107 +11,107 @@ using SistemaDeFacturacion.Models;
 
 namespace SistemaDeFacturacion.Controllers
 {
-    public class SucursalsController : Controller
+    public class SucursalesController : Controller
     {
         private FacturacionDbEntities db = new FacturacionDbEntities();
 
-        // GET: Sucursals
+        // GET: Sucursales
         public async Task<ActionResult> Index()
         {
-            return View(await db.Sucursal.ToListAsync());
+            return View(await db.Sucursales.ToListAsync());
         }
 
-        // GET: Sucursals/Details/5
+        // GET: Sucursales/Details/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Sucursal sucursal = await db.Sucursal.FindAsync(id);
-            if (sucursal == null)
+            Sucursales sucursales = await db.Sucursales.FindAsync(id);
+            if (sucursales == null)
             {
                 return HttpNotFound();
             }
-            return View(sucursal);
+            return View(sucursales);
         }
 
-        // GET: Sucursals/Create
+        // GET: Sucursales/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Sucursals/Create
+        // POST: Sucursales/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "idSucursal,nombre,direccion,telefono1,telefono2")] Sucursal sucursal)
+        public async Task<ActionResult> Create([Bind(Include = "idSucursal,nombre,direccion,telefono1,telefono2")] Sucursales sucursales)
         {
             if (ModelState.IsValid)
             {
-                db.Sucursal.Add(sucursal);
+                db.Sucursales.Add(sucursales);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(sucursal);
+            return View(sucursales);
         }
 
-        // GET: Sucursals/Edit/5
+        // GET: Sucursales/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Sucursal sucursal = await db.Sucursal.FindAsync(id);
-            if (sucursal == null)
+            Sucursales sucursales = await db.Sucursales.FindAsync(id);
+            if (sucursales == null)
             {
                 return HttpNotFound();
             }
-            return View(sucursal);
+            return View(sucursales);
         }
 
-        // POST: Sucursals/Edit/5
+        // POST: Sucursales/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "idSucursal,nombre,direccion,telefono1,telefono2")] Sucursal sucursal)
+        public async Task<ActionResult> Edit([Bind(Include = "idSucursal,nombre,direccion,telefono1,telefono2")] Sucursales sucursales)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(sucursal).State = EntityState.Modified;
+                db.Entry(sucursales).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(sucursal);
+            return View(sucursales);
         }
 
-        // GET: Sucursals/Delete/5
+        // GET: Sucursales/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Sucursal sucursal = await db.Sucursal.FindAsync(id);
-            if (sucursal == null)
+            Sucursales sucursales = await db.Sucursales.FindAsync(id);
+            if (sucursales == null)
             {
                 return HttpNotFound();
             }
-            return View(sucursal);
+            return View(sucursales);
         }
 
-        // POST: Sucursals/Delete/5
+        // POST: Sucursales/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Sucursal sucursal = await db.Sucursal.FindAsync(id);
-            db.Sucursal.Remove(sucursal);
+            Sucursales sucursales = await db.Sucursales.FindAsync(id);
+            db.Sucursales.Remove(sucursales);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
