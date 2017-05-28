@@ -16,20 +16,20 @@ namespace SistemaDeFacturacion.Controllers
         private FacturacionDbEntities db = new FacturacionDbEntities();
 
         // GET: DetallesCompras
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
             var detallesCompra = db.DetallesCompra.Include(d => d.Compras).Include(d => d.Productos);
-            return View(await detallesCompra.ToListAsync());
+            return View(detallesCompra.ToList());
         }
 
         // GET: DetallesCompras/Details/5
-        public async Task<ActionResult> Details(int? id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DetallesCompra detallesCompra = await db.DetallesCompra.FindAsync(id);
+            DetallesCompra detallesCompra = db.DetallesCompra.Find(id);
             if (detallesCompra == null)
             {
                 return HttpNotFound();
@@ -50,12 +50,12 @@ namespace SistemaDeFacturacion.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "idCompra,idDetalle,idProducto,cantidad,precio,precioVenta,descuento,subTotal,observaciones")] DetallesCompra detallesCompra)
+        public ActionResult Create([Bind(Include = "idCompra,idDetalle,idProducto,cantidad,precio,subTotal,observaciones")] DetallesCompra detallesCompra)
         {
             if (ModelState.IsValid)
             {
                 db.DetallesCompra.Add(detallesCompra);
-                await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -65,13 +65,13 @@ namespace SistemaDeFacturacion.Controllers
         }
 
         // GET: DetallesCompras/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DetallesCompra detallesCompra = await db.DetallesCompra.FindAsync(id);
+            DetallesCompra detallesCompra = db.DetallesCompra.Find(id);
             if (detallesCompra == null)
             {
                 return HttpNotFound();
@@ -86,12 +86,12 @@ namespace SistemaDeFacturacion.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "idCompra,idDetalle,idProducto,cantidad,precio,precioVenta,descuento,subTotal,observaciones")] DetallesCompra detallesCompra)
+        public ActionResult Edit([Bind(Include = "idCompra,idDetalle,idProducto,cantidad,precio,subTotal,observaciones")] DetallesCompra detallesCompra)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(detallesCompra).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             ViewBag.idCompra = new SelectList(db.Compras, "idCompra", "idProveedor", detallesCompra.idCompra);
@@ -100,13 +100,13 @@ namespace SistemaDeFacturacion.Controllers
         }
 
         // GET: DetallesCompras/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DetallesCompra detallesCompra = await db.DetallesCompra.FindAsync(id);
+            DetallesCompra detallesCompra = db.DetallesCompra.Find(id);
             if (detallesCompra == null)
             {
                 return HttpNotFound();
@@ -117,11 +117,11 @@ namespace SistemaDeFacturacion.Controllers
         // POST: DetallesCompras/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            DetallesCompra detallesCompra = await db.DetallesCompra.FindAsync(id);
+            DetallesCompra detallesCompra = db.DetallesCompra.Find(id);
             db.DetallesCompra.Remove(detallesCompra);
-            await db.SaveChangesAsync();
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 

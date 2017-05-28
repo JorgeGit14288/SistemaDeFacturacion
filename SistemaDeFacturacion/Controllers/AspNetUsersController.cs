@@ -13,114 +13,137 @@ namespace SistemaDeFacturacion.Controllers
 {
     public class AspNetUsersController : Controller
     {
-        private FacturacionDbEntities db = new FacturacionDbEntities();
+        private FacturacionDbEntities ctx = new FacturacionDbEntities();
 
-        // GET: AspNetUsers
-        public async Task<ActionResult> Index()
+        // GET: Usuarios
+        public ActionResult Index()
         {
-            return View(await db.AspNetUsers.ToListAsync());
+            List<AspNetUsers> lista = new List<AspNetUsers>();
+            lista = ctx.AspNetUsers.ToList();
+            return View(lista);
         }
 
-        // GET: AspNetUsers/Details/5
-        public async Task<ActionResult> Details(string id)
+        // GET: Usuarios/Details/5
+        public ActionResult Details(string id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            AspNetUsers aspNetUsers = await db.AspNetUsers.FindAsync(id);
-            if (aspNetUsers == null)
-            {
-                return HttpNotFound();
-            }
-            return View(aspNetUsers);
+            return View(ctx.AspNetUsers.SingleOrDefault((r => r.Id == id)));
         }
 
-        // GET: AspNetUsers/Create
+        // GET: Usuarios/Create
         public ActionResult Create()
         {
-            return View();
+            return RedirectToAction("Register", "Account");
+
+        }
+        // GET: Usuarios/Edit/5
+        public ActionResult Edit(string id)
+        {
+            ViewBag.Roles = ctx.AspNetRoles.ToList();
+            return View(ctx.AspNetUsers.SingleOrDefault((r => r.Id == id)));
         }
 
-        // POST: AspNetUsers/Create
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Usuarios/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,nombre,direccion,tel_casa,Activo,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] AspNetUsers aspNetUsers)
+        public ActionResult Edit(string id, FormCollection collection, AspNetUsers user)
         {
-            if (ModelState.IsValid)
+            ViewBag.Roles = ctx.AspNetRoles.ToList();
+            try
             {
-                db.AspNetUsers.Add(aspNetUsers);
-                await db.SaveChangesAsync();
+                if (!ModelState.IsValid)
+                {
+                    ViewBag.Error = "Los datos a guardar no son validos.";
+                    return View(user);
+                }
+
+                AspNetUsers actual = new AspNetUsers();
+                actual = ctx.AspNetUsers.Find(id);
+                actual.nombre = user.nombre;
+                actual.direccion = user.direccion;
+                actual.Activo = user.Activo;
+                actual.Email = user.Email;
+                actual.UserName = user.UserName;
+                actual.tel_casa = user.tel_casa;
+
+                ctx.Entry(actual).State = System.Data.Entity.EntityState.Modified;
+                ctx.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            return View(aspNetUsers);
+            catch (Exception ex)
+            {
+                ViewBag.Error = "Ha ocurrido un error " + ex.ToString();
+                return View(user);
+            }
         }
 
-        // GET: AspNetUsers/Edit/5
-        public async Task<ActionResult> Edit(string id)
+        // GET: Usuarios/Delete/5
+        public ActionResult Delete(string id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            AspNetUsers aspNetUsers = await db.AspNetUsers.FindAsync(id);
-            if (aspNetUsers == null)
-            {
-                return HttpNotFound();
-            }
-            return View(aspNetUsers);
+            return View(ctx.AspNetUsers.SingleOrDefault((r => r.Id == id)));
         }
 
-        // POST: AspNetUsers/Edit/5
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Usuarios/Delete/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,nombre,direccion,tel_casa,Activo,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] AspNetUsers aspNetUsers)
+        public ActionResult Delete(string id, FormCollection collection)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Entry(aspNetUsers).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                AspNetUsers user = new AspNetUsers();
+                user = ctx.AspNetUsers.Find(id);
+                ctx.AspNetUsers.Remove(user);
+                ctx.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(aspNetUsers);
+            catch (Exception ex)
+            {
+                ViewBag.Error = "Error al eliminar " + ex.ToString();
+                return View(id);
+            }
         }
 
-        // GET: AspNetUsers/Delete/5
-        public async Task<ActionResult> Delete(string id)
+        public ActionResult AgregarRol(string id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            AspNetUsers aspNetUsers = await db.AspNetUsers.FindAsync(id);
-            if (aspNetUsers == null)
-            {
-                return HttpNotFound();
-            }
-            return View(aspNetUsers);
+            ViewBag.Roles = ctx.AspNetRoles.ToList();
+            return View(ctx.AspNetUsers.Find(id));
         }
-
-        // POST: AspNetUsers/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(string id)
+        [HttpPost]
+        public ActionResult AgregarRol(string idUser, string idRol)
         {
-            AspNetUsers aspNetUsers = await db.AspNetUsers.FindAsync(id);
-            db.AspNetUsers.Remove(aspNetUsers);
-            await db.SaveChangesAsync();
-            return RedirectToAction("Index");
+            AspNetUsers user = ctx.AspNetUsers.Find(idUser);
+            AspNetRoles rol = ctx.AspNetRoles.Find(idRol);
+            if (user.AspNetRoles.FirstOrDefault(r => r.Id == rol.Id) == null)
+            {
+                user.AspNetRoles.Add(rol);
+                ctx.SaveChanges();
+
+                return RedirectToAction("Edit", "Usuarios", new { id = idUser });
+
+            }
+
+            ViewBag.Error = "El rol ya existe en el usuario actual";
+            return RedirectToAction("Edit", "Usuarios", new { id = idUser });
+        }
+        [HttpPost]
+        public ActionResult EliminarRol(string idUser, string idRol)
+        {
+            AspNetUsers user = ctx.AspNetUsers.Find(idUser);
+            AspNetRoles rol = ctx.AspNetRoles.Find(idRol);
+            if (user.AspNetRoles.FirstOrDefault(r => r.Id == rol.Id) == null)
+            {
+                ViewBag.Error = "No se pudo eliminar el rol del usuario";
+                return RedirectToAction("Edit", "Usuarios", new { id = idUser });
+
+            }
+            user.AspNetRoles.Remove(rol);
+            ctx.SaveChanges();
+            return RedirectToAction("Edit", "Usuarios", new { id = idUser });
+
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                ctx.Dispose();
             }
             base.Dispose(disposing);
         }

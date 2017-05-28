@@ -16,19 +16,19 @@ namespace SistemaDeFacturacion.Controllers
         private FacturacionDbEntities db = new FacturacionDbEntities();
 
         // GET: Proveedores
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            return View(await db.Proveedores.ToListAsync());
+            return View(db.Proveedores.ToList());
         }
 
         // GET: Proveedores/Details/5
-        public async Task<ActionResult> Details(string id)
+        public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Proveedores proveedores = await db.Proveedores.FindAsync(id);
+            Proveedores proveedores = db.Proveedores.Find(id);
             if (proveedores == null)
             {
                 return HttpNotFound();
@@ -47,26 +47,30 @@ namespace SistemaDeFacturacion.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "idProveedor,empresa,nombre,direccion,telefono,email,creado,modificado")] Proveedores proveedores)
+        public ActionResult Create([Bind(Include = "idProveedor,empresa,nombre,direccion,telefono,email,creado,modificado")] Proveedores proveedores)
         {
+
             if (ModelState.IsValid)
             {
+                proveedores.creado = DateTime.Now;
+                proveedores.modificado = DateTime.Now;
                 db.Proveedores.Add(proveedores);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                db.SaveChanges();
+                ViewBag.Mensaje = "Registro Creado";
+                return View("Index", db.Proveedores.ToList());
             }
-
+            ViewBag.Error = "No se pudo crear el registro en la base de datos";
             return View(proveedores);
         }
 
         // GET: Proveedores/Edit/5
-        public async Task<ActionResult> Edit(string id)
+        public ActionResult Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Proveedores proveedores = await db.Proveedores.FindAsync(id);
+            Proveedores proveedores = db.Proveedores.Find(id);
             if (proveedores == null)
             {
                 return HttpNotFound();
@@ -79,25 +83,29 @@ namespace SistemaDeFacturacion.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "idProveedor,empresa,nombre,direccion,telefono,email,creado,modificado")] Proveedores proveedores)
+        public ActionResult Edit([Bind(Include = "idProveedor,empresa,nombre,direccion,telefono,email,creado,modificado")] Proveedores proveedores)
         {
+
             if (ModelState.IsValid)
             {
+                proveedores.modificado = DateTime.Now;
                 db.Entry(proveedores).State = EntityState.Modified;
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                db.SaveChanges();
+                ViewBag.Mensaje = "Registro Actualizado";
+                return View("Index", db.Proveedores.ToList());
             }
+            ViewBag.Error = "No se pudo actualizar los datos del proveedor";
             return View(proveedores);
         }
 
         // GET: Proveedores/Delete/5
-        public async Task<ActionResult> Delete(string id)
+        public ActionResult Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Proveedores proveedores = await db.Proveedores.FindAsync(id);
+            Proveedores proveedores = db.Proveedores.Find(id);
             if (proveedores == null)
             {
                 return HttpNotFound();
@@ -108,12 +116,23 @@ namespace SistemaDeFacturacion.Controllers
         // POST: Proveedores/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(string id)
         {
-            Proveedores proveedores = await db.Proveedores.FindAsync(id);
-            db.Proveedores.Remove(proveedores);
-            await db.SaveChangesAsync();
-            return RedirectToAction("Index");
+            try
+            {
+
+
+                Proveedores proveedores = db.Proveedores.Find(id);
+                db.Proveedores.Remove(proveedores);
+                db.SaveChanges();
+                ViewBag.Mensaje = "Se ha eliminado un registro de la base de datos";
+                return View("Index", db.Proveedores.ToList());
+            }
+            catch
+            {
+                ViewBag.Error = "No se pudo elimianar el registro";
+                return View(id);
+            }
         }
 
         protected override void Dispose(bool disposing)

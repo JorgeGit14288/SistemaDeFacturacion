@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SistemaDeFacturacion.Models;
+using SistemaDeFacturacion.Dao;
 
 namespace SistemaDeFacturacion.Controllers
 {
@@ -15,24 +16,48 @@ namespace SistemaDeFacturacion.Controllers
     {
         private FacturacionDbEntities db = new FacturacionDbEntities();
 
+        IFacturasDao daoFacturas = new FacturasDao();
         // GET: Facturas
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            var facturas = db.Facturas.Include(f => f.Clientes).Include(f => f.Cotizaciones).Include(f => f.TipoPago1);
-            return View(await facturas.ToListAsync());
+            return View(db.Facturas.ToList());
+        }
+        [HttpPost]
+        public ActionResult Index(int id)
+        {
+            try
+            {
+                if (id == 0)
+                {
+                    return View(db.Facturas.ToList());
+                }
+                else
+                {
+                    ViewBag.Detalles = db.DetallesCotizacion.Where(r => r.idCotizacion == id).ToList();
+                    return View(db.Facturas.ToList());
+                }
+            }
+            catch
+            {
+
+
+                return View(db.Facturas.ToList());
+            }
         }
 
         // GET: Facturas/Details/5
-        public async Task<ActionResult> Details(int? id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Facturas facturas = await db.Facturas.FindAsync(id);
+            Facturas facturas = db.Facturas.Find(id);
+            ViewBag.Detalles = db.DetallesCotizacion.Where(r => r.idCotizacion == id).ToList();
             if (facturas == null)
             {
-                return HttpNotFound();
+                ViewBag.Error = "No se encuentra la factura que busca, intente buscar en la tabla general";
+                return View("Index", db.Facturas.ToList());
             }
             return View(facturas);
         }
@@ -40,9 +65,6 @@ namespace SistemaDeFacturacion.Controllers
         // GET: Facturas/Create
         public ActionResult Create()
         {
-            ViewBag.nitCliente = new SelectList(db.Clientes, "nit", "nombre");
-            ViewBag.idCotizacion = new SelectList(db.Cotizaciones, "idCotizacion", "nombre");
-            ViewBag.tipoPago = new SelectList(db.TipoPago, "id", "nombre");
             return View();
         }
 
@@ -51,36 +73,30 @@ namespace SistemaDeFacturacion.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "idFactura,nitCliente,nombre,direccion,fecha,subTotal,descuento,total,idCotizacion,usuario,tipoPago,idPago")] Facturas facturas)
+        public ActionResult Create([Bind(Include = "idFactura,nitCliente,nombre,direccion,fecha,total,usuario")] Facturas facturas)
         {
             if (ModelState.IsValid)
             {
                 db.Facturas.Add(facturas);
-                await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.nitCliente = new SelectList(db.Clientes, "nit", "nombre", facturas.nitCliente);
-            ViewBag.idCotizacion = new SelectList(db.Cotizaciones, "idCotizacion", "nombre", facturas.idCotizacion);
-            ViewBag.tipoPago = new SelectList(db.TipoPago, "id", "nombre", facturas.tipoPago);
             return View(facturas);
         }
 
         // GET: Facturas/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Facturas facturas = await db.Facturas.FindAsync(id);
+            Facturas facturas = db.Facturas.Find(id);
             if (facturas == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.nitCliente = new SelectList(db.Clientes, "nit", "nombre", facturas.nitCliente);
-            ViewBag.idCotizacion = new SelectList(db.Cotizaciones, "idCotizacion", "nombre", facturas.idCotizacion);
-            ViewBag.tipoPago = new SelectList(db.TipoPago, "id", "nombre", facturas.tipoPago);
             return View(facturas);
         }
 
@@ -89,28 +105,25 @@ namespace SistemaDeFacturacion.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "idFactura,nitCliente,nombre,direccion,fecha,subTotal,descuento,total,idCotizacion,usuario,tipoPago,idPago")] Facturas facturas)
+        public ActionResult Edit([Bind(Include = "idFactura,nitCliente,nombre,direccion,fecha,total,usuario")] Facturas facturas)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(facturas).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.nitCliente = new SelectList(db.Clientes, "nit", "nombre", facturas.nitCliente);
-            ViewBag.idCotizacion = new SelectList(db.Cotizaciones, "idCotizacion", "nombre", facturas.idCotizacion);
-            ViewBag.tipoPago = new SelectList(db.TipoPago, "id", "nombre", facturas.tipoPago);
             return View(facturas);
         }
 
         // GET: Facturas/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Facturas facturas = await db.Facturas.FindAsync(id);
+            Facturas facturas = db.Facturas.Find(id);
             if (facturas == null)
             {
                 return HttpNotFound();
@@ -121,12 +134,24 @@ namespace SistemaDeFacturacion.Controllers
         // POST: Facturas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            Facturas facturas = await db.Facturas.FindAsync(id);
+            Facturas facturas = db.Facturas.Find(id);
             db.Facturas.Remove(facturas);
-            await db.SaveChangesAsync();
+            db.SaveChanges();
             return RedirectToAction("Index");
+        }
+        public ActionResult FacturasHoy(FormCollection form)
+        {
+            DateTime fecha = Convert.ToDateTime(form["fecha"]);
+
+            List<Facturas> lista = new List<Facturas>();
+
+            fecha = DateTime.Now.Date;
+
+            ViewBag.Fecha = fecha;
+            lista = daoFacturas.ListarFacturasHoy(fecha);
+            return View(lista);
         }
 
         protected override void Dispose(bool disposing)

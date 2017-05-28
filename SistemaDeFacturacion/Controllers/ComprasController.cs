@@ -16,24 +16,30 @@ namespace SistemaDeFacturacion.Controllers
         private FacturacionDbEntities db = new FacturacionDbEntities();
 
         // GET: Compras
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
             var compras = db.Compras.Include(c => c.Proveedores);
-            return View(await compras.ToListAsync());
+            return View(compras.ToList());
         }
 
         // GET: Compras/Details/5
-        public async Task<ActionResult> Details(int? id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Compras compras = await db.Compras.FindAsync(id);
+            Compras compras = db.Compras.Find(id);
+            //var detallesCompra = db.DetallesCompra.Include(d => d.Compras).Include(d => d.Productos);
+            ViewBag.Detalles = db.DetallesCompra.Where(d => d.idCompra == id).ToList();
             if (compras == null)
             {
-                return HttpNotFound();
+
+                var compras2 = db.Compras.Include(c => c.Proveedores);
+                ViewBag.Error = "No se ha encontrado la compra con el id indicado, pruebe buscar en la tabla general";
+                return View("Index", compras2.ToList());
             }
+
             return View(compras);
         }
 
@@ -49,12 +55,14 @@ namespace SistemaDeFacturacion.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "idCompra,idFactura,idProveedor,total,fecha,modificado,usuario")] Compras compras)
+        public ActionResult Create([Bind(Include = "idCompra,idFactura,idProveedor,total,fecha,creado,modificado")] Compras compras)
         {
             if (ModelState.IsValid)
             {
+                //compras.creado = DateTime.Now;
+                compras.modificado = DateTime.Now;
                 db.Compras.Add(compras);
-                await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -63,13 +71,13 @@ namespace SistemaDeFacturacion.Controllers
         }
 
         // GET: Compras/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Compras compras = await db.Compras.FindAsync(id);
+            Compras compras = db.Compras.Find(id);
             if (compras == null)
             {
                 return HttpNotFound();
@@ -83,12 +91,13 @@ namespace SistemaDeFacturacion.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "idCompra,idFactura,idProveedor,total,fecha,modificado,usuario")] Compras compras)
+        public ActionResult Edit([Bind(Include = "idCompra,idFactura,idProveedor,total,fecha,creado,modificado")] Compras compras)
         {
             if (ModelState.IsValid)
             {
+                compras.modificado = DateTime.Now;
                 db.Entry(compras).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             ViewBag.idProveedor = new SelectList(db.Proveedores, "idProveedor", "empresa", compras.idProveedor);
@@ -96,13 +105,13 @@ namespace SistemaDeFacturacion.Controllers
         }
 
         // GET: Compras/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Compras compras = await db.Compras.FindAsync(id);
+            Compras compras = db.Compras.Find(id);
             if (compras == null)
             {
                 return HttpNotFound();
@@ -113,11 +122,11 @@ namespace SistemaDeFacturacion.Controllers
         // POST: Compras/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            Compras compras = await db.Compras.FindAsync(id);
+            Compras compras = db.Compras.Find(id);
             db.Compras.Remove(compras);
-            await db.SaveChangesAsync();
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 

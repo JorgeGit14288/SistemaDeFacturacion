@@ -1,118 +1,130 @@
 ﻿@model IEnumerable<SistemaDeFacturacion.Models.AspNetUsers>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Usuarios ";
+    ViewBag.TituloControlador = "USUARIOS";
+    ViewBag.InfoPagina = "Usuarios con acceso al sistema";
+    ViewBag.TituloVentana = "Registros";
+    ViewBag.FooterVentana = "Es posible que no se permita la eliminacion de estos registros para conservar la integridad de la base de datos";
+
     Layout = "~/Views/Shared/Plantilla1.cshtml";
 }
-
-<h2>Index</h2>
-
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <a href="@Url.Action("Create","AspNetUsers")" class="btn btn-primary" role="button">Crear Nuevo</a>
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.direccion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tel_casa)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Activo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EmailConfirmed)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PasswordHash)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SecurityStamp)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PhoneNumberConfirmed)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TwoFactorEnabled)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LockoutEndDateUtc)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LockoutEnabled)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AccessFailedCount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserName)
-        </th>
-        <th></th>
-    </tr>
+<table class="table table-responsive table-hover" id="tUsuarios">
+    <thead>
+        <tr>
+            <th>
+                Login
+            </th>
+            <th>
+                Nombre
+            </th>
+            <th>
+                Direccion
+            </th>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.direccion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tel_casa)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Activo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EmailConfirmed)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PasswordHash)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SecurityStamp)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PhoneNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PhoneNumberConfirmed)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TwoFactorEnabled)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LockoutEndDateUtc)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LockoutEnabled)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AccessFailedCount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+            <th>
+                Telefono
+            </th>
+            <th>
+                Rol
+            </th>
+            <th>
+                Activo
+            </th>
+
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.direccion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+
+                <td>
+                    @foreach (var r in item.AspNetRoles)
+                    {
+                        @r.Name <br />
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Activo)
+                </td>
+                <td>
+                    <input type="button" class="btn btn-info" value="Detalles" onclick="location.href='@Url.Action("Details", "AspNetUsers", new {id = item.Id})'" />
+                </td>
+            </tr>
+        }
+    </tbody>
 
 </table>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#tUsuarios').DataTable({
+                "language": {
+
+                    "sProcessing": "Procesando...",
+
+                    "sLengthMenu": "Mostrar _MENU_ registros",
+
+                    "sZeroRecords": "No se encontraron resultados",
+
+                    "sEmptyTable": "Ningún dato disponible en esta tabla",
+
+                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+
+                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+
+                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+
+                    "sInfoPostFix": "",
+
+                    "sSearch": "Buscar:",
+
+                    "sUrl": "",
+
+                    "sInfoThousands": ",",
+
+                    "sLoadingRecords": "Cargando...",
+
+                    "oPaginate": {
+
+                        "sFirst": "Primero",
+
+                        "sLast": "Último",
+
+                        "sNext": "Siguiente",
+
+                        "sPrevious": "Anterior"
+
+                    },
+
+                    "oAria": {
+
+                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+
+                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                    }
+                }
+            });
+        });
+    </script>
+
+
+}

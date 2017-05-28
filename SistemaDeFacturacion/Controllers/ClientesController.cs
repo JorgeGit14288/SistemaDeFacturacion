@@ -14,21 +14,20 @@ namespace SistemaDeFacturacion.Controllers
     public class ClientesController : Controller
     {
         private FacturacionDbEntities db = new FacturacionDbEntities();
-
         // GET: Clientes
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            return View(await db.Clientes.ToListAsync());
+            return View(db.Clientes.ToList());
         }
 
         // GET: Clientes/Details/5
-        public async Task<ActionResult> Details(string id)
+        public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Clientes clientes = await db.Clientes.FindAsync(id);
+            Clientes clientes = db.Clientes.Find(id);
             if (clientes == null)
             {
                 return HttpNotFound();
@@ -47,26 +46,29 @@ namespace SistemaDeFacturacion.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "nit,nombre,direccion,telefono,email,creado,modificado")] Clientes clientes)
+        public ActionResult Create([Bind(Include = "nit,nombre,direccion,telefono")] Clientes clientes)
         {
             if (ModelState.IsValid)
             {
+                clientes.creado = DateTime.Now;
+                clientes.modificado = DateTime.Now;
                 db.Clientes.Add(clientes);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                db.SaveChanges();
+                ViewBag.Mensaje = "Se ha creado un nuevo registro en la base de datos";
+                return View("Index", db.Clientes.ToList());
             }
-
+            ViewBag.Error = "No se ha podido crear el registro, puede que exista ya un cliente con este nit";
             return View(clientes);
         }
 
         // GET: Clientes/Edit/5
-        public async Task<ActionResult> Edit(string id)
+        public ActionResult Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Clientes clientes = await db.Clientes.FindAsync(id);
+            Clientes clientes = db.Clientes.Find(id);
             if (clientes == null)
             {
                 return HttpNotFound();
@@ -79,25 +81,28 @@ namespace SistemaDeFacturacion.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "nit,nombre,direccion,telefono,email,creado,modificado")] Clientes clientes)
+        public ActionResult Edit([Bind(Include = "nit,nombre,direccion,telefono")] Clientes clientes)
         {
             if (ModelState.IsValid)
             {
+                clientes.modificado = DateTime.Now;
                 db.Entry(clientes).State = EntityState.Modified;
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                db.SaveChanges();
+                ViewBag.Mensaje = "Se ha actualizado el registro del cliente en la ase de datos";
+                return View(clientes.nit);
             }
+            ViewBag.Error = "No se han podido guardar los cambios, si el problema persiste, contacte con el tecnico";
             return View(clientes);
         }
 
         // GET: Clientes/Delete/5
-        public async Task<ActionResult> Delete(string id)
+        public ActionResult Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Clientes clientes = await db.Clientes.FindAsync(id);
+            Clientes clientes = db.Clientes.Find(id);
             if (clientes == null)
             {
                 return HttpNotFound();
@@ -108,12 +113,21 @@ namespace SistemaDeFacturacion.Controllers
         // POST: Clientes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(string id)
         {
-            Clientes clientes = await db.Clientes.FindAsync(id);
-            db.Clientes.Remove(clientes);
-            await db.SaveChangesAsync();
-            return RedirectToAction("Index");
+            try
+            {
+                Clientes clientes = db.Clientes.Find(id);
+                db.Clientes.Remove(clientes);
+                db.SaveChanges();
+                ViewBag.Mensaje = "Se ha eliminado un registro de la base de datos";
+                return View("Index", db.Clientes.ToList());
+            }
+            catch
+            {
+                ViewBag.Error = "No se pudo elimnar el registro, puede que la conexion a el servidor no este estable, o que el cliente tanga facturas a su nombre, contacte con el tecnico";
+                return View(id);
+            }
         }
 
         protected override void Dispose(bool disposing)

@@ -1701,7 +1701,6 @@
     <Content Include="Views\TipoPagoes\Details.cshtml" />
     <Content Include="Views\TipoPagoes\Edit.cshtml" />
     <Content Include="Views\TipoPagoes\Index.cshtml" />
-    <Content Include="Views\AspNetUsers\Create.cshtml" />
     <Content Include="Views\AspNetUsers\Delete.cshtml" />
     <Content Include="Views\AspNetUsers\Details.cshtml" />
     <Content Include="Views\AspNetUsers\Edit.cshtml" />
@@ -1726,6 +1725,7 @@
     <Content Include="Views\Productos\Edit.cshtml" />
     <Content Include="Views\Productos\Index.cshtml" />
     <Content Include="Views\Productos\AgregarExistencia.cshtml" />
+    <Content Include="Views\AspNetUsers\AgregarRol.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

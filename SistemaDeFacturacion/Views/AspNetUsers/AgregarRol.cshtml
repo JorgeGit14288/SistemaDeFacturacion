@@ -1,0 +1,143 @@
+﻿@model SistemaDeFacturacion.Models.AspNetUsers
+@using SistemaDeFacturacion.Models;
+
+@{
+    ViewBag.Title = "Asignar Roles ";
+    ViewBag.TituloControlador = "USUARIOS";
+    ViewBag.InfoPagina = "Informacion Actual del usuario";
+    ViewBag.TituloVentana = "Datos del Usuario";
+    ViewBag.FooterVentana = "Si desea modificar la informacion del usuario seleccione la opcion editar";
+
+    Layout = "~/Views/Shared/Plantilla1.cshtml";
+
+    List<AspNetRoles> roles = new List<AspNetRoles>();
+    if(ViewBag.Roles!=null)
+    {
+        roles = (List<AspNetRoles>)ViewBag.Roles;
+    }
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-md-6">
+
+            <div>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Email)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.PhoneNumber)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.PhoneNumber)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.UserName)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.UserName)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.nombre)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.nombre)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.direccion)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.direccion)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.tel_casa)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.tel_casa)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Activo)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Activo)
+                    </dd>
+                    <dt>
+                        Roles
+                    </dt>
+                    <dd>
+                        @foreach (var r in Model.AspNetRoles)
+                        {
+                            @r.Name <br />
+                        }
+
+                    </dd>
+
+                </dl>
+            </div>
+
+        </div>
+        <div class="row">
+
+            <div class="col-md-6">
+                <h3 class="h3">Seleccione los roles</h3>
+                <hr />
+                <form method="post" action="@Url.Action("AgregarRol","Usuarios")">
+                    <select class="selectpicker form-control" title="AgregarRol" data-live-search="true" id="idRol" name="idRol" required>
+                        <option></option>
+
+                        @foreach (var r in roles)
+                        {
+
+                            <option value="@r.Id" data-tokens="@r.Id @r.Name"> @r.Name </option>
+
+
+                        }
+                    </select>
+                    <input type="hidden" name="idUser" id="idUser" value="@Model.Id" />
+                    <input type="submit" name="btnCargar" value="Agregar Rol" class="btn btn-primary" />
+                </form>
+
+                <h3 class="h3">Seleccione los roles a Eliminar</h3>
+                <hr />
+                    <form method="post" action="@Url.Action("EliminarRol","Usuarios")">
+                        <select class="selectpicker form-control" title="AgregarRol" data-live-search="true" id="idRol" name="idRol" required>
+                            <option></option>
+
+                            @foreach (var r in Model.AspNetRoles)
+                            {
+
+                                <option value="@r.Id" data-tokens="@r.Id @r.Name"> @r.Name </option>
+                            }
+                        </select>
+                        <input type="hidden" name="idUser" id="idUser" value="@Model.Id" />
+                        <input type="submit" name="btnCargar" value="Eliminar Rol" class="btn btn-danger" />
+                    </form>
+               
+            </div>
+            
+        </div>
+
+    </div>
+</div>
+
+<p>
+    <input type="button" class="btn btn-info" value="Actualizar Registro" onclick="location.href='@Url.Action("Edit", "AspNetUsers", new {id = Model.Id })'" /> |
+    <input type="button" class="btn btn-danger" value="Eliminar Registro" onclick="location.href='@Url.Action("Delete", "AspNetUsers", new {id = Model.Id})'" /> |
+    <a href="@Url.Action("Index","Usuarios")" class="btn btn-success">Regresar a la lista</a>
+</p>
