@@ -8,7 +8,7 @@ using System.Data.Entity;
 namespace SistemaDeFacturacion.Dao
 {
     public class FacturasDao : IFacturasDao
-    {
+    { 
         FacturacionDbEntities ctx = new FacturacionDbEntities();
         public bool Actualizar(Facturas a)
         {

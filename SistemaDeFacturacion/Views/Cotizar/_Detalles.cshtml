@@ -1,0 +1,79 @@
+﻿@using SistemaDeFacturacion.Models;
+
+@{ 
+    List<DetallesCotizacion> detalles = new List<DetallesCotizacion>();
+    if (Session["DetallesC"].ToString() == "")
+    {
+
+    }
+    else
+    {
+        detalles = (List<DetallesCotizacion>)Session["DetallesC"];
+    }
+}
+
+
+<div class="col-md-12">
+    <div class="table-responsive " >
+        <table class="table table-responsive table-bordered table-striped" >
+            <thead>
+                <tr>
+                    <th>
+                        Id
+                    </th>
+
+                    <th>
+                        Cantidad
+                    </th>
+                    <th>
+                        Nombre
+                    </th>
+                    <th>
+                        Precio
+                    </th>
+                    <th>
+                        Descuento
+                    </th>
+                    <th>
+                        SubTotal
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in detalles)
+            {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.idDetalle)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.cantidad)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.idProducto)
+                            @Html.DisplayFor(modelItem => item.Productos.nombre)
+                        </td>
+                        <td>
+                          Q. @Html.DisplayFor(modelItem => item.precio)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.descuento) %
+                        </td>
+                        <td>
+                          Q. @Html.DisplayFor(modelItem => item.subTotal)
+                        </td>
+
+
+                        <td>
+                            @Html.ActionLink("Editar", "EditarDetalle", new {  id=item.idDetalle  }) |
+                            @Html.ActionLink("Eliminar", "EliminarDetalle", new {  id=item.idDetalle  })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+</div>

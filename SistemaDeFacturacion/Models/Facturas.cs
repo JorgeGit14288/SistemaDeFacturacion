@@ -26,6 +26,7 @@ namespace SistemaDeFacturacion.Models
         public string usuario { get; set; }
         public Nullable<int> tipoPago { get; set; }
         public string idPago { get; set; }
+        public Nullable<decimal> iva { get; set; }
     
         public virtual Clientes Clientes { get; set; }
         public virtual Cotizaciones Cotizaciones { get; set; }

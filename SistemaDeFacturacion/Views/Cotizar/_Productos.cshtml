@@ -1,0 +1,81 @@
+﻿@using SistemaDeFacturacion.Models;
+@{
+    List<Productos> productos = new List<Productos>();
+    if (ViewBag.Productos == null)
+    {
+
+    }
+    else
+    {
+
+        productos = (List<Productos>)ViewBag.Productos;
+    }
+}
+
+<div class="row">
+    <div class="col-md-12">
+        @{
+            if (ViewBag.modIdProducto == null)
+            {
+                <form class="form-inline" id="formCargarProductos" method="post" action="@Url.Action("CargarProducto","Cotizar")">
+                    <div class="row">
+                        <div class="col-md-6">
+                            
+                            <select class="selectpicker form-control" title="Buscar producto por nombre o Id" data-live-search="true"  id="idProducto" name="idProducto" required>
+                                <option></option>
+
+                                @foreach (var p in productos)
+                                {
+                                    if (p.existencia == 0)
+                                    {
+                                         <option value="@p.idProducto"  disabled data-tokens="@p.idProducto @p.nombre"> <text class="text-danger"> @p.idProducto, @p.nombre  , NO HAY EXISTENCIAS </text></option>
+
+                                    }
+                                    else
+                                    {
+                                        <option value="@p.idProducto" data-subtext="Existencia: @p.existencia " data-tokens="@p.idProducto @p.nombre">  @p.idProducto, @p.nombre ,Q @p.precio </option>
+                                    }
+
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group ">
+                                <label for="cantidad">Cantidad:</label>
+                                <input type="number" step="any" name="cantidad" id="cantidad" min="1" class="form-control" max="9999" size="6" required />
+                                <label for="Descuento">Descuento:</label>
+                                <input type="number"  name="descuento" id="descuento" value="0" min="0" maxlength="2"  max="99" size="6" required />
+                                <input type="submit" value="Agregar" id="btnAgregarProducto"  class="btn btn-success" />
+                                <a href="@Url.Action("Index","Productos")" class="btn btn-info">Ver Productos</a>
+                            </div>
+                        </div>
+                    </div>
+  
+                </form>
+
+            }
+            else
+            {
+                
+                <form class="form-inline" id="formCargarProductos" method="post" action="AgregarProducto">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="form-inline">
+                                <label >Id Prod:</label>
+                                <input type="text" name="idProducto" id="idProducto" value="@ViewBag.modIdProducto" class="form-control"  required readonly />
+                                <label for="cantidad">Cantidad:</label>
+                                <input type="number" name="cantidad" id="cantidad" min="1"  value="@ViewBag.modCantidad" max="9999" class=" form-control" required />
+                               <label for="descuento">Descuento:</label>
+                              <input type="number" name="descuento" id="descuento" min="0" value="@ViewBag.modDescuento" max="99" class=" form-control" required />
+                                <input type="hidden" name="idDetalle" id="idDetalle" value="@ViewBag.modIdDetalle" />
+                                <input type="submit" value="Modificar" id="btnAgregarProducto" formaction="@Url.Action("EditarDetalle","Cotizar")" class="btn btn-success" />
+                                <input type="submit" value="Cancelar" id="btnCancelarEdicion" formaction="@Url.Action("CancelarEdicion","Cotizar") " class="btn btn-danger" />
+                            </div>
+                        </div>
+                    </div>
+                   
+                </form>
+            }
+        }
+    </div>
+</div>

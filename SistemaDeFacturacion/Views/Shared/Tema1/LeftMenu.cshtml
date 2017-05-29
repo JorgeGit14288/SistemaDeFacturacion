@@ -37,7 +37,17 @@
             
             <li class="treeview bg-red-gradient">
                 <a href="@Url.Action("Facturar","Facturar")">
+                    <i class="fa fa-cart-plus"></i> <span>Facturar Venta</span>
+                </a>
+            </li>
+            <li class="treeview bg-blue-gradient">
+                <a href="@Url.Action("Cotizar","Cotizar")">
                     <i class="fa fa-cart-plus"></i> <span>Nueva venta</span>
+                </a>
+            </li>
+            <li class="treeview bg-green-gradient">
+                <a href="@Url.Action("CrearCompra","AgregarCompra")">
+                    <i class="fa fa-cart-plus"></i> <span>Ingresar Mercaderia</span>
                 </a>
             </li>
             <li class="treeview">
@@ -57,11 +67,22 @@
                     <li><a href="@Url.Action("FacturasPorFecha","Facturas")"><i class="fa fa-circle-o"></i>Facturas por fecha</a></li>                   
                 </ul>
             </li>
-            <li class="treeview bg-blue-gradient">
-                <a href="@Url.Action("CrearCompra","AgregarCompra")">
-                    <i class="fa fa-cart-plus"></i> <span>Ingresar Mercaderia</span>
+            <li class="treeview">
+                <a href="">
+                    <i class="fa fa-table"></i>
+                    <span>Cotizaciones</span>
+                    <span class="pull-right-container">
+                        <span class="label label-primary pull-right bg-green">
+                            <i class="fa fa-angle-down pull-right"></i>
+                        </span>
+                    </span>
                 </a>
+                <ul class="treeview-menu">
+                    <li><a href="@Url.Action("Index","Cotizaciones")"><i class="fa fa-circle-o"></i>Lista de Cotizaciones</a></li>
+
+                </ul>
             </li>
+ 
             <li class="treeview">
                 <a href="">
                     <i class="fa fa-bookmark"></i>
@@ -78,6 +99,7 @@
                     <li><a href="@Url.Action("BuscarCompras","Compras")"><i class="fa fa-circle-o"></i>Busqueda por fechas</a></li>
                 </ul>
             </li>
+            
             <li class="treeview">
                 <a href="">
                     <i class="fa  fa-plus"></i>

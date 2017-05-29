@@ -19,10 +19,24 @@ namespace SistemaDeFacturacion
         }
         public void Session_Start()
         {
+            //para cotizacion 
+
+            Session["Cotizacion"] = "";
+            Session["idCotizacion"] = "1";
+            Session["DetallesC"] = "";
+            Session["idDetalleC"] = "0";
+            Session["Usuario"] = "";
+            Session["totalC"] = "0";
+            Session["DescuentoC"] = "0";
+            Session["subTotalC"] = 0;
+            Session["ClienteC"] = "";
+
+
+            // para crear una factura
             Session["Factura"] = "";
             Session["Cliente"] = "";
             Session["idFactura"] = "1";
-            Session["Detalles"] = "";
+            Session["DetallesF"] = "";
             Session["idDetalle"] = "0";
             Session["Usuario"] = "";
             Session["totalFactura"] = "0";

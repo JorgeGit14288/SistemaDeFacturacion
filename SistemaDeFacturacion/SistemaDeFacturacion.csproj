@@ -203,8 +203,10 @@
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\ComprasController.cs" />
     <Compile Include="Controllers\CotizacionesController.cs" />
+    <Compile Include="Controllers\CotizarController.cs" />
     <Compile Include="Controllers\DetallesComprasController.cs" />
     <Compile Include="Controllers\DetallesCotizacionsController.cs" />
+    <Compile Include="Controllers\FacturarController.cs" />
     <Compile Include="Controllers\FacturasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -214,6 +216,8 @@
     <Compile Include="Dao\AgregarComprasDao.cs" />
     <Compile Include="Dao\ClientesDao.cs" />
     <Compile Include="Dao\ComprasDao.cs" />
+    <Compile Include="Dao\CotizacionesDao.cs" />
+    <Compile Include="Dao\CotizarDao.cs" />
     <Compile Include="Dao\DetallesDao.cs" />
     <Compile Include="Dao\FacturarDao.cs" />
     <Compile Include="Dao\FacturasDao.cs" />
@@ -221,6 +225,8 @@
     <Compile Include="Dao\IAgregarComprasDao.cs" />
     <Compile Include="Dao\IClientesDao.cs" />
     <Compile Include="Dao\IComprasDao.cs" />
+    <Compile Include="Dao\ICotizacionesDao.cs" />
+    <Compile Include="Dao\ICotizar.cs" />
     <Compile Include="Dao\IDetallesCotizacionDao.cs" />
     <Compile Include="Dao\iFacturarDao.cs" />
     <Compile Include="Dao\IFacturasDao.cs" />
@@ -254,6 +260,7 @@
     <Compile Include="Models\Cotizaciones.cs">
       <DependentUpon>FacturacionModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CotizarModel.cs" />
     <Compile Include="Models\DetallesCompra.cs">
       <DependentUpon>FacturacionModel.tt</DependentUpon>
     </Compile>
@@ -1726,9 +1733,15 @@
     <Content Include="Views\Productos\Index.cshtml" />
     <Content Include="Views\Productos\AgregarExistencia.cshtml" />
     <Content Include="Views\AspNetUsers\AgregarRol.cshtml" />
+    <Content Include="Views\Cotizar\Cotizar.cshtml" />
+    <Content Include="Views\Cotizar\_Cliente.cshtml" />
+    <Content Include="Views\Cotizar\_Detalles.cshtml" />
+    <Content Include="Views\Cotizar\_Productos.cshtml" />
+    <Content Include="Views\Cotizar\_TotalCotizacion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Facturar\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

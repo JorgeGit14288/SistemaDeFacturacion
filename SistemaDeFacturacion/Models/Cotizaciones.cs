@@ -22,7 +22,9 @@ namespace SistemaDeFacturacion.Models
         }
     
         public int idCotizacion { get; set; }
+        public string nitCliente { get; set; }
         public string nombre { get; set; }
+        public string direccion { get; set; }
         public System.DateTime fecha { get; set; }
         public Nullable<decimal> subTotal { get; set; }
         public Nullable<decimal> descuento { get; set; }
