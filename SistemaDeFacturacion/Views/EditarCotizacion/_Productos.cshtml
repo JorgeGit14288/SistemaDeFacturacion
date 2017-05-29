@@ -17,7 +17,7 @@
         @{
             if (ViewBag.modIdProducto == null)
             {
-                <form class="form-inline" id="formCargarProductos" method="post" action="@Url.Action("CargarProducto","Cotizar")">
+                <form class="form-inline" id="formCargarProductos" method="post" action="@Url.Action("CargarProducto","EditarCotizacion")">
                     <div class="row">
                         <div class="col-md-5">
                             
@@ -46,18 +46,15 @@
                                 <label for="Descuento">Descuento:</label>
                                 <input type="number"  name="descuento" id="descuento" value="0" min="0" maxlength="2"  max="99" size="6" required />
                                 <input type="submit" value="Agregar" id="btnAgregarProducto"  class="btn btn-success" />
-                                <a href="@Url.Action("Index","Productos")" class="btn btn-info">Ver Productos</a>
+                               
                             </div>
                         </div>
                     </div>
-  
                 </form>
-
             }
             else
             {
-                
-                <form class="form-inline" id="formCargarProductos" method="post" action="AgregarProducto">
+                <form class="form-inline" id="formCargarProductos" method="post" action="@Url.Action("AgregarProducto","EditarCotizacion")">
                     <div class="col-md-12">
                         <div class="form-group">
                             <div class="form-inline">
@@ -68,8 +65,8 @@
                                <label for="descuento">Descuento:</label>
                               <input type="number" name="descuento" id="descuento" min="0" value="@ViewBag.modDescuento" max="99" class=" form-control" required />
                                 <input type="hidden" name="idDetalle" id="idDetalle" value="@ViewBag.modIdDetalle" />
-                                <input type="submit" value="Modificar" id="btnAgregarProducto" formaction="@Url.Action("EditarDetalle","Cotizar")" class="btn btn-success" />
-                                <input type="submit" value="Cancelar" id="btnCancelarEdicion" formaction="@Url.Action("CancelarEdicion","Cotizar") " class="btn btn-danger" />
+                                <input type="submit" value="Modificar" id="btnAgregarProducto" formaction="@Url.Action("EditarDetalle","EditarCotizacion")" class="btn btn-success" />
+                                <input type="submit" value="Cancelar" id="btnCancelarEdicion" formaction="@Url.Action("CancelarEdicion","EditarCotizacion") " class="btn btn-danger" />
                             </div>
                         </div>
                     </div>

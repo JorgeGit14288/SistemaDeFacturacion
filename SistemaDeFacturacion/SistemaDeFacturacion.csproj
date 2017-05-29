@@ -206,6 +206,7 @@
     <Compile Include="Controllers\CotizarController.cs" />
     <Compile Include="Controllers\DetallesComprasController.cs" />
     <Compile Include="Controllers\DetallesCotizacionsController.cs" />
+    <Compile Include="Controllers\EditarCotizacionController.cs" />
     <Compile Include="Controllers\FacturarController.cs" />
     <Compile Include="Controllers\FacturasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -1738,6 +1739,12 @@
     <Content Include="Views\Cotizar\_Detalles.cshtml" />
     <Content Include="Views\Cotizar\_Productos.cshtml" />
     <Content Include="Views\Cotizar\_TotalCotizacion.cshtml" />
+    <Content Include="Views\Cotizaciones\_Detalles.cshtml" />
+    <Content Include="Views\EditarCotizacion\EditarCotizacion.cshtml" />
+    <Content Include="Views\EditarCotizacion\_TotalCotizacion.cshtml" />
+    <Content Include="Views\EditarCotizacion\_Cliente.cshtml" />
+    <Content Include="Views\EditarCotizacion\_Detalles.cshtml" />
+    <Content Include="Views\EditarCotizacion\_Productos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

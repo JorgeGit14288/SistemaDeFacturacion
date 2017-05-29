@@ -9,6 +9,6 @@ namespace SistemaDeFacturacion.Models
     {
         public Cotizaciones cotizacion { get; set; }
         public List<DetallesCotizacion> Detalles {get;set;}
-
+        public Clientes cliente { get; set; }
     }
 }

@@ -53,7 +53,7 @@
                     <form id="fCargarCliente" method="post" action="CargarProducto">
                         <input type="hidden" name="nitCliente" id="nitCliente" value="@item.nit" />
 
-                        <input type="submit" value="Facturar" name="btnFacturar" formaction="../Facturar/CargarCliente" />
+                        <input type="submit" value="Cotizar" name="btnFacturar" formaction="@Url.Action("CargarCliente","Cotizar")"  />
                     </form>
                 </td>
                 <td>

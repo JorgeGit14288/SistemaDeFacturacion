@@ -24,7 +24,7 @@
 
 <div class="row">
     <div class="col-md-12">
-        <form id="fBuscarCliente" action="BuscarCliente" method="post" class="form-inline">
+        <form id="fBuscarCliente" action="@Url.Action("BuscarCliente","EditarCotizacion")" method="post" class="form-inline">
             <div class="form-inline">
                 <div class="col-md-5">
                     <select class="selectpicker" data-live-search="true" id="nitCliente" name="nitCliente" required title="Nit a buscar">
@@ -58,7 +58,7 @@
 </div>
 <div class="row">
     <div class="col-md-12">
-        <form id="fCargarCliente" action="CargarCliente" method="post" class="form-horizontal">
+        <form id="fCargarCliente" action="@Url.Action("CargarCliente","EditarCotizacion") " method="post" class="form-horizontal">
             <center><h4>DATOS DEL CLIENTE</h4></center>
             <div class="form-inline">
                 <div class="row col-md-12">

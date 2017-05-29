@@ -33,6 +33,9 @@ namespace SistemaDeFacturacion.Controllers
             {
                 return HttpNotFound();
             }
+            List<DetallesCotizacion> detalles = new List<DetallesCotizacion>();
+            detalles = db.DetallesCotizacion.Where(d => d.idCotizacion == id).ToList();
+            ViewBag.Detalles = detalles;
             return View(cotizaciones);
         }
 

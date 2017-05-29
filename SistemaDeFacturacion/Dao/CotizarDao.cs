@@ -25,6 +25,24 @@ namespace SistemaDeFacturacion.Dao
                 {
                     using (FacturacionDbEntities ctx2 = new FacturacionDbEntities())
                     {
+                        // si el cliente se ingresa con un nit lo crearmos en la bd, si no existe,
+                        // en caso de que exista no se crea, y se pasa a las siguientes transacciones
+                        if (ctx.Clientes.SingleOrDefault(p=> p.nit== c.cliente.nit)==null)
+                        {
+                            if (String.IsNullOrEmpty(c.cliente.nit)|| String.IsNullOrEmpty(c.cliente.nombre))
+                            {
+                                // no se crea el cliente
+                            }
+                            else
+                            {
+                                if (String.IsNullOrEmpty(c.cliente.direccion))
+                                {
+                                    c.cliente.direccion = "Ciudad";
+                                }
+                                ctx.Clientes.Add(c.cliente);
+                                ctx.SaveChanges();
+                            }
+                        }
                         c.cotizacion.estado = "Cotizacion";
                         ctx2.Entry(c.cotizacion).State = EntityState.Added;
                         foreach (var e in c.Detalles)

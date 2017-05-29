@@ -1,0 +1,30 @@
+﻿<div class="row">
+    <form name="formImprimir" action="@Url.Action("EditarCotizacion", "EditarCotizacion")" method="post">
+        <div class="col-md-3">
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Cancelar" formaction="@Url.Action("BorrarCotizacion","EditarCotizacion")" class="btn btn-success form-control" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Actualizar Cotizacion"  class="btn btn-danger form-control" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <div class="form-group">
+                        <label class="control-label col-sm-5" for="idFactura">Total Q.</label>
+                        <div class="col-sm-7">
+                            <input type="number" name="totalFactura" id="totalFactura" value="@Session["totalC"]" class="form-control" required readonly />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,6 +1,5 @@
 ﻿
 @using SistemaDeFacturacion.Models;
-
 @{
     ViewBag.Title = "CREAR COTIZACION";
     ViewBag.TituloControlador = "COTIZAR";
@@ -22,7 +21,6 @@
         cliente = (Clientes)Session["ClienteC"];
     }
 }
-
 <div class="row">
     <div class="col-md-12">
         <div class="box box-solid">
@@ -30,7 +28,7 @@
                 <div class="box-group" id="accordion">
 
                     @{
-                        if ( String.IsNullOrEmpty(cliente.nombre))
+                        if (String.IsNullOrEmpty(cliente.nombre))
                         {
 
                              <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
@@ -57,14 +55,14 @@
                                 <div class="box-header with-border">
                                     <h4 class="box-title">
                                         <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                                            <strong><text class="text-red ">COTIZACION:</text></strong> 
-                                            <strong>  <text class="text-blue">Num: </text></strong> 
-                                            <text class="text-black">@Session["idCotizacion"] ,</text> 
+                                            <strong><text class="text-red ">COTIZACION:</text></strong>
+                                            <strong>  <text class="text-blue">Num: </text></strong>
+                                            <text class="text-black">@Session["idCotizacion"] ,</text>
                                             <strong><text class="text-blue">Nit: </text></strong>
                                             <text class="text-black">@cliente.nit ,</text>
                                             <strong><text class="text-blue">Nombre: </text></strong>
                                             <text class="text-black">@cliente.nombre ,</text>
-                                            <strong><text class="text-blue">Fecha: </text></strong> 
+                                            <strong><text class="text-blue">Fecha: </text></strong>
                                             <text class="text-black">@DateTime.Now ,</text>
                                         </a>
                                     </h4>
@@ -76,31 +74,31 @@
                                 </div>
                             </div>
                         }
-                            <div class="panel box box-success">
-                                <div class="box-header with-border">
-                                    <h4 class="box-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-                                            Detalles de Compra
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div id="collapseThree" class="panel-collapse collapse in">
-                                    <div class="box-body">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                @Html.Partial("_Productos")
-                                            </div>
+                        <div class="panel box box-success">
+                            <div class="box-header with-border">
+                                <h4 class="box-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                        Detalles de Compra
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseThree" class="panel-collapse collapse in">
+                                <div class="box-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            @Html.Partial("_Productos")
                                         </div>
-                                        <br />
-                                        <br />
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                @Html.Partial("_Detalles")
-                                            </div>
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            @Html.Partial("_Detalles")
                                         </div>
                                     </div>
                                 </div>
-                            </div>  
+                            </div>
+                        </div>
                     }
                 </div>
             </div>
