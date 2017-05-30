@@ -20,7 +20,7 @@ namespace SistemaDeFacturacion
         public void Session_Start()
         {
             //para cotizacion 
-            Session["CotizarActual"] = "";
+            Session["CotizarActual"] = null;
             Session["Cotizacion"] = "";
             Session["idCotizacion"] = "1";
             Session["DetallesC"] = "";

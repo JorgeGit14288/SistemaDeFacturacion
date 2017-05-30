@@ -118,6 +118,21 @@ namespace SistemaDeFacturacion.Controllers
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
+        public ActionResult Vender(int id)
+        {
+            try
+            {
+                Cotizaciones coti = new Cotizaciones();
+                coti = db.Cotizaciones.Find(id);
+                coti.estado = "Venta";
+                db.SaveChanges();
+                return RedirectToAction("Details", "Cotizaciones", new { id = id });
+            }
+            catch
+            {
+                return RedirectToAction("Details", "Cotizaciones", new { id = id });
+            }
+        }
 
         protected override void Dispose(bool disposing)
         {

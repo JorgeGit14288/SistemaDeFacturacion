@@ -7,11 +7,17 @@
     ViewBag.FooterVentana = "Si desea modificar la cotizacion click en Modificar";
     Layout = "~/Views/Shared/Plantilla1.cshtml";
 }
-
 <div class="row">
     <div class="col-md-5">
         <center><h4>Datos Cliente</h4></center>
         <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.idCotizacion)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.idCotizacion)
+            </dd>
             <dt>
                 @Html.DisplayNameFor(model => model.nombre)
             </dt>
@@ -50,7 +56,13 @@
             <dd>
                 @Html.DisplayFor(model => model.estado)
             </dd>
-            </dl>
+        </dl>
+        @if (Model.estado == "Cotizacion")
+        {
+            <input type="button" class="btn btn-danger" value="FACTURAR" onclick="location.href='@Url.Action("Facturar", "Facturar", new { id = Model.idCotizacion })'" />
+            <input type="button" class="btn btn-info" value="SOLO COBRAR" onclick="location.href='@Url.Action("Vender", "Cotizaciones", new { id = Model.idCotizacion })'" />
+        }
+       
     </div>
     <div class="col-md-7">
         <center><h4>Detalles de la cotizacion</h4></center>
@@ -65,12 +77,31 @@
             </div>
         </div>
     </div>
-    
 </div>
 <div>
 </div>
+
+<strong>AVISO</strong>
+<div class="alert-warning">
+    <p>
+        Si la cotizacion esta en estado <text class="text-red">VENTA</text> no podra modificarse ni eliminarse
+        esto garantizara la integridad de los datos del sistema, Gracias
+    </p>
+</div>
 <p>
-    <input type="button" class="btn btn-info" value="Editar Cotizacion" onclick="location.href='@Url.Action("EditarCotizacion", "EditarCotizacion", new {id = Model.idCotizacion })'" /> |
-    <input type="button" class="btn btn-danger" value="Eliminar Registro" onclick="location.href='@Url.Action("Delete", "Cotizaciones", new {id = Model.idCotizacion })'" /> |
-    <a href="@Url.Action("Index","Cotizaciones")" class="btn btn-success">Regresar a la lista</a>
+
+    @if (Model.estado == "Cotizacion")
+    {
+        <input type="button" class="btn btn-info" value="Editar Cotizacion" onclick="location.href='@Url.Action("EditarCotizacion", "EditarCotizacion", new { id = Model.idCotizacion })'" /> 
+        <input type = "button" class="btn btn-danger" value="Eliminar Registro" onclick="location.href='@Url.Action("EliminarCotizacion", "EditarCotizacion", new { id = Model.idCotizacion })'" /> 
+        <a href = "@Url.Action("Index","Cotizaciones")" class="btn btn-success">Regresar a la lista</a> 
+        <input type = "button" class="btn btn-primary" value="Crear Nueva Cotizacion" onclick="location.href='@Url.Action("Cotizar", "Cotizar")'" />
+    }
+    else
+    {
+        <a href="@Url.Action("Index","Cotizaciones")" class="btn btn-success">Regresar a la lista</a> 
+          <input type = "button" class="btn btn-primary" value="Crear Nueva Cotizacion" onclick="location.href='@Url.Action("Cotizar", "Cotizar")'" />
+    }
+   
+
 </p>
