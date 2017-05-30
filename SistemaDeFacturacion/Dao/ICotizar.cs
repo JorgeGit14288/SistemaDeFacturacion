@@ -10,9 +10,14 @@ namespace SistemaDeFacturacion.Dao
     interface ICotizarDao
     {
         string Cotizar(CotizarModel c);
+        
         string DetallesCotizacion(int idCotizacion);
-        int noCotizacion();
         string ActualizarCotizacion(CotizarModel c);
+        int noCotizacion();
         string EliminarCotizacion(int id);
+        string CrearDetalle(DetallesCotizacion detalle);
+        string ModificarDetalle(DetallesCotizacion detalle);
+        string EliminarDetalle(DetallesCotizacion detalle);
+        string ActualizarTotal(decimal total, int idCotizacion);
     }
 }

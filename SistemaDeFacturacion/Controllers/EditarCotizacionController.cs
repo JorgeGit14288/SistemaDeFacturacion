@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.Mvc;
 using SistemaDeFacturacion.Models;
 using SistemaDeFacturacion.Dao;
-
 namespace SistemaDeFacturacion.Controllers
 {
     public class EditarCotizacionController : Controller
@@ -34,8 +33,17 @@ namespace SistemaDeFacturacion.Controllers
                 {
                     cliente = ctx.Clientes.SingleOrDefault(c => c.nit == cotizacion.nitCliente);
                 }
-                //para cotizacion 
-
+                else
+                {
+                    cliente.nombre = cotizacion.nombre;
+                    cliente.nit = cotizacion.nitCliente;
+                    cliente.direccion = cotizacion.direccion;
+                }
+                CotizarModel varCotizar = new CotizarModel();
+                varCotizar.cliente = cliente;
+                varCotizar.cotizacion = cotizacion;
+                varCotizar.Detalles = detalles;
+                Session["CotizarActual"] = varCotizar;
                 Session["Cotizacion"] = cotizacion;
                 Session["idCotizacion"] = cotizacion.idCotizacion;
                 Session["DetallesC"] = detalles;
@@ -46,7 +54,18 @@ namespace SistemaDeFacturacion.Controllers
                 Session["DescuentoC"] = "0";
                 Session["subTotalC"] = 0;
                 Session["ClienteC"] = cliente;
-                return View();
+               
+                foreach(var d in detalles)
+                {
+                    daoCotizar.EliminarDetalle(d);
+                }
+                string mensaje = daoCotizar.EliminarCotizacion(cotizacion.idCotizacion);
+                if (mensaje=="ok")
+                {
+                    ViewBag.Error = "ALERTA, SI NO REALIZA CAMBIOS EN LA COTIZACION PULSE EL BOTON GUARDAR, DE LO CONTRARIO" +
+                        "SE PERDERAN TODOS LOS DATOS DE LA COTIZACION";
+                }                
+                return View();  
             }
             catch (Exception ex)
             {
@@ -59,42 +78,113 @@ namespace SistemaDeFacturacion.Controllers
 
         }
         [HttpPost]
-        public ActionResult EditarCotizacion(FormCollection form, int id)
+        public ActionResult EditarCotizacion(FormCollection form)
         {
             try
             {
                 // para devolver la lista de productos
                 ViewBag.Clientes = daoClientes.Listar();
                 ViewBag.Productos = daoProductos.Listar();
-                Clientes cliente = new Clientes();
-                Cotizaciones cotizacion = new Cotizaciones();
-                List<DetallesCotizacion> detalles = new List<DetallesCotizacion>();
-                cotizacion = ctx.Cotizaciones.Find(id);
-                detalles = ctx.DetallesCotizacion.Where(r => r.idCotizacion == id).ToList();
-                if (!String.IsNullOrEmpty(cotizacion.nitCliente))
+                //obtenemos los objetos de sesiones
+                List<DetallesCotizacion> DetallesCotizacion = new List<DetallesCotizacion>();
+                Clientes c = new Clientes();
+                if ((Session["ClienteC"] == null) || (Session["ClienteC"].ToString() == ""))
                 {
-                    cliente = ctx.Clientes.SingleOrDefault(c => c.nit == cotizacion.nitCliente);
+                    // si no se ha ingesado ningun cliente retorna la misma vista sugiriendo que no pudede cotizar.
+                    ViewBag.Error = "Debe ingresar al menos el nombre de el cliente y la direccion para crear la cotizacion";
+                    return View();
                 }
-                //para cotizacion 
+                else
+                {
+                    // si el cliente existe se parsea
+                    c = (Clientes)Session["ClienteC"];
+                }
+                if (String.IsNullOrEmpty(c.nombre))
+                {
+                    //si al menos no esta el nombre del clietne retorna error.
+                    ViewBag.Error = "Debe de ingresar al menos el nombre de la persona que cotiza";
+                    // para devolver la lista de productos         
+                    return View();
+                }
+                if ((Session["DetallesC"].ToString() == "") || (Session["DetallesC"] == null))
+                {
+                    //si no existe producto no podra crearse la cotizacion
+                    ViewBag.Error = "Debe de ingresar al menos un producto a la cotizacion";
+                    return View();
+                }
 
-                Session["Cotizacion"] = cotizacion;
-                Session["idCotizacion"] = cotizacion.idCotizacion;
-                Session["DetallesC"] = detalles;
-                int idDetalle = detalles.Count() + 1;
-                Session["idDetalleC"] = idDetalle;
-                Session["Usuario"] = cotizacion.usuario;
-                Session["totalC"] = cotizacion.total;
-                Session["DescuentoC"] = "0";
-                Session["subTotalC"] = 0;
-                Session["ClienteC"] = cliente;
-                return View();
+                else
+                {
+                    //si hay al menos un producto se creara la cotizacion;
+                    DetallesCotizacion = (List<DetallesCotizacion>)Session["DetallesC"];
+                }
+                if (DetallesCotizacion == null)
+                {
+                    ViewBag.Error = "Debe de ingresar al menos un producto para crear una cotizacion";
+                    return View();
+                }
+
+                decimal totalC = Convert.ToDecimal(Session["totalC"]);
+                Cotizaciones coti = new Cotizaciones();
+                if (Session["Cotizacion"] == null || Session["Cotizacion"].ToString() == "")
+                {
+                    ViewBag.Error = "No se ha podido cargar los datos de la cotizacion, contacte con el tecnico";
+                    return View();
+
+                }
+                else
+                {
+                    /// se cargan los datos de la cotizacion
+                    coti = (Cotizaciones)Session["Cotizacion"];
+                }
+                coti.nitCliente = c.nit;
+                coti.estado = "Cotizacion";
+                coti.nombre = c.nombre;
+                coti.direccion = c.direccion;
+                coti.fecha = DateTime.Now;
+                coti.total = totalC;
+                coti.usuario = Session["Usuario"].ToString();
+                int tempIdCoti = daoCoti.getIdCotizacion();
+                coti.idCotizacion = tempIdCoti;
+                foreach (var d in DetallesCotizacion)
+                {
+                    d.idCotizacion = tempIdCoti;
+                }
+                CotizarModel datosCoti = new CotizarModel()
+                {
+                    cotizacion = coti,
+                    Detalles = DetallesCotizacion,
+                    cliente = c
+                };
+                ViewBag.Clientes = daoClientes.Listar();
+                // para devolver la lista de productos
+                ViewBag.Productos = daoProductos.Listar();
+               
+                string resultado = daoCotizar.ActualizarCotizacion(datosCoti);
+                if (resultado == "ok")
+                {
+                    ViewBag.Mensaje = "Se ha creado la cotizacion Numero: " + datosCoti.cotizacion.idCotizacion;
+                    Session["Cotizacion"] = "";
+                    Session["ClienteC"] = "";
+                    int idCotizacion = daoCoti.getIdCotizacion();
+                    Session["idCotizacion"] = idCotizacion;
+                    Session["DetallesC"] = "";
+                    Session["idDetalleC"] = "0";
+                    Session["totalC"] = "0";
+                    return View();
+                }
+                else
+                {
+                    ViewBag.Error = "Error, No se realizo la transaccion" + resultado;
+                    return View();
+                }
             }
             catch (Exception ex)
             {
+                ViewBag.Error = "ha ocurrido un error " + ex.Message;
                 // para devolver la lista de productos
                 ViewBag.Clientes = daoClientes.Listar();
                 ViewBag.Productos = daoProductos.Listar();
-                ViewBag.Error = " " + ex.Message;
                 return View();
             }
 
@@ -103,24 +193,55 @@ namespace SistemaDeFacturacion.Controllers
         {
             try
             {
-                Session["Cotizacion"] = "";
-                Session["ClienteC"] = "";
-                int idCotizacion = daoCoti.getIdCotizacion();
-                Session["idCotizacion"] = idCotizacion;
-                Session["DetallesC"] = "";
-                Session["idDetalleC"] = "0";
-                Session["totalC"] = "0";
-
-
                 // para devolver la lista de productos
                 ViewBag.Clientes = daoClientes.Listar();
                 ViewBag.Productos = daoProductos.Listar();
-                ViewBag.Mensaje = "Ahora puede crear una nueva Cotizacion";
-                return View("EditarCotizacion");
+                //obtenemos los objetos de sesiones
+
+
+                List<DetallesCotizacion> DetallesCotizacion = new List<DetallesCotizacion>();
+                Clientes c = new Clientes();
+                CotizarModel varCotizar = new CotizarModel();
+                varCotizar = (CotizarModel)Session["CotizarActual"];
+                c = varCotizar.cliente;
+                Cotizaciones coti = new Cotizaciones();
+                coti = (Cotizaciones)varCotizar.cotizacion;
+                CotizarModel datosCoti = new CotizarModel()
+                {
+                    cotizacion = coti,
+                    Detalles = DetallesCotizacion,
+                    cliente = c
+                };
+                ViewBag.Clientes = daoClientes.Listar();
+                // para devolver la lista de productos
+                ViewBag.Productos = daoProductos.Listar();
+                string resultado = daoCotizar.ActualizarCotizacion(datosCoti);
+                if (resultado == "ok")
+                {
+                    ViewBag.Mensaje = "Se ha creado la cotizacion Numero: " + datosCoti.cotizacion.idCotizacion;
+                    Session["Cotizacion"] = "";
+                    Session["ClienteC"] = "";
+                    int idCotizacion = daoCoti.getIdCotizacion();
+                    Session["idCotizacion"] = idCotizacion;
+                    Session["DetallesC"] = "";
+                    Session["idDetalleC"] = "0";
+                    Session["totalC"] = "0";
+                    Session["CotizarActual"] = "";
+                    return View("EditarCotizacion");
+                }
+                else
+                {
+                    ViewBag.Error = "Error, No se realizo la transaccion" + resultado;
+                    return View("EditarCotizacion");
+                }
             }
-            catch
+            catch (Exception ex)
             {
-                return RedirectToAction("Index", "Cotizaciones");
+                ViewBag.Error = "ha ocurrido un error " + ex.Message;
+                // para devolver la lista de productos
+                ViewBag.Clientes = daoClientes.Listar();
+                ViewBag.Productos = daoProductos.Listar();
+                return View();
             }
         }
         [HttpPost]
@@ -327,17 +448,18 @@ namespace SistemaDeFacturacion.Controllers
                             }
                             //d.Productos.nombre = p.nombre;
                             d.descuento = descuento;
-                            //  d.descuento = desc;
-                            DetallesCotizacion.Add(d);
+                                DetallesCotizacion.Add(d);
 
+                                decimal totalFactura = Convert.ToDecimal(Session["totalC"]);
+                                totalFactura = totalFactura + Convert.ToDecimal(d.subTotal);
+                                Session["totalC"] = totalFactura;
+                                //volvemos a parsear el al objeto sessio
+                                Session["idDetalleC"] = idDetalle;
+                                Session["DetallesC"] = DetallesCotizacion;
+                                // para devolver la lista de productos
 
-                            decimal totalFactura = Convert.ToDecimal(Session["totalC"]);
-                            totalFactura = totalFactura + Convert.ToDecimal(d.subTotal);
-                            Session["totalC"] = totalFactura;
-                            //volvemos a parsear el al objeto sessio
-                            Session["idDetalleC"] = idDetalle;
-                            Session["DetallesC"] = DetallesCotizacion;
-                            // para devolver la lista de productos
+                           
+                            //  d.descuento = desc;                           
                         }
                         else
                         {
@@ -347,16 +469,19 @@ namespace SistemaDeFacturacion.Controllers
                             DetallesCotizacion.Remove(temp);
                             temp.cantidad = temp.cantidad + cantidad;
                             temp.subTotal = temp.cantidad * temp.precio;
-                            DetallesCotizacion.Add(temp);
-                            //recalculamos el total otra vez
-                            decimal totalC = 0;
-                            foreach (var i in DetallesCotizacion)
-                            {
-                                totalC = totalC + Convert.ToDecimal(i.subTotal);
-                            }
-                            Session["totalC"] = totalC;
-                            Session["DetallesC"] = DetallesCotizacion;
-                            ViewBag.ErrorProducto = "se Modifico " + cantidad + " " + p.nombre + " precio Q" + p.precio + "sub Total  Q" + temp.subTotal;
+                          
+                                DetallesCotizacion.Add(temp);
+                                //recalculamos el total otra vez
+                                decimal totalC = 0;
+                                foreach (var i in DetallesCotizacion)
+                                {
+                                    totalC = totalC + Convert.ToDecimal(i.subTotal);
+                                }
+                                Session["totalC"] = totalC;
+                                Session["DetallesC"] = DetallesCotizacion;
+                                ViewBag.ErrorProducto = "se Modifico " + cantidad + " " + p.nombre + " precio Q" + p.precio + "sub Total  Q" + temp.subTotal;
+                                return View("EditarCotizacion");
+                           
                         }
                         ViewBag.Productos = daoProductos.Listar();
                         return View("EditarCotizacion");
@@ -389,6 +514,7 @@ namespace SistemaDeFacturacion.Controllers
                 //busca el detalle en la lista, segun el id
                 d = DetallesCotizacion.Find(r => r.idDetalle == id);
                 // elimina el detalle de la lista
+                
                 DetallesCotizacion.Remove(d);
                 // en esta parate reordenamos los objetos, para que no queden ids de detalle saltados
                 //creamos una nueva lista de DetallesCotizacion a quien pasaremos los objetos restantes despues de haber eliminado el detalle
@@ -521,18 +647,18 @@ namespace SistemaDeFacturacion.Controllers
                     d.descuento = descuento;
                     //  d.descuento = desc;
                     DetallesCotizacion.Add(d);
-                    //calculamos el nuevo total de la factura
+                   //calculamos el nuevo total de la factura
                     decimal totalC = 0;
                     foreach (var e in DetallesCotizacion)
-                    {
-                        totalC = totalC + Convert.ToDecimal(e.subTotal);
-                    }
-                    Session["totalC"] = totalC;
-                    //modificamos el detalle en la lista
-                    ViewBag.ErrorProducto = "Se modifico el producto =" + d.Productos.nombre + " cantidad= " + d.cantidad;
-                    // para devolver la lista de productos
-                    ViewBag.Productos = daoProductos.Listar();
-                    return View("EditarCotizacion");
+                        {
+                            totalC = totalC + Convert.ToDecimal(e.subTotal);
+                        }
+                        Session["totalC"] = totalC;
+                        //modificamos el detalle en la lista
+                        ViewBag.ErrorProducto = "Se modifico el producto =" + d.Productos.nombre + " cantidad= " + d.cantidad;
+                        // para devolver la lista de productos
+                        ViewBag.Productos = daoProductos.Listar();
+                        return View("EditarCotizacion");                   
                 }
             }
             catch
@@ -543,10 +669,11 @@ namespace SistemaDeFacturacion.Controllers
                 ViewBag.Productos = daoProductos.Listar();
                 return View("EditarCotizacion");
             }
-
         }
         public ActionResult CancelarEdicion(FormCollection form)
         {
+            ViewBag.Clientes = daoClientes.Listar();
+            ViewBag.Productos = daoProductos.Listar();
             return View("EditarCotizacion");
         }
     }

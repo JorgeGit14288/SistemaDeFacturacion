@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<SistemaDeFacturacion.Models.Cotizaciones>
-
 @{
     ViewBag.Title = "Cotizaciones Realizadas";
     ViewBag.TituloControlador = "COTIZACIONES";
@@ -34,12 +33,9 @@
                 @Html.DisplayNameFor(model => model.estado)
             </th>
             <th>Acciones</th>
-
         </tr>
     </thead>
     <tbody>
-
-
         @foreach (var item in Model)
         {
             <tr>
