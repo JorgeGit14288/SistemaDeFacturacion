@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "REALIZAR VENTA";
+    ViewBag.TituloControlador = "VENTAS";
+    ViewBag.InfoPagina = "Vista que le permite facturar una venta";
+    ViewBag.TituloVentana = "Ingrese el codigo de la venta a buscar";
+    ViewBag.FooterVentana = "al realizar la venta se descontara del stock de productos y no podra modificarse ni eliminarse la cotizacion ";
+    Layout = "~/Views/Shared/Plantilla1.cshtml";
+}
+<cente><h3>Ingrese el codig de la venta</h3></cente>
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-md-4">
+         </div>
+        <div class="col-md-8">
+            <form id="form1" method="get" action="@Url.Action("RealizarVenta","Facturar")">
+                <input type="number" name="id" id="id" class="form-inline" min="1" value="0" />
+                <input type="submit" name="btnVenta" value="Realizar venta" class="btn btn-primary" />
+            </form>
+        </div>
+    </div>
+</div>
+

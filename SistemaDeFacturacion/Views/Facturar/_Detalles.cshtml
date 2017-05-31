@@ -1,0 +1,70 @@
+﻿@using SistemaDeFacturacion.Models;
+
+@{ 
+    List<DetallesCotizacion> detalles = new List<DetallesCotizacion>();
+    if (ViewBag.Detalles == null)
+    {
+
+    }
+    else
+    {
+        detalles = (List<DetallesCotizacion>)ViewBag.Detalles;
+    }
+}
+<div class="col-md-12">
+    <div class="table-responsive " >
+        <table class="table table-responsive table-bordered table-striped" >
+            <thead>
+                <tr>
+                    <th>
+                        Id
+                    </th>
+
+                    <th>
+                        Cantidad
+                    </th>
+                    <th>
+                        Nombre
+                    </th>
+                    <th>
+                        Precio
+                    </th>
+                    <th>
+                        Descuento
+                    </th>
+                    <th>
+                        SubTotal
+                    </th>
+                   </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in detalles)
+            {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.idDetalle)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.cantidad)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.idProducto)
+                            @Html.DisplayFor(modelItem => item.Productos.nombre)
+                        </td>
+                        <td>
+                          Q. @Html.DisplayFor(modelItem => item.precio)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.descuento) %
+                        </td>
+                        <td>
+                          Q. @Html.DisplayFor(modelItem => item.subTotal)
+                        </td>
+                       
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

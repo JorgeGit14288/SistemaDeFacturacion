@@ -1,0 +1,123 @@
+﻿@model SistemaDeFacturacion.Models.Cotizaciones
+@using SistemaDeFacturacion.Models
+@{
+    ViewBag.Title = "REALIZAR VENTA";
+    ViewBag.TituloControlador = "VENTAS";
+    ViewBag.InfoPagina = "Detalles de la venta a guardar";
+    ViewBag.TituloVentana = "Informacion sobre la venta";
+    ViewBag.FooterVentana = "al realizar la venta se descontara del stock de productos y no podra modificarse ni eliminarse la cotizacion ";
+    Layout = "~/Views/Shared/Plantilla1.cshtml";
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-8">
+            <form id="form1" method="get" action="@Url.Action("RealizarVenta","Facturar")">
+                <label>Id Cotizacion</label>
+                <input type="number" name="id" id="id" class="form-inline" min="1" value="@Model.idCotizacion" />
+                <input type="submit" name="btnVenta" value="Buscar Cotizacion" class="btn btn-primary" />
+            </form>
+        </div>
+    </div>
+</div>
+<div class="row">
+    @Html.Partial("_Facturar")
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <center><h4>COTIZACION</h4></center>
+        <table id="table1" class="table table-responsive table-bordered table-hover">
+            <thead>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><label>Id Cotizacion: </label></td>
+                    <td>@Model.idCotizacion</td>
+                </tr>
+                <tr>
+                    <td><label>Cliente: </label></td>
+                    <td>@Model.nombre</td>
+                </tr>
+                <tr>
+                    <td><label>Nit : </label></td>
+                    <td>@Model.nitCliente</td>
+                </tr>
+                <tr>
+                    <td><label>Direccion: </label></td>
+                    <td>@Model.direccion</td>
+                </tr>
+                <tr>
+                    <td><label>Fecha: </label></td>
+                    <td>@Model.fecha</td>
+                </tr>
+                <tr>
+                    <td><label>Estado: </label></td>
+                    <td>@Model.estado</td>
+                </tr>
+                <tr>
+                    <td><label>Total: </label></td>
+                    <td class="bg-red">Q @Model.idCotizacion</td>
+                </tr>
+                <tr>
+                    <td><label>Usuario: </label></td>
+                    <td>@Model.usuario</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-8">
+        <center><h4>DETALLES DE PRODUCTOS</h4></center>
+        @Html.Partial("_Detalles")
+        <div>
+            <div class="col-md-6">
+            </div>
+            <div class="col-lg-6">
+                <table id="table2" class="table table-responsive table-hover table-bordered">
+                
+                    <tr>
+                        <td align="right"><label>Total: </label></td>
+                        <td class="bg-red">Q @Model.idCotizacion</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="modalFacturar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">DATOS A FACTURAR</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+               
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">CANCELAR</button>
+                <button type="button" class="btn btn-primary">FACTURAR VENTA</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            // alert("Abriendo modal");
+            $('#btnFacturar').click(function () {
+                //alert("Abriendo modal");
+                $('#modalFacturar').modal('show');
+            });
+        } )
+                 
+    </script>
+    }

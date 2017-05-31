@@ -1745,10 +1745,15 @@
     <Content Include="Views\EditarCotizacion\_Cliente.cshtml" />
     <Content Include="Views\EditarCotizacion\_Detalles.cshtml" />
     <Content Include="Views\EditarCotizacion\_Productos.cshtml" />
+    <Content Include="Views\Facturar\RealizarVenta.cshtml" />
+    <Content Include="Views\Facturar\_Detalles.cshtml" />
+    <Content Include="Views\Facturar\Index.cshtml" />
+    <Content Include="Views\Facturar\FacturarVenta.cshtml" />
+    <Content Include="Views\Facturar\_Facturar.cshtml" />
+    <Content Include="Views\Facturar\Factura.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Facturar\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

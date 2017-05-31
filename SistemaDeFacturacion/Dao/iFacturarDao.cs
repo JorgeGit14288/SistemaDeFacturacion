@@ -9,7 +9,8 @@ namespace SistemaDeFacturacion.Dao
 {
     interface IFacturarDao
     {
-        bool CrearVenta(Facturar datos);
+        string FacturarVenta(Facturar datos);
+        string RealizarVenta(int idCotizacion);
         Facturar DetallesVenta(int idFactura);
     }
 }

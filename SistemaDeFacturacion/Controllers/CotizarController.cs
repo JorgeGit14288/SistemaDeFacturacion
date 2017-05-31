@@ -106,6 +106,10 @@ namespace SistemaDeFacturacion.Controllers
                 coti.total = totalC;
                 coti.usuario = Session["Usuario"].ToString();
                 int tempIdCoti = daoCoti.getIdCotizacion();
+                if(tempIdCoti==0)
+                {
+                    tempIdCoti = 1;
+                }
                 coti.idCotizacion = tempIdCoti;
                 foreach (var d in DetallesCotizacion)
                 {

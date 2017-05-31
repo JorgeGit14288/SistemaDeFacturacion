@@ -60,7 +60,7 @@
         @if (Model.estado == "Cotizacion")
         {
             <input type="button" class="btn btn-danger" value="FACTURAR" onclick="location.href='@Url.Action("Facturar", "Facturar", new { id = Model.idCotizacion })'" />
-            <input type="button" class="btn btn-info" value="SOLO COBRAR" onclick="location.href='@Url.Action("Vender", "Cotizaciones", new { id = Model.idCotizacion })'" />
+            <input type="button" class="btn btn-info" value="SOLO COBRAR" onclick="location.href='@Url.Action("RealizarVenta", "Facturar", new { id = Model.idCotizacion })'" />
         }
        
     </div>
@@ -78,8 +78,7 @@
         </div>
     </div>
 </div>
-<div>
-</div>
+
 
 <strong>AVISO</strong>
 <div class="alert-warning">
