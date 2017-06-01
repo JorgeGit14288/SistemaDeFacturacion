@@ -7,9 +7,21 @@
     ViewBag.FooterVentana = "El estado de la cotizacion deduce si se convirtio en venta o solo se cotizo";
     Layout = "~/Views/Shared/Plantilla1.cshtml";
 }
-<p>
-    <a href="@Url.Action("Cotizar","Cotizar")" class="btn btn-primary" role="button">CREAR NUEVA COTIZACION</a>
-</p>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-md-4">
+            <a href="@Url.Action("Cotizar","Cotizar")" class="btn btn-primary" role="button">CREAR NUEVA COTIZACION</a>
+        </div>
+        <div class="col-md-8">
+            <form id="form1" method="get" action="@Url.Action("RealizarVenta","Facturar")">
+                <label>Id Cotizacion</label>
+                <input type="number" name="id" id="id" class="form-inline" min="1" required />
+                <input type="submit" name="btnVenta" value="Buscar Cotizacion" class="btn btn-info" />
+            </form>
+        </div>
+    </div>
+</div>
 <table id="example1" class="table table-bordered table-striped">
     <thead>
         <tr>
@@ -59,9 +71,9 @@
                     @Html.DisplayFor(modelItem => item.estado)
                 </td>
                 <td>
-                    <form id="fDetalles" action="Details" method="get">
+                    <form id="fDetalles" action="@Url.Action("RealizarVenta","Facturar")" method="get">
                         <input type="hidden" id="id" name="id" value="@item.idCotizacion" />
-                        <input type="submit" id="btnDetalles" value="Ver Detalles" formaction="Details" class="btn btn-info" />
+                        <input type="submit" id="btnDetalles" value="Ver Detalles"  class="btn btn-info" />
                     </form>
                 </td>
             </tr>

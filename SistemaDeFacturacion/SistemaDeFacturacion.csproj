@@ -1713,10 +1713,7 @@
     <Content Include="Views\AspNetUsers\Details.cshtml" />
     <Content Include="Views\AspNetUsers\Edit.cshtml" />
     <Content Include="Views\AspNetUsers\Index.cshtml" />
-    <Content Include="Views\Facturas\Create.cshtml" />
-    <Content Include="Views\Facturas\Delete.cshtml" />
     <Content Include="Views\Facturas\Details.cshtml" />
-    <Content Include="Views\Facturas\Edit.cshtml" />
     <Content Include="Views\Facturas\Index.cshtml" />
     <Content Include="Views\AgregarCompra\CrearCompra.cshtml" />
     <Content Include="Views\AgregarCompra\_Compra.cshtml" />
@@ -1747,10 +1744,10 @@
     <Content Include="Views\EditarCotizacion\_Productos.cshtml" />
     <Content Include="Views\Facturar\RealizarVenta.cshtml" />
     <Content Include="Views\Facturar\_Detalles.cshtml" />
-    <Content Include="Views\Facturar\Index.cshtml" />
-    <Content Include="Views\Facturar\FacturarVenta.cshtml" />
     <Content Include="Views\Facturar\_Facturar.cshtml" />
-    <Content Include="Views\Facturar\Factura.cshtml" />
+    <Content Include="Views\Cotizaciones\DetallesVenta.cshtml" />
+    <Content Include="Views\Cotizaciones\_DetallesFactura.cshtml" />
+    <Content Include="Views\Cotizaciones\DetallesFactura.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

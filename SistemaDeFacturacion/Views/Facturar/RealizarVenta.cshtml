@@ -21,19 +21,18 @@
         </div>
     </div>
 </div>
+<br />
 <div class="row">
     @Html.Partial("_Facturar")
 </div>
 
 <div class="row">
-    <div class="col-md-4">
-        <center><h4>COTIZACION</h4></center>
+    <div class="col-md-4">        
         <table id="table1" class="table table-responsive table-bordered table-hover">
             <thead>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
+             <tr>
+                 <td colspan="2" class="bg-green-gradient"> <Center>COTIZACION</Center> </td> 
+             </tr>                
             </thead>
             <tbody>
                 <tr>
@@ -62,7 +61,7 @@
                 </tr>
                 <tr>
                     <td><label>Total: </label></td>
-                    <td class="bg-red">Q @Model.idCotizacion</td>
+                    <td class="bg-red">Q @Model.total</td>
                 </tr>
                 <tr>
                     <td><label>Usuario: </label></td>
@@ -72,7 +71,7 @@
         </table>
     </div>
     <div class="col-md-8">
-        <center><h4>DETALLES DE PRODUCTOS</h4></center>
+      
         @Html.Partial("_Detalles")
         <div>
             <div class="col-md-6">
@@ -82,13 +81,17 @@
                 
                     <tr>
                         <td align="right"><label>Total: </label></td>
-                        <td class="bg-red">Q @Model.idCotizacion</td>
+                        <td class="bg-red">Q @Model.total</td>
                     </tr>
                 </table>
             </div>
         </div>
     </div>
 </div>
+<div class="row">
+    <a href="@Url.Action("Index","Cotizaciones")" class="btn btn-success">Regrear  a Cotizaciones</a>
+</div>
+
 <!-- Modal -->
 <div class="modal fade" id="modalFacturar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -120,4 +123,4 @@
         } )
                  
     </script>
-    }
+ }

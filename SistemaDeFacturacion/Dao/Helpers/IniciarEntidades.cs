@@ -12,8 +12,6 @@ namespace SistemaDeFacturacion.Dao.Helpers
         FacturacionDbEntities db = new FacturacionDbEntities();
         public void CrearEntidades()
         {
-           
-           
             //crea el primer tipo de pago
             if (db.TipoPago.Count() == 0)
             {
@@ -21,6 +19,24 @@ namespace SistemaDeFacturacion.Dao.Helpers
                 tp.id = 1;
                 tp.nombre = "Efectivo";
                 tp.descripcion = "Pago en efectivo";
+                db.TipoPago.Add(tp);
+                db.SaveChanges();
+                TipoPago tp2 = new TipoPago();
+                tp2.id = 2;
+                tp2.nombre = "Tarjeta Credigo";
+                tp2.descripcion = "Pago con tarjeta de credito";
+                db.TipoPago.Add(tp2);
+                db.SaveChanges();
+                TipoPago tp3 = new TipoPago();
+                tp3.id = 3;
+                tp3.nombre = "Tarjeta Debito";
+                tp3.descripcion = "Pago con tarjeta de debito";
+                db.TipoPago.Add(tp3);
+                db.SaveChanges();
+                TipoPago tp4 = new TipoPago();
+                tp.id = 4;
+                tp.nombre = "Otro";
+                tp.descripcion = "Especifique en el campo id, el detalle del pago";
                 db.TipoPago.Add(tp);
                 db.SaveChanges();
             }
@@ -33,6 +49,7 @@ namespace SistemaDeFacturacion.Dao.Helpers
                 c.descripcion = "Productos sin clasificar";
                 db.Categorias.Add(c);
                 db.SaveChanges();
+
             }
             //crear los roles
             if(db.AspNetRoles.Count()==0)

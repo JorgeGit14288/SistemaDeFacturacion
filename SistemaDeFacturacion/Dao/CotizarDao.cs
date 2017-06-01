@@ -121,7 +121,7 @@ namespace SistemaDeFacturacion.Dao
                                 ctx.SaveChanges();
                             }
                         }
-                        c.cotizacion.estado = "Cotizacion";
+                        c.cotizacion.estado = "Cotizado";
                         ctx2.Entry(c.cotizacion).State = EntityState.Added;
                         foreach (var e in c.Detalles)
                         {

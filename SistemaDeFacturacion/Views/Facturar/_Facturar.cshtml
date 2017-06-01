@@ -10,7 +10,7 @@
         tipos = (List<TipoPago>)ViewBag.TipoPago;
     }
     Facturas factura = new Facturas();
-    if(ViewBag.Factura==null)
+    if (ViewBag.Factura == null)
     {
 
     }
@@ -21,42 +21,83 @@
 }
 <div class="row">
     <div class="col-md-12">
-        <center> <h4 class="h4">DATOS A FACTURAR</h4></center>
-        <center>
-            <form id="form1" method="post" action="@Url.Action("RealizarVenta","Facturar")">
-                <div class="form-inline form-group">
-                    <label>No Factura:</label>
-                    <input type="number" name="idFactura" id="idFactura" placeholder="@factura.idFactura" class="form-inline" required  />
-                    <label>Nit:</label>
-                    <input type="text" name="nitCliente" id="nitCliente" class="form-inline" required value="@factura.nitCliente" />
-                    <label>Nombre:</label>
-                    <input type="text" name="nombre" id="nombre" class="form-inline" required value="@factura.nombre" />
-                    <label>Direccion:</label>
-                    <input type="text" name="direccion" id="direccion" class="form-inline" required value="@factura.direccion" />
-                    </div>
-                <div class="form-inline form-group">
-                    <label>Tipo de pago:</label>
-                    <select class="selectpicker " title="tipo pago" data-live-search="true" id="tipoPago" name="tipoPago" required>     
-                        <option value="@tipos[0].id" selected >@tipos[0].nombre</option>
-                        @foreach (var t in tipos)
-                       {
-                            
-                            <option value="@t.id" data-tokens="@t.id @t.nombre">  @t.nombre</option>
-                        }
-                    </select>
-                    <label>cod Pago</label>
-                    <input type="text" name="idPago" id="idPago" class="form-inline" />
-                </div>
-                <input type="hidden" name="id" id="id" value="@Model.idCotizacion" />    
-                <input type="hidden" name="idCotizacion" id="idCotizacion" value="@Model.idCotizacion" />    
-                <input type="submit" name="btnVenta" formmethod="post" formaction="@Url.Action("RealizarVenta","Facturar")" value="Solo realizar venta" class="btn btn-primary" />
-                <input type="submit" name="btnFacturar" formaction="@Url.Action("FacturarVenta","Facturar")" value="FACTURAR" class="btn btn-danger" />             
-                <!-- Button trigger modal
-                <button type="button" class="btn btn-primary" id="btnFacturar" name="btnFacturar" >
-                    Facturar
-                </button>
-                -->
+        <div class="col-md-3">
+        </div>
+        @if (Model.estado == "Vendido" || Model.estado == "Facturado")
+        {
+            <div class="col-md-3">
+                <form id="form1" method="post" action="@Url.Action("RealizarVenta", "Facturar")">
+                    <input type="hidden" name="id" id="id" value="@Model.idCotizacion" />
+                    <input type="submit" disabled name="btnVenta" formaction="@Url.Action("RealizarVenta", "Facturar")" value="VENTA REALIZADA" class="btn  form-control" />
+                </form>
+            </div>
+        }
+        else
+        {
+        <div class="col-md-3">
+            <form id="form1" method="post" action="@Url.Action("RealizarVenta", "Facturar")">
+                <input type="hidden" name="id" id="id" value="@Model.idCotizacion" />
+                <input type="submit" name="btnVenta" formaction="@Url.Action("RealizarVenta", "Facturar")" value="SOLO REALIZAR VENTA" class="btn btn-success form-control" />
             </form>
-        </center>
+        </div>
+        }
+        @if (Model.estado == "Facturado")
+        {
+            <div class="col-md-3">
+                <form id="form1" method="post" action="@Url.Action("Details", "Facturas")">
+                    <input type="hidden" name="id" id="id" value="@Model.idCotizacion" />
+                    <input type="submit" name="btnVenta"  value="VER DETALLES DE FACTURA" class="btn btn-success form-control" />
+                </form>
+            </div>
+        }
+        else
+        {
+        <div class="col-md-3">
+            <a href="#demo" class="btn btn-danger form-control" data-toggle="collapse">CREAR FACTURA</a>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="demo" class="collapse">
+                    <center> <h4 class="h4">DATOS A FACTURAR</h4></center>
+                    <center>
+                        <form id="form1" method="post" action="@Url.Action("RealizarVenta", "Facturar")">
+                            <div class="form-inline form-group">
+                                <label>No Factura:</label>
+                                <input type="number" name="idFactura" id="idFactura" placeholder="@factura.idFactura" class="form-inline" required />
+                                <label>Nit:</label>
+                                <input type="text" name="nitCliente" id="nitCliente" class="form-inline" required value="@factura.nitCliente" />
+                                <label>Nombre:</label>
+                                <input type="text" name="nombre" id="nombre" class="form-inline" required value="@factura.nombre" />
+                                <label>Direccion:</label>
+                                <input type="text" name="direccion" id="direccion" class="form-inline" required value="@factura.direccion" />
+                            </div>
+                            <div class="form-inline form-group">
+                                <label>Tipo de pago:</label>
+                                <select class="selectpicker " title="tipo pago" data-live-search="true" id="tipoPago" name="tipoPago" required>
+                                    <option value="@tipos[0].id" selected>@tipos[0].nombre</option>
+                                    @foreach (var t in tipos)
+                                    {
+
+                                        <option value="@t.id" data-tokens="@t.id @t.nombre">  @t.nombre</option>
+                                    }
+                                </select>
+                                <label>cod Pago</label>
+                                <input type="text" name="idPago" id="idPago" class="form-inline" />
+                            </div>
+                            <input type="hidden" name="id" id="id" value="@Model.idCotizacion" />
+                            <input type="hidden" name="idCotizacion" id="idCotizacion" value="@Model.idCotizacion" />                            
+                            <input type="submit" name="btnFacturar" formaction="@Url.Action("FacturarVenta", "Facturar")" value="FACTURAR" class="btn btn-danger" />
+                            <!-- Button trigger modal
+                            <button type="button" class="btn btn-primary" id="btnFacturar" name="btnFacturar" >
+                                Facturar
+                            </button>
+                            -->
+                        </form>
+                    </center>
+                </div>
+            </div>
+        </div>
+        }
     </div>
 </div>
+<br />

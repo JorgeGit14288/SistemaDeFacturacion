@@ -12,29 +12,34 @@
 
 }
 
-<table class="table">
-    <tr>
-        <th>
-            Id Detalle
-        </th>
-        <th>
-            Cantidad
-        </th>
-        <th>
-            Producto
-        </th>
-        <th>
-            Precio
-        </th>
-        <th>
-            PreVenta
-        </th>
-        <th>
-            SubTotal
-        </th>
-        <th></th>
-    </tr>
+<table class="table table-responsive table-bordered table-hover" >
+    <thead>
+        <tr>
+            <td colspan="7" class="bg-info"><Center><strong>DETALLES DE LA COMPRA  </strong> </Center></td>
+        </tr>
+        <tr>
 
+            <th>
+                Id Detalle
+            </th>
+            <th>
+                Cantidad
+            </th>
+            <th>
+                Producto
+            </th>
+            <th>
+                Precio
+            </th>
+            <th>
+                PreVenta
+            </th>
+            <th>
+                SubTotal
+            </th>
+            <th></th>
+        </tr>
+    </thead>
     @foreach (var item in detalles)
     {
         <tr>

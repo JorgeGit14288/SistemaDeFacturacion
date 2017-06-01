@@ -33,10 +33,62 @@ namespace SistemaDeFacturacion.Controllers
             {
                 return HttpNotFound();
             }
+ 
             List<DetallesCotizacion> detalles = new List<DetallesCotizacion>();
             detalles = db.DetallesCotizacion.Where(d => d.idCotizacion == id).ToList();
             ViewBag.Detalles = detalles;
             return View(cotizaciones);
+        }
+        public ActionResult DetallesVenta(int? id)
+        {
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Cotizaciones cotizaciones =  db.Cotizaciones.Find(id);
+            if (cotizaciones == null)
+            {
+                return HttpNotFound();
+            }
+            if (cotizaciones.estado == "Facturado")
+            {
+                return RedirectToAction ("DetallesFactura", new { id = id });
+            }
+            if (cotizaciones.estado == "Cotizado")
+            {
+                return RedirectToAction("Details", new { id = id });
+            }
+            List<DetallesCotizacion> detalles = new List<DetallesCotizacion>();
+            detalles = db.DetallesCotizacion.Where(d => d.idCotizacion == id).ToList();
+            ViewBag.Detalles = detalles;
+            return View(cotizaciones);
+        }
+        public ActionResult DetallesFactura(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Cotizaciones c = new Cotizaciones();
+            c = db.Cotizaciones.Find(id);
+
+            if (c.estado == "Cotizado")
+            {
+                return View("Details", new { id = id });
+            }
+            if (c.estado == "Vendido")
+            {
+                return View("DetallesVenta", new { id = id });
+            }
+            Facturas facturas = db.Facturas.SingleOrDefault(f=> f.idCotizacion ==id);
+            ViewBag.Detalles = db.DetallesCotizacion.Where(r => r.idCotizacion == id).ToList();
+            if (facturas == null)
+            {
+                ViewBag.Error = "No se encuentra la factura que busca, intente buscar en la tabla general";
+                return View("Index", db.Facturas.ToList());
+            }
+            return View(facturas);
         }
 
         // GET: Cotizaciones/Create

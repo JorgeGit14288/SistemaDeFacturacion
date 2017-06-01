@@ -38,18 +38,21 @@
                         {
                              <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
                             <div class="panel box box-primary">
+                              
                                 <div class="box-header with-border">
-                                    <h4 class="box-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                                            <strong><text class="text-red ">Info de Compra:</text></strong>
-                                            <strong>  <text class="text-blue">Num: </text></strong>
-                                            <text class="text-black">@compra.idCompra ,</text>
-                                            <strong><text class="text-blue">Doc. Envio: </text></strong>
-                                            <text class="text-black">@compra.idFactura ,</text>                
-                                            <strong><text class="text-blue">Fecha: </text></strong>
-                                            <text class="text-black">@DateTime.Now ,</text>
-                                        </a>
-                                    </h4>
+                                    <center>
+                                        <h4 class="box-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                                <strong><text class="text-red ">Info de Compra:</text></strong>
+                                                <strong>  <text class="text-blue">Num: </text></strong>
+                                                <text class="text-black">@compra.idCompra ,</text>
+                                                <strong><text class="text-blue">Doc. Envio: </text></strong>
+                                                <text class="text-black">@compra.idFactura   </text>
+                                                - <text class="text-bold tex-red">Click para Modificar</text>-
+
+                                            </a>
+                                        </h4>
+                                    </center>
                                 </div>
 
                                 <div id="collapseOne" class="panel-collapse collapse">
@@ -64,13 +67,14 @@
                              <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
                             <div class="panel box box-primary">
                                 <div class="box-header with-border">
-                                    <h4 class="box-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                                           Ingrese la informacion de la compra
-                                        </a>
-                                    </h4>
+                                    <center>
+                                        <h4 class="box-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                                Ingrese la informacion de la compra
+                                            </a>
+                                        </h4>
+                                    </center>
                                 </div>
-
                                 <div id="collapseOne" class="panel-collapse collapse in">
                                     <div class="box-body">
                                         @Html.Partial("_Compra")
@@ -84,11 +88,13 @@
                         {
                             <div class="panel box box-danger">
                                 <div class="box-header with-border">
-                                    <h4 class="box-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                                            Ingrese los datos del proveedor
-                                        </a>
-                                    </h4>
+                                    <center>
+                                        <h4 class="box-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                                Ingrese los datos del proveedor
+                                            </a>
+                                        </h4>
+                                    </center>
                                 </div>
                                 <div id="collapseTwo" class="panel-collapse collapse">
                                     <div class="box-body">
@@ -103,11 +109,13 @@
                             {
                                 <div class="panel box box-danger">
                                     <div class="box-header with-border">
-                                        <h4 class="box-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                                                Ingrese los datos del proveedor.
-                                            </a>
-                                        </h4>
+                                        <center>
+                                            <h4 class="box-title">
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                                    Ingrese los datos del proveedor.
+                                                </a>
+                                            </h4>
+                                        </center>
                                     </div>
                                     <div id="collapseTwo" class="panel-collapse collapse in">
                                         <div class="box-body">
@@ -121,18 +129,21 @@
                             {
                                 <div class="panel box box-danger">
                                     <div class="box-header with-border">
-                                        <h4 class="box-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                               
-                                                <strong><text class="text-red ">Info Proveedor:</text></strong>
-                                                <strong>  <text class="text-blue">Id: </text></strong>
-                                                <text class="text-black">@proveedor.idProveedor ,</text>
-                                                <strong><text class="text-blue">Empresa: </text></strong>
-                                                <text class="text-black">@proveedor.empresa,</text>
-                                                <strong><text class="text-blue">Representante: </text></strong>
-                                                <text class="text-black">@proveedor.nombre ,</text>
-                                            </a>
-                                        </h4>
+                                        <center>
+                                            <h4 class="box-title">
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+
+                                                    <strong><text class="text-red ">Info Proveedor:</text></strong>
+                                                    <strong>  <text class="text-blue">Id: </text></strong>
+                                                    <text class="text-black">@proveedor.idProveedor ,</text>
+                                                    <strong><text class="text-blue">Empresa: </text></strong>
+                                                    <text class="text-black">@proveedor.empresa,</text>
+                                                    <strong><text class="text-blue">Representante: </text></strong>
+                                                    <text class="text-black">@proveedor.nombre ,</text>
+                                                    - <text class="text-bold tex-red">Click para Modificar</text>-
+                                                </a>
+                                            </h4>
+                                        </center>
                                     </div>
                                     <div id="collapseTwo" class="panel-collapse collapse">
                                         <div class="box-body">
@@ -149,11 +160,13 @@
                         {
                             <div class="panel box box-success">
                                 <div class="box-header with-border">
-                                    <h4 class="box-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-                                            Detalles de Compra
-                                        </a>
-                                    </h4>
+                                    <center>
+                                        <h4 class="box-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                                Detalles de Compra
+                                            </a>
+                                        </h4>
+                                    </center>
                                 </div>
                                 <div id="collapseThree" class="panel-collapse collapse">
                                     <div class="box-body">
@@ -168,11 +181,14 @@
 
                             <div class="panel box box-success">
                                 <div class="box-header with-border">
-                                    <h4 class="box-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-                                            Detalles de Compra
-                                        </a>
-                                    </h4>
+                                    <center>
+                                        <h4 class="box-title">
+
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                                Detalles de Compra
+                                            </a>
+                                        </h4>
+                                    </center>
                                 </div>
                                 <div id="collapseThree" class="panel-collapse collapse in">
                                     <div class="box-body">
@@ -219,7 +235,7 @@
                     <label>Total Q</label>
                 </div>
                 <div class="col-md-6">
-                    <input type="number" name="totalCompra" id="totalCompra" class="form-control" value="@Session["totalCompra"]" readonly />
+                    <input type="number" name="totalCompra" id="totalCompra" class="form-control bg-red" value="@Session["totalCompra"]" readonly />
                 </div>
             </div>
         </form>

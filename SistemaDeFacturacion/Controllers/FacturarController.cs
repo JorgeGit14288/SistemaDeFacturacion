@@ -89,14 +89,13 @@ namespace SistemaDeFacturacion.Controllers
                 List<DetallesCotizacion> detalles = new List<DetallesCotizacion>();
                 cotiz = ctx.Cotizaciones.Find(id);              
                 detalles = ctx.DetallesCotizacion.Where(r => r.idCotizacion == id).ToList();
-                factura = new Facturas();
-                factura = ctx.Facturas.SingleOrDefault(f => f.idCotizacion == coti.idCotizacion);
                 List<TipoPago> tipoPagos = new List<TipoPago>();
+                cotiz.estado = "Vendido";
                 tipoPagos = ctx.TipoPago.ToList();
                 ViewBag.Factura = factura;
                 ViewBag.TipoPago = tipoPagos;
                 ViewBag.Detalles = detalles;
-                ViewBag.Cotizacion = coti;
+                ViewBag.Cotizacion = cotiz;
                 return View(coti);
             }
             catch(Exception ex)
@@ -159,19 +158,23 @@ namespace SistemaDeFacturacion.Controllers
                 string resultado = daoFacturar.FacturarVenta(datosFacturar);
                 if (resultado == "ok")
                 {
-                    ViewBag.Mensaje = "Venta Registrada con exito";
-                    Cotizaciones coti = new Cotizaciones();
+                    ViewBag.Mensaje = "VENTA FACTURADA CON EXITO";
+                    Cotizaciones cotizacion = new Cotizaciones();
                     List<DetallesCotizacion> detalles = new List<DetallesCotizacion>();
-                    coti = ctx.Cotizaciones.Find(id);
+                    cotizacion = ctx.Cotizaciones.Find(id);
+                    cotizacion.estado = "Facturado";
                     detalles = ctx.DetallesCotizacion.Where(r => r.idCotizacion == id).ToList();
                     //  factura = ctx.Facturas.SingleOrDefault(f => f.idCotizacion == coti.idCotizacion);
                     List<TipoPago> tipoPagos = new List<TipoPago>();
                     tipoPagos = ctx.TipoPago.ToList();
+                    factura = new Facturas();
+                    factura = ctx.Facturas.SingleOrDefault(f => f.idCotizacion == cotizacion.idCotizacion);
                     ViewBag.Factura = factura;
                     ViewBag.TipoPago = tipoPagos;
                     ViewBag.Detalles = detalles;
-                    ViewBag.Cotizacion = coti;
-                    return View("RealizarVenta",coti);
+                    ViewBag.Cotizacion = null;
+                    ViewBag.Cotizacion = cotizacion;
+                    return View("RealizarVenta", cotizacion);
                 }
                 else
                 {
@@ -188,9 +191,7 @@ namespace SistemaDeFacturacion.Controllers
                     ViewBag.Detalles = detalles;
                     ViewBag.Cotizacion = coti;
                     return View("RealizarVenta",coti);
-
-                }
-               
+                }               
             }
             catch (Exception ex)
             {
@@ -208,14 +209,12 @@ namespace SistemaDeFacturacion.Controllers
         public ActionResult Details(int id)
         {
             return View();
-        }
-
+        }    
         // GET: Facturar/Create
         public ActionResult Create()
         {
             return View();
-        }
-
+        }    
         // POST: Facturar/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)

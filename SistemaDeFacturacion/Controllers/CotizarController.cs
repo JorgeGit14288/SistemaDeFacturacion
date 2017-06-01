@@ -99,7 +99,7 @@ namespace SistemaDeFacturacion.Controllers
                     coti = (Cotizaciones)Session["Cotizacion"];
                 }
                 coti.nitCliente = c.nit;
-                coti.estado = "Cotizacion";
+                coti.estado = "Cotizado";
                 coti.nombre = c.nombre;
                 coti.direccion = c.direccion;
                 coti.fecha = DateTime.Now;
@@ -135,7 +135,7 @@ namespace SistemaDeFacturacion.Controllers
                     Session["DetallesC"] = "";
                     Session["idDetalleC"] = "0";
                     Session["totalC"] = "0";
-                    return View("Cotizar");
+                    return RedirectToAction("RealizarVenta","Facturar",new { id =coti.idCotizacion});
                 }
                 else
                 {

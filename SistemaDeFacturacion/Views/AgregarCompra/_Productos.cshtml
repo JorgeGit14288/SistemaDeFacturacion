@@ -75,12 +75,10 @@
                     Nombre: <input type="text" name="nombre" id="nombre" class="form-control input-sm" value="@temp.nombre" required />
                     <select class="selectpicker form-control" title="Seleccione una Categoria" data-live-search="true" id="idCategoria" name="idCategoria" required>
                         <option></option>
-
+                        <option value="@categorias[0].idCategoria" selected>@categorias[0].nombre<option>
                         @foreach (var c in categorias)
-                        {
-                 
-                            
-                                <option value="@c.idCategoria" data-subtext="@c.descripcion " data-tokens="@c.nombre @c.idCategoria">@c.nombre</option>
+                        {                                           
+                          <option value="@c.idCategoria" data-subtext="@c.descripcion " data-tokens="@c.nombre @c.idCategoria">@c.nombre</option>
                         }
                     </select>
                     Observaciones: <input type="text" name="observacion" id="observacion" class="form-control input-sm" value="@temp.observacion" required />
