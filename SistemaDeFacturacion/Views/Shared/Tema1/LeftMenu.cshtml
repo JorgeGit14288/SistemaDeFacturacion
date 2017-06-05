@@ -34,22 +34,13 @@
                     <i class="fa fa-dashboard"></i> <span>Inicio</span>
                 </a>
             </li>
-            
-            <li class="treeview bg-red-gradient">
-                <a href="@Url.Action("RealizarVenta","Facturar")">
-                    <i class="fa fa-cart-plus"></i> <span>Facturar Venta</span>
-                </a>
-            </li>
+           
             <li class="treeview bg-blue-gradient">
                 <a href="@Url.Action("Cotizar","Cotizar")">
                     <i class="fa fa-cart-plus"></i> <span>Nueva venta</span>
                 </a>
             </li>
-            <li class="treeview bg-green-gradient">
-                <a href="@Url.Action("CrearCompra","AgregarCompra")">
-                    <i class="fa fa-cart-plus"></i> <span>Ingresar Mercaderia</span>
-                </a>
-            </li>
+            
             <li class="treeview">
                 <a href="">
                     <i class="fa fa-table"></i>
@@ -61,6 +52,7 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
+                    <li><a href="@Url.Action("FacturarVenta","Facturar")"><i class="fa fa-circle-o"></i>Lista de Facturas</a></li>
                     <li><a href="@Url.Action("Index","Facturas")"><i class="fa fa-circle-o"></i>Lista de Facturas</a></li>
                     <li><a href="@Url.Action("Busqueda","Facturas")"><i class="fa fa-circle-o"></i> Buscar Facturas</a></li>
                     <li><a href="@Url.Action("FacturasHOy","Facturas")"><i class="fa fa-circle-o"></i>Facturas de hoy </a></li>
@@ -94,9 +86,9 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
+                    <li><a href="@Url.Action("CrearCompra","AgregarCompra")"><i class="fa fa-circle-o"></i>Ingresar Compra</a></li>
                     <li><a href="@Url.Action("Index","Compras")"><i class="fa fa-circle-o"></i>Todas las compras</a></li>
-                    <li><a href="@Url.Action("ComprasMes","Compras")"><i class="fa fa-circle-o"></i>Compras del mes</a></li>
-                    <li><a href="@Url.Action("BuscarCompras","Compras")"><i class="fa fa-circle-o"></i>Busqueda por fechas</a></li>
+                  
                 </ul>
             </li>
             
@@ -174,9 +166,7 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="@Url.Action("Index","AspNetUsers")"><i class="fa fa-circle-o"></i>Usuarios </a></li>
-                  
-                    
+                    <li><a href="@Url.Action("Index","AspNetUsers")"><i class="fa fa-circle-o"></i>Usuarios </a></li>                
                 </ul>
             </li>
         </ul>

@@ -138,6 +138,55 @@ namespace SistemaDeFacturacion.Controllers
             return RedirectToAction("Edit", "Usuarios", new { id = idUser });
 
         }
+        [HttpGet]
+        public ActionResult EditarUsuarios()      
+        {
+            string nombre = Session["Usuario"].ToString();
+            if (String.IsNullOrEmpty(nombre))
+            {
+                return View("Error", "Home");
+            }
+            ViewBag.Roles = ctx.AspNetRoles.ToList();
+            return View(ctx.AspNetUsers.SingleOrDefault((r => r.UserName == nombre)));
+            
+        }
+        // POST: Usuarios/Edit/5
+        [HttpPost]
+        public ActionResult EditarUsuarios( FormCollection collection, AspNetUsers user)
+        {
+            ViewBag.Roles = ctx.AspNetRoles.ToList();
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    ViewBag.Error = "Los datos a guardar no son validos.";
+                    return View(user);
+                }
+                string nombre = Session["Usuario"].ToString();
+                if (String.IsNullOrEmpty(nombre))
+                {
+                    return View("Error", "Home");
+                }
+
+                AspNetUsers actual = new AspNetUsers();
+                actual = ctx.AspNetUsers.SingleOrDefault(r => r.UserName == nombre);
+                actual.nombre = user.nombre;
+                actual.direccion = user.direccion;
+                actual.Activo = user.Activo;
+                actual.Email = user.Email;
+                actual.UserName = user.UserName;
+                actual.tel_casa = user.tel_casa;
+
+                ctx.Entry(actual).State = System.Data.Entity.EntityState.Modified;
+                ctx.SaveChanges();
+                return View(actual);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = "Ha ocurrido un error " + ex.ToString();
+                return View(user);
+            }
+        }
 
         protected override void Dispose(bool disposing)
         {

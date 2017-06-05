@@ -1748,6 +1748,7 @@
     <Content Include="Views\Cotizaciones\DetallesVenta.cshtml" />
     <Content Include="Views\Cotizaciones\_DetallesFactura.cshtml" />
     <Content Include="Views\Cotizaciones\DetallesFactura.cshtml" />
+    <Content Include="Views\AspNetUsers\EditarUsuarios.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

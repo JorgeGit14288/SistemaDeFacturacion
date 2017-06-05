@@ -1,37 +1,100 @@
-﻿@using Microsoft.AspNet.Identity
-@{ 
-    //FacturacionMVC.Models.Usuarios user = new FacturacionMVC.Models.Usuarios();
-    //var user = Session["Usuario"] as FacturacionMVC.Models.Usuarios;
-    //@ViewBag.userName = user.nombre;
+﻿
+@using Microsoft.AspNet.Identity
+@{
+//FacturacionMVC.Models.Usuarios user = new FacturacionMVC.Models.Usuarios();
+//var user = Session["Usuario"] as FacturacionMVC.Models.Usuarios;
+//@ViewBag.userName = user.nombre;
 }
 
-    <header class="main-header bg-black-gradient">
-        <!-- Logo -->
-        
-            <a href="@Url.Action("About","Home")" class="logo bg-red-gradient">
-                <!-- mini logo for sidebar mini 50x50 pixels -->
-                <span class="logo-mini"><b>F</b>S</span>
-                <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg"><b>Facturacion Soft </b>SF</span>
-            </a>
-        
-        <!-- Header Navbar: style can be found in header.less -->
-        
-            <nav class="navbar navbar-static-top bg-black-gradient">
-                <!-- Sidebar toggle button-->
-                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </a>
+<header class="main-header">
+    <!-- Logo -->
+    <a href="@Url.Action("About","Home")" class="logo bg-red-gradient">
+        <!-- mini logo for sidebar mini 50x50 pixels -->
+        <span class="logo-mini"><b>F</b>S</span>
+        <!-- logo for regular state and mobile devices -->
+        <span class="logo-lg"><b>Facturacion Soft </b>SF</span>
+    </a>
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top bg-black-gradient">
+        <!-- Sidebar toggle button para cotraer el menu izquierdo-->
+        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+        </a>
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+                <!-- Messages: style can be found in dropdown.less-->
+                <li class="dropdown messages-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-envelope-o"></i>
+                        <span class="label label-success">4</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="header">You have 4 messages</li>
 
-                <div class="col-lg-11">
-                    
-                    @Html.Partial("_LoginPartial")
-                </div>
-            </nav>
-       
-    </header>
+                    </ul>
+                </li>
+                <!-- Notifications: style can be found in dropdown.less -->
+                <li class="dropdown notifications-menu">
+                </li>
+                <!-- Tasks: style can be found in dropdown.less -->
+                <li class="dropdown tasks-menu">
+                    <ul>
+                        <li>VENTAS ACTUALES</li>
+                    </ul>
+                </li>
+                <!-- User Account: style can be found in dropdown.less -->
+                <li class="dropdown user user-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <img src="~/Temas/Plantilla/dist/img/avatar5.png" class="user-image" alt="User Image">
+                        <span class="hidden-xs">@User.Identity.Name</span>
+                    </a>
+                    <ul class="dropdown-menu ">
+                        <!-- User image -->
+                        <li class="user-header bg-black-gradient">
+                            <img src="~/Temas/Plantilla/dist/img/avatar5.png" class="img-circle" alt="User Image" />
+                            <p>
+                                @User.Identity.GetUserName() - Usuario Activo
+                                <small>@DateTime.Now</small>
+                            </p>
+                        </li>
+                        <!-- Menu Body -->
+                        <li class="user-body">
+                            <div class="row">
+                                <div class="col-xs-2 text-center">
 
-    <!-- =============================================== -->
+                                </div>
+                                <div class="col-xs-8 text-center">
+                                    @Html.ActionLink("Cambiar Password", "ChangePassword", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                                </div>
+                                <div class="col-xs-2 text-center">
+                                </div>
+                            </div>
+                            <!-- /.row -->
+                        </li>
+                        <!-- Menu Footer-->
+                        <li class="user-footer">
+                            <div class="pull-left">
+                                <a href="@Url.Action("EditarUsuarios","AspNetUsers")" class="btn btn-default btn-flat">Perfil</a>
+                            </div>
+
+                            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                            {
+                                @Html.AntiForgeryToken()
+
+                                <div class="pull-right">
+                                    <a href="javascript:document.getElementById('logoutForm').submit()" class="btn btn-default btn-flat">Salir</a>
+                                </div>
+
+                            }
+                        </li>
+
+                    </ul>
+                </li>
+                <!-- Control Sidebar Toggle Button -->
+                <li>
+                    <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
