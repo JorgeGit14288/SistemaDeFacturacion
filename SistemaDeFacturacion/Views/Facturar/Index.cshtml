@@ -1,0 +1,34 @@
+﻿@model SistemaDeFacturacion.Models.Cotizaciones
+@using SistemaDeFacturacion.Models
+@{
+    ViewBag.Title = "REALIZAR VENTA";
+    ViewBag.TituloControlador = "VENTAS";
+    ViewBag.InfoPagina = "Cobrar cotizacion";
+    ViewBag.TituloVentana = "Ingrese el id de la cotizacion para realizar el cobro";
+    ViewBag.FooterVentana = "Despues de facturar o marcar como venta una cotizacion, se descontara el producto del stock";
+    Layout = "~/Views/Shared/Plantilla1.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <br />
+        <br />
+
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-8">
+            <form id="form1" method="get" action="@Url.Action("RealizarVenta","Facturar")">
+                <label>Id Cotizacion</label>
+                <input type="number" name="id" id="id" class="form-inline" min="1"  />
+                <input type="submit" name="btnVenta" value="Buscar Cotizacion" class="btn btn-primary" />
+            </form>
+        </div>
+    </div>
+</div>
+<br />
+<br />
+<br />
+<br />
+<br />
+
+

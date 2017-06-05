@@ -34,7 +34,22 @@
                     <i class="fa fa-dashboard"></i> <span>Inicio</span>
                 </a>
             </li>
-           
+            <li class="treeview">
+                <a href="">
+                    <i class="ion ion-clock"></i>
+                    <span>Acciones rapidas</span>
+                    <span class="pull-right-container">
+                        <span class="label label-primary pull-right bg-red-gradient">
+                            <i class="fa fa-angle-down pull-right"></i>
+                        </span>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="@Url.Action("Cotizar","Cotizar")"><i class="fa fa-circle-o"></i>Nueva Cotizacion</a></li>
+                    <li><a href="@Url.Action("Index","Facturar")"><i class="fa fa-circle-o"></i>Facturar Venta</a></li>
+                    <li><a href="@Url.Action("CrearCompra","AgregarCompra")"><i class="fa fa-circle-o"></i> Agregar Producto</a></li>                                    
+                </ul>
+            </li>
             <li class="treeview bg-blue-gradient">
                 <a href="@Url.Action("Cotizar","Cotizar")">
                     <i class="fa fa-cart-plus"></i> <span>Nueva venta</span>
@@ -43,10 +58,10 @@
             
             <li class="treeview">
                 <a href="">
-                    <i class="fa fa-table"></i>
+                    <i class="ion ion-edit"></i>
                     <span>Facturas</span>
                     <span class="pull-right-container">
-                        <span class="label label-primary pull-right bg-green">
+                        <span class="label label-primary pull-right bg-red-gradient">
                             <i class="fa fa-angle-down pull-right"></i>
                         </span>
                     </span>
@@ -61,7 +76,7 @@
             </li>
             <li class="treeview">
                 <a href="">
-                    <i class="fa fa-table"></i>
+                    <i class="ion ion-document-text"></i>
                     <span>Cotizaciones</span>
                     <span class="pull-right-container">
                         <span class="label label-primary pull-right bg-green">
@@ -77,7 +92,7 @@
  
             <li class="treeview">
                 <a href="">
-                    <i class="fa fa-bookmark"></i>
+                    <i class="ion ion-ios-cart-outline"></i>
                     <span>Compras</span>
                     <span class="pull-right-container">
                         <span class="label label-primary pull-right bg-green">
@@ -157,7 +172,7 @@
             </li>
             <li class="treeview">
                 <a href="">
-                    <i class="fa fa-users"></i>
+                    <i class="ion ion-person-stalker"></i>
                     <span>Usuarios</span>
                     <span class="pull-right-container">
                         <span class="label label-primary pull-right bg-green">
