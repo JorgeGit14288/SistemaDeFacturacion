@@ -89,7 +89,7 @@
           <Property Name="idFactura" Type="int" Nullable="false" />
           <Property Name="idProveedor" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="total" Type="decimal" Precision="10" Scale="2" />
-          <Property Name="fecha" Type="datetime" Nullable="false" />
+          <Property Name="fecha" Type="date" Nullable="false" />
           <Property Name="modificado" Type="datetime" />
           <Property Name="usuario" Type="varchar" MaxLength="50" />
         </EntityType>
@@ -101,7 +101,7 @@
           <Property Name="nitCliente" Type="varchar" MaxLength="50" />
           <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="direccion" Type="varchar" MaxLength="50" />
-          <Property Name="fecha" Type="datetime" Nullable="false" />
+          <Property Name="fecha" Type="date" Nullable="false" />
           <Property Name="subTotal" Type="decimal" Precision="10" Scale="2" />
           <Property Name="descuento" Type="decimal" Precision="5" Scale="2" />
           <Property Name="total" Type="decimal" Precision="9" Scale="2" />
@@ -355,6 +355,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="sp_ComprasDia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fecha" Type="date" Mode="In" />
+        </Function>
+        <Function Name="sp_CotizacionesDia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fecha" Type="date" Mode="In" />
+        </Function>
+        <Function Name="sp_FacturasDia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fecha" Type="date" Mode="In" />
+        </Function>
+        <Function Name="sp_VentasDia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fecha" Type="date" Mode="In" />
+        </Function>
         <EntityContainer Name="FacturacionDbModelStoreContainer">
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
@@ -512,7 +524,7 @@
           <Property Name="idFactura" Type="Int32" Nullable="false" />
           <Property Name="idProveedor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="total" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="modificado" Type="DateTime" Precision="3" />
           <Property Name="usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Proveedores" Relationship="Self.FK__Compras__idProve__45F365D3" FromRole="Compras" ToRole="Proveedores" />
@@ -526,7 +538,7 @@
           <Property Name="nitCliente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="subTotal" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="descuento" Type="Decimal" Precision="5" Scale="2" />
           <Property Name="total" Type="Decimal" Precision="9" Scale="2" />
@@ -833,6 +845,18 @@
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <FunctionImport Name="sp_FacturasDia" ReturnType="Collection(Int32)">
+          <Parameter Name="fecha" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ComprasDia" ReturnType="Collection(Int32)">
+          <Parameter Name="fecha" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="sp_CotizacionesDia" ReturnType="Collection(Int32)">
+          <Parameter Name="fecha" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="sp_VentasDia" ReturnType="Collection(Int32)">
+          <Parameter Name="fecha" Mode="In" Type="DateTime" />
+          </FunctionImport>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -1036,6 +1060,10 @@
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="sp_FacturasDia" FunctionName="FacturacionDbModel.Store.sp_FacturasDia" />
+          <FunctionImportMapping FunctionImportName="sp_ComprasDia" FunctionName="FacturacionDbModel.Store.sp_ComprasDia" />
+          <FunctionImportMapping FunctionImportName="sp_CotizacionesDia" FunctionName="FacturacionDbModel.Store.sp_CotizacionesDia" />
+          <FunctionImportMapping FunctionImportName="sp_VentasDia" FunctionName="FacturacionDbModel.Store.sp_VentasDia" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

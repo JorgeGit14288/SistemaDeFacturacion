@@ -2,19 +2,17 @@
 <aside class="main-sidebar skin-red bg-black-gradient ">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
-        <!-- Sidebar user panel 
+        <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="~/Content/Images/shopping_cart.png"  class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p>@ViewBag.Usuario</p>
-                <a href="#"><i class="fa fa-circle text-success"></i> Activo</a>
-            </div>
-
+                <p>SISTEMA DE VENTAS</p>
+                <center> <i ></i>@DateTime.Now.ToShortDateString()</center>
+            </div>        
         </div>
-            -->
-        <!-- search form -->
+          <!-- search form 
         <form action="#" method="get" class="sidebar-form">
             <div class="input-group">
                 <input type="text" name="q" class="form-control" placeholder="Search...">
@@ -25,10 +23,11 @@
                 </span>
             </div>
         </form>
+              -->
         <!-- /.search form -->
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu bg-black-gradient">
-            <li class="header bg-black-gradient"><center>MENU DE OPCIONES</center></li>
+            <li class="header bg-red-gradient"><center class="Bold"><strong>MENU DE OPCIONES</strong></center></li>
             <li class="treeview">
                 <a href="@Url.Action("Index","Home")">
                     <i class="fa fa-dashboard"></i> <span>Inicio</span>
@@ -39,23 +38,17 @@
                     <i class="ion ion-clock"></i>
                     <span>Acciones rapidas</span>
                     <span class="pull-right-container">
-                        <span class="label label-primary pull-right bg-red-gradient">
+                        <span class="label label-primary pull-right bg-orange-active">
                             <i class="fa fa-angle-down pull-right"></i>
                         </span>
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="@Url.Action("Cotizar","Cotizar")"><i class="fa fa-circle-o"></i>Nueva Cotizacion</a></li>
-                    <li><a href="@Url.Action("Index","Facturar")"><i class="fa fa-circle-o"></i>Facturar Venta</a></li>
-                    <li><a href="@Url.Action("CrearCompra","AgregarCompra")"><i class="fa fa-circle-o"></i> Agregar Producto</a></li>                                    
+                    <li><a href="@Url.Action("Cotizar","Cotizar")"><i class="fa fa-cart-plus"></i>Nueva Cotizacion</a></li>
+                    <li><a href="@Url.Action("Index","Facturar")"><i class="ion ion-edit"></i>Facturar Venta</a></li>
+                    <li><a href="@Url.Action("CrearCompra","AgregarCompra")"><i class="ion ion-ios-cart-outline"></i> Agregar Producto</a></li>                                    
                 </ul>
-            </li>
-            <li class="treeview bg-blue-gradient">
-                <a href="@Url.Action("Cotizar","Cotizar")">
-                    <i class="fa fa-cart-plus"></i> <span>Nueva venta</span>
-                </a>
-            </li>
-            
+            </li>                      
             <li class="treeview">
                 <a href="">
                     <i class="ion ion-edit"></i>
@@ -69,9 +62,7 @@
                 <ul class="treeview-menu">
                     <li><a href="@Url.Action("FacturarVenta","Facturar")"><i class="fa fa-circle-o"></i>Lista de Facturas</a></li>
                     <li><a href="@Url.Action("Index","Facturas")"><i class="fa fa-circle-o"></i>Lista de Facturas</a></li>
-                    <li><a href="@Url.Action("Busqueda","Facturas")"><i class="fa fa-circle-o"></i> Buscar Facturas</a></li>
-                    <li><a href="@Url.Action("FacturasHOy","Facturas")"><i class="fa fa-circle-o"></i>Facturas de hoy </a></li>
-                    <li><a href="@Url.Action("FacturasPorFecha","Facturas")"><i class="fa fa-circle-o"></i>Facturas por fecha</a></li>                   
+                                    
                 </ul>
             </li>
             <li class="treeview">
@@ -79,7 +70,7 @@
                     <i class="ion ion-document-text"></i>
                     <span>Cotizaciones</span>
                     <span class="pull-right-container">
-                        <span class="label label-primary pull-right bg-green">
+                        <span class="label label-primary pull-right bg-aqua-gradient">
                             <i class="fa fa-angle-down pull-right"></i>
                         </span>
                     </span>
@@ -95,7 +86,7 @@
                     <i class="ion ion-ios-cart-outline"></i>
                     <span>Compras</span>
                     <span class="pull-right-container">
-                        <span class="label label-primary pull-right bg-green">
+                        <span class="label label-primary pull-right bg-green-gradient">
                             <i class="fa fa-angle-down pull-right"></i>
                         </span>
                     </span>
@@ -112,7 +103,7 @@
                     <i class="fa  fa-plus"></i>
                     <span>Productos</span>
                     <span class="pull-right-container">
-                        <span class="label label-primary pull-right bg-green">
+                        <span class="label label-primary pull-right bg-red-gradient">
                             <i class="fa fa-angle-down pull-right"></i>
                             </span>
                      </span>
@@ -130,7 +121,7 @@
                     <i class="fa fa-users"></i>
                     <span>Cartera de Clientes</span>
                     <span class="pull-right-container">
-                        <span class="label label-primary pull-right bg-green">
+                        <span class="label label-primary pull-right bg-red-gradient">
                             <i class="fa fa-angle-down pull-right"></i>
                         </span>
                     </span>
@@ -145,7 +136,7 @@
                     <i class="fa fa-briefcase"></i>
                     <span>Cartera de Proveedores</span>
                     <span class="pull-right-container">
-                        <span class="label label-primary pull-right bg-green">
+                        <span class="label label-primary pull-right bg-red-gradient">
                             <i class="fa fa-angle-down pull-right"></i>
                         </span>
                     </span>
@@ -160,7 +151,7 @@
                     <i class="fa fa-files-o"></i>
                     <span>Reportes</span>
                     <span class="pull-right-container">
-                        <span class="label label-primary pull-right bg-green">
+                        <span class="label label-primary pull-right bg-red-gradient">
                             <i class="fa fa-angle-down pull-right"></i>
                         </span>
                     </span>
@@ -175,7 +166,7 @@
                     <i class="ion ion-person-stalker"></i>
                     <span>Usuarios</span>
                     <span class="pull-right-container">
-                        <span class="label label-primary pull-right bg-green">
+                        <span class="label label-primary pull-right bg-red-gradient">
                             <i class="fa fa-angle-down pull-right"></i>
                         </span>
                     </span>

@@ -1,3 +1,83 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@using SistemaDeFacturacion.Models;
+
+@{
+    ViewBag.Title = "INICIO";
+    ViewBag.TituloControlador = "PANEL DE INICIO";
+    ViewBag.InfoPagina = "Informacion General del Sistema";
+    ViewBag.TituloVentana = "ACTIVIDADES BASICAS";
+    ViewBag.FooterVentana = "Para poder ver el detalle de las facturas pulse en el boton ver detalles";
+
+    Layout = "~/Views/Shared/Plantilla2.cshtml";
 }
+
+ <!-- Small boxes (Stat box) -->
+<div class="row">
+    <center><h3>REPORTE DEL DIA</h3></center>
+    <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-green-gradient">
+            <div class="inner">
+                <h3>@ViewBag.noCotizaciones</h3>
+                <p>Cotizaciones del dia <br />
+                Del Mes: @ViewBag.CotizacionesMes
+                </p>
+            </div>
+            <div class="icon">
+                <i class="ion ion-document-text"></i>
+            </div>
+            <a href="@Url.Action("Index","Cotizaciones")" class="small-box-footer">Ver Cotizaciones <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-red">
+            <div class="inner">
+                <h3>@ViewBag.noVentas<sup style="font-size: 20px"></sup></h3>
+                <p>
+                    Ventas del dia <br />
+                    Del Mes:  @ViewBag.VentasMes
+                </p>
+            </div>
+            <div class="icon">
+                <i class="ion ion-ios-cart"></i>
+            </div>
+            <a href="@Url.Action("Index","Cotizaciones")" class="small-box-footer">Ver todas las ventas<i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-yellow">
+            <div class="inner">
+                <h3>@ViewBag.noCompras</h3>
+                <p>Compras Hoy <br />
+                Del Mes: @ViewBag.ComprasMes
+                </p>
+            </div>
+            <div class="icon">
+                <i class="ion ion-android-done-all"></i>
+            </div>
+            <a href="@Url.Action("Index","Compras")" class="small-box-footer">Ver Compras <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-aqua">
+            <div class="inner">
+                <h3>@ViewBag.noProductos</h3>
+                <p>
+                <label>Productos</label>  <br />
+                 Agotados:  @ViewBag.ProductosSinExistencia
+                </p>          
+            </div>
+            <div class="icon">
+                <i class="ion ion-information-circled"></i>
+            </div>
+            <a href="@Url.Action("Index","Productos")" class="small-box-footer">Ver Productos <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+    <!-- ./col -->
+</div>
+<!-- /.row -->

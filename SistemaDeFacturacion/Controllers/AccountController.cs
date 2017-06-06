@@ -10,7 +10,6 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using SistemaDeFacturacion.Models;
 
-
 namespace SistemaDeFacturacion.Controllers
 {
     [Authorize]
@@ -62,7 +61,8 @@ namespace SistemaDeFacturacion.Controllers
             {
                 FacturacionDbEntities ctx = new FacturacionDbEntities();
                 string email = "sistema@sistema.com";
-                if((ctx.AspNetUsers.Count()==0)||( ctx.AspNetUsers.SingleOrDefault(u=> u.Email== email)==null ))
+                ViewBag.NoUsers = ctx.AspNetUsers.Count();
+                if ((ctx.AspNetUsers.Count()==0)||( ctx.AspNetUsers.SingleOrDefault(u=> u.Email== email)==null ))
                 {
                     var user = new ApplicationUser { UserName = "sistema@sistema.com", Email = "sistema@sistema.com", nombre = "Sistema", direccion = "Email", PhoneNumber = "789789", Activo = true, };
                     var result =  UserManager.CreateAsync(user, "Sistema.14288");
@@ -134,8 +134,6 @@ namespace SistemaDeFacturacion.Controllers
             {
                 return View(model);
             }
-
-
             // No cuenta los errores de inicio de sesión para el bloqueo de la cuenta
             // Para permitir que los errores de contraseña desencadenen el bloqueo de la cuenta, cambie a shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: true);

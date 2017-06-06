@@ -8,6 +8,10 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SistemaDeFacturacion.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+using System.Security.Claims;
 
 namespace SistemaDeFacturacion.Controllers
 {
@@ -144,11 +148,12 @@ namespace SistemaDeFacturacion.Controllers
             string nombre = Session["Usuario"].ToString();
             if (String.IsNullOrEmpty(nombre))
             {
-                return View("Error", "Home");
+                Session["Usuario"] = User.Identity.GetUserName();
+                nombre = User.Identity.GetUserName();
+                // return View("Error", "Home");
             }
             ViewBag.Roles = ctx.AspNetRoles.ToList();
             return View(ctx.AspNetUsers.SingleOrDefault((r => r.UserName == nombre)));
-            
         }
         // POST: Usuarios/Edit/5
         [HttpPost]
@@ -165,7 +170,9 @@ namespace SistemaDeFacturacion.Controllers
                 string nombre = Session["Usuario"].ToString();
                 if (String.IsNullOrEmpty(nombre))
                 {
-                    return View("Error", "Home");
+                    Session["Usuario"] = User.Identity.GetUserName();
+                    nombre = User.Identity.GetUserName();
+                    // return View("Error", "Home");
                 }
 
                 AspNetUsers actual = new AspNetUsers();

@@ -20,28 +20,41 @@
         <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
             <span class="sr-only">Toggle navigation</span>
         </a>
+        <!-- Collect the nav links, forms, and other content for toggling 
+        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">@DateTime.Now.ToShortDateString() <span class="sr-only">(current)</span></a></li>
+                <li><a href="#">Link</a></li>
+
+            </ul>
+        </div>
+            -->
+        <!-- /.navbar-collapse -->
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
-                <!-- Messages: style can be found in dropdown.less-->
-                <li class="dropdown messages-menu">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="fa fa-envelope-o"></i>
-                        <span class="label label-success">4</span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li class="header">You have 4 messages</li>
-
+                @if (Session["totalC"].ToString() == "0")
+                {
+                    <li class="bg-green-gradient "><a href="@Url.Action("Cotizar","Cotizar")"><i class="fa fa-cart-plus"> </i> Nueva Venta <span class="sr-only">(current)</span></a></li>
+                }
+                else
+                {
+                    <li class="bg-red-active"><a href="@Url.Action("Cotizar","Cotizar")">Venta Actual Q. @Session["totalC"] <span class="sr-only">(current)</span></a></li>
+                }
+                             
+                
+                <!-- Menu para ayuda -->
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-question-circle"></i>  Ayuda <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Manual de usuario</a></li>
+                        <li><a href="#">Politicas de uso</a></li>
+                        <li><a href="#">Atencion al Cliente</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Red Social</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">A cerca de</a></li>
                     </ul>
-                </li>
-                <!-- Notifications: style can be found in dropdown.less -->
-                <li class="dropdown notifications-menu">
-                </li>
-                <!-- Tasks: style can be found in dropdown.less -->
-                <li class="dropdown tasks-menu">
-                    <ul>
-                        <li>VENTAS ACTUALES</li>
-                    </ul>
-                </li>
+                </li>             
                 <!-- User Account: style can be found in dropdown.less -->
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -84,15 +97,9 @@
                                 <div class="pull-right">
                                     <a href="javascript:document.getElementById('logoutForm').submit()" class="btn btn-default btn-flat">Salir</a>
                                 </div>
-
                             }
                         </li>
-
                     </ul>
-                </li>
-                <!-- Control Sidebar Toggle Button -->
-                <li>
-                    <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
                 </li>
             </ul>
         </div>

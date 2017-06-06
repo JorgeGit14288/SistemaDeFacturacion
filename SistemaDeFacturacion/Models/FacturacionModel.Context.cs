@@ -12,6 +12,8 @@ namespace SistemaDeFacturacion.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class FacturacionDbEntities : DbContext
     {
@@ -39,5 +41,41 @@ namespace SistemaDeFacturacion.Models
         public virtual DbSet<Productos> Productos { get; set; }
         public virtual DbSet<Proveedores> Proveedores { get; set; }
         public virtual DbSet<TipoPago> TipoPago { get; set; }
+    
+        public virtual ObjectResult<Nullable<int>> sp_FacturasDia(Nullable<System.DateTime> fecha)
+        {
+            var fechaParameter = fecha.HasValue ?
+                new ObjectParameter("fecha", fecha) :
+                new ObjectParameter("fecha", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_FacturasDia", fechaParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> sp_ComprasDia(Nullable<System.DateTime> fecha)
+        {
+            var fechaParameter = fecha.HasValue ?
+                new ObjectParameter("fecha", fecha) :
+                new ObjectParameter("fecha", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_ComprasDia", fechaParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> sp_CotizacionesDia(Nullable<System.DateTime> fecha)
+        {
+            var fechaParameter = fecha.HasValue ?
+                new ObjectParameter("fecha", fecha) :
+                new ObjectParameter("fecha", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_CotizacionesDia", fechaParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> sp_VentasDia(Nullable<System.DateTime> fecha)
+        {
+            var fechaParameter = fecha.HasValue ?
+                new ObjectParameter("fecha", fecha) :
+                new ObjectParameter("fecha", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_VentasDia", fechaParameter);
+        }
     }
 }

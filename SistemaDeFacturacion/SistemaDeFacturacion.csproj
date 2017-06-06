@@ -222,6 +222,7 @@
     <Compile Include="Dao\DetallesDao.cs" />
     <Compile Include="Dao\FacturarDao.cs" />
     <Compile Include="Dao\FacturasDao.cs" />
+    <Compile Include="Dao\Helpers\HomeHelpers.cs" />
     <Compile Include="Dao\Helpers\IniciarEntidades.cs" />
     <Compile Include="Dao\IAgregarComprasDao.cs" />
     <Compile Include="Dao\IClientesDao.cs" />

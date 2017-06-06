@@ -2,6 +2,8 @@
 <html>
 <head>
     <title>Facturacion  | @ViewBag.Title </title>
+    <link rel="shortcut icon" src="~/Content/Images/icono.ico">
+
     <!--  INICIO INCLUSION DE LIBRERIAS CSS DE LA PLANTILLA-->
     @RenderPage("~/Views/Shared/Tema1/Head.cshtml")
     <!--  FIN INCLUSION DE LIBRERIAS CSS DE LA PLANTILLA-->
@@ -31,28 +33,23 @@
             </section>
             <!-- Main content -->
             <section class="content">
-
-                <div class="row col-md-12">
-                    @Html.Partial("_MsjError")
-                </div>
-              
-                <div class="container col-md-12">
-                    @RenderBody()
-
-                </div>
-                <!-- /.box -->
+                <div class="row">
+                    <div class="col-md-12">
+                        @Html.Partial("_MsjError")
+                        @RenderBody()
+                    </div>
+                </div>                               
             </section>
             <!-- /.content -->
-            <footer class="main-footer">
-                <div class="pull-right hidden-xs">
-                    <b>Version</b> 2.3.12
-                </div>
-                <strong>Copyright &copy; 2014-2016 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
-                reserved.
-            </footer>
         </div>
         <!-- /.content-wrapper -->
-        
+        <footer class="main-footer">
+            <div class="pull-right hidden-xs">
+                <b>Version</b> 1.0
+            </div>
+            <strong>Copyright &copy; 2016-2017 <a href="#">SISTEMA DE PUNTO DE VENTA</a>.</strong> All rights
+            reserved.
+        </footer>
         <!-- Control Sidebar -->
         <!-- /.control-sidebar -->
         <!-- Add the sidebar's background. This div must be placed
