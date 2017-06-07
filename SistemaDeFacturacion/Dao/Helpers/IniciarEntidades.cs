@@ -9,7 +9,7 @@ namespace SistemaDeFacturacion.Dao.Helpers
 {
     public class IniciarEntidades
     {
-        FacturacionDbEntities db = new FacturacionDbEntities();
+       private FacturacionDbEntities db = new FacturacionDbEntities();
         public void CrearEntidades()
         {
             //crea el primer tipo de pago

@@ -119,12 +119,12 @@ namespace SistemaDeFacturacion.Controllers
                 user.AspNetRoles.Add(rol);
                 ctx.SaveChanges();
 
-                return RedirectToAction("Edit", "Usuarios", new { id = idUser });
+                return RedirectToAction("Edit", "AspNetUsers", new { id = idUser });
 
             }
 
             ViewBag.Error = "El rol ya existe en el usuario actual";
-            return RedirectToAction("Edit", "Usuarios", new { id = idUser });
+            return RedirectToAction("Edit", "AspNetUsers", new { id = idUser });
         }
         [HttpPost]
         public ActionResult EliminarRol(string idUser, string idRol)
@@ -134,12 +134,12 @@ namespace SistemaDeFacturacion.Controllers
             if (user.AspNetRoles.FirstOrDefault(r => r.Id == rol.Id) == null)
             {
                 ViewBag.Error = "No se pudo eliminar el rol del usuario";
-                return RedirectToAction("Edit", "Usuarios", new { id = idUser });
+                return RedirectToAction("Edit", "AspNetusers", new { id = idUser });
 
             }
             user.AspNetRoles.Remove(rol);
             ctx.SaveChanges();
-            return RedirectToAction("Edit", "Usuarios", new { id = idUser });
+            return RedirectToAction("Edit", "AspNetUsers", new { id = idUser });
 
         }
         [HttpGet]
