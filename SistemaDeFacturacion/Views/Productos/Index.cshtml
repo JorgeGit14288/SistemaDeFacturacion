@@ -9,159 +9,230 @@
 
     Layout = "~/Views/Shared/Plantilla1.cshtml";
 }
-<p>
-    <a href="@Url.Action("Create","Productos")" class="btn btn-primary" role="button">Crear Nuevo</a>
-    <a href="@Url.Action("Facturar","Facturar")" class="btn btn-info" role="button">Ir a Detalles de Factura</a>
-    <table id="example1" class="table table-bordered table-striped">
-        <thead>
-            <tr>
-                <th>
-                    Id
-                </th>
-                <th>
-                    Nombre
-                </th>
-                <th>
-                    Categoria
-                </th>
-                <th>
-                    Precio
-                </th>
-                <th>
-                    Existencia
-                </th>
-                <th>Comprar</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.idProducto)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.nombre)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Categorias.nombre)
-                    </td>
+<!--  
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-md-2">
 
-                    <td>
-                        Q.  @Html.DisplayFor(modelItem => item.precio)
-                    </td>
-                    <td>
-                        @{
+        </div>
+        <div class="col-md-3">
+            <div class="input-group margin">
+                <div class="input-group-btn">
+                    <a href="@Url.Action("Create","Productos")" class="btn btn-primary form-control" role="button">Crear Nuevo</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="input-group margin">
+                <div class="input-group-btn">
+                    <button type="button" class="btn btn-info form-control bg-yellow-active dropdown-toggle" data-toggle="dropdown">
+                        Exportar
+                        <span class="fa fa-caret-down"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><<a href="@Url.Action("Report",new {id= "PDF"})"> Tipo PDF</a></li>
+                        <li><a href="@Url.Action("Report",new {id= "Excel"})"> Tipo Excel</a></li>
+                        <li><a href="@Url.Action("Report",new {id= "Word"})"> Tipo Word</a></li>
+                        <li><a href="@Url.Action("Report",new {id= "Image"})"> Tipo Image</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    -->
+<p>
+    <a href="@Url.Action("Create","Productos")" class="btn btn-primary " role="button"> <span class=".glyphicon glyphicon-floppy-save"> </span> Crear Nuevo</a>
+</p>
+<table id="example1" class="table  table-bordered table-striped table-responsive">
+    <thead>
+        <tr>
+            <td colspan="7" class="bg-info"><center>LISTADO DE PRODUCTOS REGISTRADOS</center></td>
+        </tr>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Nombre
+            </th>
+            <th>
+                Categoria
+            </th>
+            <th>
+                Precio
+            </th>
+            <th>
+                Existencia
+            </th>
+            <th>Comprar</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.idProducto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Categorias.nombre)
+                </td>
+
+                <td>
+                    Q.  @Html.DisplayFor(modelItem => item.precio)
+                </td>
+                <td>
+                    @{
                             if (item.existencia == 0)
                             {
-                                <div class="bg-red-active">
+                        <div class="bg-red-active">
 
-                                    @Html.DisplayFor(modelItem => item.existencia)
+                            @Html.DisplayFor(modelItem => item.existencia)
 
-                                </div>
+                        </div>
                             }
                             if (item.existencia > 0 && item.existencia < 6)
                             {
-                                <div class="bg-yellow-active">
+                        <div class="bg-yellow-active">
 
-                                    @Html.DisplayFor(modelItem => item.existencia)
-                                </div>
+                            @Html.DisplayFor(modelItem => item.existencia)
+                        </div>
                             }
                             if (item.existencia >= 6)
                             {
 
 
-                                @Html.DisplayFor(modelItem => item.existencia)
+                        @Html.DisplayFor(modelItem => item.existencia)
 
                             }
-                        }
-                    </td>
-                    <td>
-                        @{
+                    }
+                </td>
+                <td>
+                    @{
                             if (item.existencia == 0)
                             {
-                                <form id="fAgregarProducto" method="get" action="@Url.Action("BuscarProducto","AgregarCompra")">
-                                    <input type="hidden" name="id" id="id" value="@item.idProducto" />
-                                    <input type="submit" value="Agregar" class="btn btn-danger" name="btnComprar" />
-                                </form>
+                        <form id="fAgregarProducto" method="get" action="@Url.Action("BuscarProducto","AgregarCompra")">
+                            <input type="hidden" name="id" id="id" value="@item.idProducto" />
+                            <input type="submit" value="Agregar" class="btn btn-danger" name="btnComprar" />
+                        </form>
                             }
                             else
                             {
-                                <form id="fCargarProducto" method="post" action="@Url.Action("CargarProducto","Facturar")">
-                                    <input type="hidden" name="idProducto" id="idProducto" value="@item.idProducto" />
-                                    <input type="number" size="6" min="1" max="999" name="cantidad" id="cantidad" required />
-                                    <input type="submit" value="Comprar" name="btnComprar" class="btn btn-success" />
-                                </form>
-                            }
-                        }
-
-                    </td>
-                    <td>
-                        <form id="fDetalles" method="get" action="@Url.Action("Details","Productos")">
-                            <input type="hidden" name="id" id="id" value="@item.idProducto" />
-
-                            <input type="submit" value="Ver Detalles" name="btnDetalles" class="btn btn-info" />
+                        <form id="fCargarProducto" method="post" action="@Url.Action("CargarProducto","Facturar")">
+                            <input type="hidden" name="idProducto" id="idProducto" value="@item.idProducto" />
+                            <input type="number" size="6" min="1" max="999" name="cantidad" id="cantidad" required />
+                            <input type="submit" value="Comprar" name="btnComprar" class="btn btn-success" />
                         </form>
-                    </td>
-                </tr>
                             }
-        </tbody>
-    </table>
-    @section scripts {
-        <script>
-            $(document).ready(function () {
-                $('#example1').DataTable({
-                    "language": {
-
-                        "sProcessing": "Procesando...",
-
-                        "sLengthMenu": "Mostrar _MENU_ registros",
-
-                        "sZeroRecords": "No se encontraron resultados",
-
-                        "sEmptyTable": "Ningún dato disponible en esta tabla",
-
-                        "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-
-                        "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-
-                        "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-
-                        "sInfoPostFix": "",
-
-                        "sSearch": "Buscar:",
-
-                        "sUrl": "",
-
-                        "sInfoThousands": ",",
-
-                        "sLoadingRecords": "Cargando...",
-
-                        "oPaginate": {
-
-                            "sFirst": "Primero",
-
-                            "sLast": "Último",
-
-                            "sNext": "Siguiente",
-
-                            "sPrevious": "Anterior"
-
-                        },
-
-                        "oAria": {
-
-                            "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-
-                            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-
-                        }
-
                     }
-                });
-            });
-        </script>
 
+                </td>
+                <td>
+                    <form id="fDetalles" method="get" action="@Url.Action("Details","Productos")">
+                        <input type="hidden" name="id" id="id" value="@item.idProducto" />
 
-    }
+                        <input type="submit" value="Ver Detalles" name="btnDetalles" class="btn btn-info" />
+                    </form>
+                </td>
+            </tr>
+                            }
+    </tbody>
+</table>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $('#example1').DataTable({
+                "language": {
+                    "sProcessing": "Procesando...",
+                    "sLengthMenu": "Mostrar _MENU_ registros",
+                    "sZeroRecords": "No se encontraron resultados",
+                    "sEmptyTable": "Ningún dato disponible en esta tabla",
+                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                    "sInfoPostFix": "",
+                    "sSearch": "Buscar:",
+                    "sUrl": "",
+                    "sInfoThousands": ",",
+                    "sLoadingRecords": "Cargando...",
+                    "oPaginate": {
+                        "sFirst": "Primero",
+                        "sLast": "Último",
+                        "sNext": "Siguiente",
+                        "sPrevious": "Anterior"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                    }
+                },
+                // tenemos que utilizar le dom para poder exportar 
+                dom: 'Bfrtip',                
+                //permite mostrar entidades
+                lengthMenu: [
+                    [10, 25, 50, -1],
+                    ['10 filas', '25 filas', '50 filas', 'Mostrar todo']
+                ],
+            // los botones a mostrar
+                buttons: [
+                ///boton para mostrar registros
+                    {
+                        extend: 'pageLength',
+                        text: 'No. Filas <span class=".glyphicon glyphicon-plus">'  
+                    },
+                   //boton para seleccionar columnas a mostrar
+                    {
+                        extend: 'colvis',
+                        text: 'Ocultar Columnas  <span class="glyphicon glyphicon-resize-horizontal">'
+
+                    },
+                    //creamos otro objeto boton anidado
+
+                    {
+                        extend: 'collection',
+                        text: 'Exportar  <span class="glyphicon glyphicon-share-alt">',
+                        buttons: [
+                            //boton para copiar los elementos
+                            {
+                                extend: 'copyHtml5',
+                                text: 'Copiar'
+                        
+                            },
+                            //boton para imprimir
+                            {
+                                extend: 'print',
+                                text: 'Imprimir',
+                                exportOptions: {
+                                    columns: ':visible'
+                                }
+                            },
+                            //boton para exportar a excel
+                            {
+                                extend: 'excelHtml5',
+                                text: 'Excel',
+                                exportOptions: {
+                                    columns: ':visible'
+                                }
+                            },
+                            //boton para exportar a pdf
+                            {
+                                extend: 'pdfHtml5',
+                                text: 'Pdf',
+                                download: 'open',
+                                exportOptions: {
+                                    columns: ':visible'
+                                }
+                            }       
+                        ]
+                    }
+                ]
+             });
+        });
+    </script>
+}

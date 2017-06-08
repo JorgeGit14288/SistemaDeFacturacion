@@ -1,0 +1,118 @@
+﻿
+@{
+    Layout = "~/Views/Shared/Plantilla2.cshtml";
+    ViewBag.Title = "Informes";
+    ViewBag.TituloControlador = "INFORMES";
+    ViewBag.InfoPagina = "Vista para generar informes disponibles";
+    ViewBag.TituloVentana = "Informes";
+    ViewBag.FooterVentana = "Para solicitar un informe personalizado, contacte con el encargado al sistema";
+}
+
+<!-- START CUSTOM TABS
+<h2 class="page-header">Seccion de Informes</h2>  -->
+<div class="row">
+
+    <div class="col-md-12">
+        <!-- Custom Tabs (Pulled to the right) -->
+        <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs pull-right">
+
+                <li><a href="#tab_8" data-toggle="tab">Otros </a></li>
+                <li><a href="#tab_7" data-toggle="tab">Proveedores</a></li>
+                <li><a href="#tab_6" data-toggle="tab">Clientes</a></li>
+                <li><a href="#tab_5" data-toggle="tab">Productos</a></li>
+                <li><a href="#tab_4" data-toggle="tab">Compras</a></li>
+                <li><a href="#tab_3" data-toggle="tab">Cotizaciones</a></li>
+                <li><a href="#tab_2" data-toggle="tab">Ventas</a></li>
+                <li class="active"><a href="#tab_1" data-toggle="tab">Inicio</a></li>
+                <li><a href="#tab_1" data-toggle="tab"></a></li>
+                <!--
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        Dropdown <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+                    </ul>
+                </li>
+                    -->
+                <li class="pull-left header"><i class="fa fa-th"></i> Informes de: </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="tab_1">
+                    <b>INFORMACION DE USO</b>
+
+                    <p>
+                        Bienvenido a la seccion de informes!, siga las instrucciones siguientes para poder generar reportes
+                        en diferentes formatos disponibles en la aplicacion.
+                    </p>
+                    1.- Como puede observar en esta vista encontrara diferentes pestañas de acceso a los diferentes informes
+                    etiquetados con los nombres de los modulos disponibles en este sistema, por ejemplo, si usted desea generar el
+                    reporte de todos los productos con existencia baja, debera de dirigirse sobre la pestaña productos, dar click
+                    para tener acceso y buscar el boton que diga, Productos sin existencia. luego en el boton generar y se redigira
+                    a una pagina en donde usted podra ver el informe para luego exportarlo al formato que el sistema paermita. a continuacion
+                    presentamos el ejemplo de una manera mas grafica en las siguientes imagenes:
+                </div>
+                <!-- /.tab-pane -->
+                <div class="tab-pane" id="tab_2">
+                    <b>INFORMES SOBRE VENTAS</b>
+
+                    <!-- /.tab-pane -->
+                </div>
+                
+                <div class="tab-pane" id="tab_3">
+
+                    <b>INFORME SOBRE COTIZACIONES</b>
+
+                </div>
+                <!-- /.tab-pane -->
+                <div class="tab-pane" id="tab_4">
+
+                    <b>INFORME SOBRE COMPRAS</b>
+
+                </div>
+                <!-- /.tab-pane -->
+                <div class="tab-pane" id="tab_5">
+
+                    <b>INFORME SOBRE PRODUCTOS</b>
+                    @Html.Partial("_Productos")
+
+                </div>
+                <!-- /.tab-pane -->
+                <div class="tab-pane" id="tab_6">
+
+                    <b>INFORME SOBRE CLIENTES</b>
+
+                </div>
+                <!-- /.tab-pane -->
+                <div class="tab-pane" id="tab_7">
+
+                    <b>INFORME SOBRE PROVEEDORES</b>
+
+                    <div class="container">
+                        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Todos Los Productos</button>
+                        <div id="demo" class="collapse">
+
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.tab-pane -->
+                <div class="tab-pane" id="tab_8">
+
+                    <b>OTROS INFORMES</b>
+                    <!-- /.tab-pane -->
+                </div>
+                <!-- /.tab-content -->
+            </div>
+            <!-- nav-tabs-custom -->
+        </div>
+        <!-- /.col -->
+    </div>
+</div>
+<!-- /.row -->
+<!-- END CUSTOM TABS -->

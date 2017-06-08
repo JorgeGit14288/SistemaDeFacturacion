@@ -1,0 +1,86 @@
+﻿@model IEnumerable<SistemaDeFacturacion.Models.Productos>
+
+@{
+    ViewBag.Title = "TodosProductos";
+    Layout = "~/Views/Shared/Plantilla2.cshtml";
+}
+<p>
+    <button id="btnExportar" name="btnExportar" class="btn btn-warning">Exportar Lista</button>
+</p>
+<div id="dvData">
+    <center><h3>Lista de Productos Registrados</h3></center>
+    <table class="table  table-bordered table-striped table-responsive">
+        <thead>
+            <tr>
+                <th>
+                    <center><label>Id</label></center>
+                </th>
+                <th>
+                    <center><label>Nombre</label></center>
+                </th>
+                <th>
+                    <center><label>Observaciones</label></center>
+                </th>
+                <th>
+                    <center><label>Comprado</label></center>
+                </th>
+                <th>
+                    <center><label>precio/v</label></center>
+                </th>
+
+                <th>
+                    <center><label>Existencia</label></center>
+                </th>
+
+                <th>
+                    <center><label>Categoria</label></center>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.idProducto)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.observacion)
+                    </td>
+                    <td>
+                        Q @Html.DisplayFor(modelItem => item.precioCompra)
+                    </td>
+                    <td>
+                        Q @Html.DisplayFor(modelItem => item.precio)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.existencia)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Categorias.nombre)
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            //alert("listo par iniciar con jquery");
+            $("#btnExportar").click(function () {
+                alert("Exportando lista");
+                window.open('data:application/pdf,' + encodeURIComponent($('#dvData').html()));            
+                e.preventDefault();
+            })
+        })
+    </script>
+}
+
+

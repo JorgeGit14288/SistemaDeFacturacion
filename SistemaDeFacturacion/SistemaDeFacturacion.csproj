@@ -54,6 +54,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0-beta1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="jQWidgets.AspNetCore.Mvc.Bootstrap.TagHelpers, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\jQWidgets.AspNetCore.Mvc.Bootstrap.TagHelpers.1.0.6\lib\net451\jQWidgets.AspNetCore.Mvc.Bootstrap.TagHelpers.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.7\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
     </Reference>
@@ -78,10 +81,151 @@
     <Reference Include="Microsoft.AspNet.TelemetryCorrelation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.TelemetryCorrelation.1.0.0-preview2\lib\net45\Microsoft.AspNet.TelemetryCorrelation.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNetCore.Antiforgery, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Antiforgery.1.0.0\lib\net451\Microsoft.AspNetCore.Antiforgery.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Authorization, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Authorization.1.0.0\lib\net451\Microsoft.AspNetCore.Authorization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Cryptography.Internal, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Cryptography.Internal.1.0.0\lib\net451\Microsoft.AspNetCore.Cryptography.Internal.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.DataProtection, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.DataProtection.1.0.0\lib\net451\Microsoft.AspNetCore.DataProtection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.DataProtection.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.DataProtection.Abstractions.1.0.0\lib\net451\Microsoft.AspNetCore.DataProtection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Diagnostics.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Diagnostics.Abstractions.1.0.0\lib\netstandard1.0\Microsoft.AspNetCore.Diagnostics.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Hosting.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Hosting.Abstractions.1.0.0\lib\net451\Microsoft.AspNetCore.Hosting.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Hosting.Server.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Hosting.Server.Abstractions.1.0.0\lib\net451\Microsoft.AspNetCore.Hosting.Server.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Html.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Html.Abstractions.1.0.0\lib\netstandard1.0\Microsoft.AspNetCore.Html.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Http.1.0.0\lib\net451\Microsoft.AspNetCore.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Http.Abstractions.1.0.0\lib\net451\Microsoft.AspNetCore.Http.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http.Extensions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Http.Extensions.1.0.0\lib\net451\Microsoft.AspNetCore.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http.Features, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Http.Features.1.0.0\lib\net451\Microsoft.AspNetCore.Http.Features.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.JsonPatch, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.JsonPatch.1.0.0\lib\netstandard1.1\Microsoft.AspNetCore.JsonPatch.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Mvc.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Mvc.Abstractions.1.0.0\lib\net451\Microsoft.AspNetCore.Mvc.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Mvc.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Mvc.Core.1.0.0\lib\net451\Microsoft.AspNetCore.Mvc.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Mvc.DataAnnotations, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Mvc.DataAnnotations.1.0.0\lib\net451\Microsoft.AspNetCore.Mvc.DataAnnotations.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Mvc.Formatters.Json, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Mvc.Formatters.Json.1.0.0\lib\net451\Microsoft.AspNetCore.Mvc.Formatters.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Mvc.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Mvc.Razor.1.0.0\lib\net451\Microsoft.AspNetCore.Mvc.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Mvc.Razor.Host, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Mvc.Razor.Host.1.0.0\lib\net451\Microsoft.AspNetCore.Mvc.Razor.Host.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Mvc.ViewFeatures, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Mvc.ViewFeatures.1.0.0\lib\net451\Microsoft.AspNetCore.Mvc.ViewFeatures.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Razor.1.0.0\lib\net451\Microsoft.AspNetCore.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Razor.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Razor.Runtime.1.0.0\lib\net451\Microsoft.AspNetCore.Razor.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Routing, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Routing.1.0.0\lib\net451\Microsoft.AspNetCore.Routing.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Routing.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Routing.Abstractions.1.0.0\lib\net451\Microsoft.AspNetCore.Routing.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.WebUtilities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.WebUtilities.1.0.0\lib\net451\Microsoft.AspNetCore.WebUtilities.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeAnalysis.Common.1.3.0\lib\net45\Microsoft.CodeAnalysis.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis.CSharp, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeAnalysis.CSharp.1.3.0\lib\net45\Microsoft.CodeAnalysis.CSharp.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.4\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.DotNet.InternalAbstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.DotNet.InternalAbstractions.1.0.0\lib\net451\Microsoft.DotNet.InternalAbstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Caching.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Caching.Abstractions.1.0.0\lib\netstandard1.0\Microsoft.Extensions.Caching.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Caching.Memory, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Caching.Memory.1.0.0\lib\net451\Microsoft.Extensions.Caching.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.Abstractions.1.0.0\lib\netstandard1.0\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.1.0.0\lib\netstandard1.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyModel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyModel.1.0.0\lib\net451\Microsoft.Extensions.DependencyModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.FileProviders.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.FileProviders.Abstractions.1.0.0\lib\netstandard1.0\Microsoft.Extensions.FileProviders.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.FileProviders.Composite, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.FileProviders.Composite.1.0.0\lib\netstandard1.0\Microsoft.Extensions.FileProviders.Composite.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.FileProviders.Physical, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.FileProviders.Physical.1.0.0\lib\net451\Microsoft.Extensions.FileProviders.Physical.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.FileSystemGlobbing, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.FileSystemGlobbing.1.0.0\lib\net451\Microsoft.Extensions.FileSystemGlobbing.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Localization, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Localization.1.0.0\lib\net451\Microsoft.Extensions.Localization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Localization.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Localization.Abstractions.1.0.0\lib\netstandard1.0\Microsoft.Extensions.Localization.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.1.0.0\lib\netstandard1.1\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.ObjectPool, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.ObjectPool.1.0.0\lib\net451\Microsoft.Extensions.ObjectPool.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Options.1.0.0\lib\netstandard1.0\Microsoft.Extensions.Options.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.PlatformAbstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.PlatformAbstractions.1.0.0\lib\net451\Microsoft.Extensions.PlatformAbstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Primitives.1.0.0\lib\netstandard1.0\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.WebEncoders, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.WebEncoders.1.0.0\lib\netstandard1.0\Microsoft.Extensions.WebEncoders.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Net.Http.Headers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.Headers.1.0.0\lib\netstandard1.1\Microsoft.Net.Http.Headers.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Owin, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.3.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
     </Reference>
@@ -109,18 +253,111 @@
     <Reference Include="Microsoft.Owin.Security.Twitter, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.1.0\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportViewer.Common.10.0.40219.1\lib\Microsoft.ReportViewer.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportViewer.Common.10.0.40219.1\lib\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportViewer.Common.10.0.40219.1\lib\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportViewer.WebForms.10.0.40219.1\lib\Microsoft.ReportViewer.WebForms.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.AppContext, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.AppContext.4.1.0\lib\net46\System.AppContext.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Buffers, Version=4.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.0.0\lib\netstandard1.1\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.Immutable, Version=1.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Collections.Immutable.1.2.0\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.NonGeneric, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Collections.NonGeneric.4.0.1\lib\net46\System.Collections.NonGeneric.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.Primitives, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Primitives.4.1.0\lib\net45\System.ComponentModel.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.TypeConverter, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.TypeConverter.4.1.0\lib\net462\System.ComponentModel.TypeConverter.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Console, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Console.4.0.0\lib\net46\System.Console.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.4.0-preview1-25305-02\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
     </Reference>
+    <Reference Include="System.Diagnostics.FileVersionInfo, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.FileVersionInfo.4.0.0\lib\net46\System.Diagnostics.FileVersionInfo.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.StackTrace, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.StackTrace.4.0.1\lib\net46\System.Diagnostics.StackTrace.dll</HintPath>
+    </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.4.1.0\lib\net462\System.IO.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.FileSystem, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.FileSystem.4.0.1\lib\net46\System.IO.FileSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.FileSystem.Primitives.4.0.1\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
+    </Reference>
     <Reference Include="System.Messaging" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Reflection, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reflection.4.1.0\lib\net462\System.Reflection.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reflection.Metadata, Version=1.3.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reflection.Metadata.1.3.0\lib\portable-net45+win8\System.Reflection.Metadata.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.4.1.0\lib\net462\System.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Extensions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.Extensions.4.1.0\lib\net462\System.Runtime.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.4.1.0\lib\net462\System.Runtime.InteropServices.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Runtime.Serialization.Primitives, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.Serialization.Primitives.4.1.1\lib\net46\System.Runtime.Serialization.Primitives.dll</HintPath>
+    </Reference>
     <Reference Include="System.Security" />
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.2.0\lib\net461\System.Security.Cryptography.Algorithms.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Encoding.4.0.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.0.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.1.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encoding.CodePages, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encoding.CodePages.4.0.1\lib\net46\System.Text.Encoding.CodePages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web, Version=4.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.4.0.0\lib\netstandard1.0\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Thread, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Thread.4.0.0\lib\net46\System.Threading.Thread.dll</HintPath>
+    </Reference>
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -172,6 +409,15 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.XmlDocument, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Xml.XmlDocument.4.0.1\lib\net46\System.Xml.XmlDocument.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.XPath, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Xml.XPath.4.0.1\lib\net46\System.Xml.XPath.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.XPath.XDocument, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Xml.XPath.XDocument.4.0.1\lib\net46\System.Xml.XPath.XDocument.dll</HintPath>
+    </Reference>
     <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
     </Reference>
@@ -210,6 +456,7 @@
     <Compile Include="Controllers\FacturarController.cs" />
     <Compile Include="Controllers\FacturasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InformesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductosController.cs" />
     <Compile Include="Controllers\ProveedoresController.cs" />
@@ -234,6 +481,11 @@
     <Compile Include="Dao\IFacturasDao.cs" />
     <Compile Include="Dao\IProductosDao.cs" />
     <Compile Include="Dao\ProductosDao.cs" />
+    <Compile Include="dsFacturacion.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsFacturacion.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -334,6 +586,17 @@
     </EntityDeploy>
     <Content Include="Models\FacturacionModel.edmx.diagram">
       <DependentUpon>FacturacionModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="dsFacturacion.xsc">
+      <DependentUpon>dsFacturacion.xsd</DependentUpon>
+    </Content>
+    <None Include="dsFacturacion.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsFacturacion.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="dsFacturacion.xss">
+      <DependentUpon>dsFacturacion.xsd</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
@@ -1002,6 +1265,108 @@
     <Content Include="Temas\Plantilla\plugins\datatables\extensions\AutoFill\js\dataTables.autoFill.js" />
     <Content Include="Temas\Plantilla\plugins\datatables\extensions\AutoFill\js\dataTables.autoFill.min.js" />
     <Content Include="Temas\Plantilla\plugins\datatables\extensions\AutoFill\Readme.txt" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\css\buttons.bootstrap.css" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\css\buttons.bootstrap.min.css" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\css\buttons.bootstrap4.css" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\css\buttons.bootstrap4.min.css" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\css\buttons.dataTables.css" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\css\buttons.dataTables.min.css" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\css\buttons.foundation.css" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\css\buttons.foundation.min.css" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\css\buttons.jqueryui.css" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\css\buttons.jqueryui.min.css" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\css\buttons.semanticui.css" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\css\buttons.semanticui.min.css" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\api\addRemove.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\api\enable.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\api\group.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\api\index.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\api\text.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\column_visibility\columnGroups.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\column_visibility\columns.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\column_visibility\columnsToggle.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\column_visibility\columnText.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\column_visibility\index.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\column_visibility\layout.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\column_visibility\restore.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\column_visibility\simple.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\column_visibility\stateSave.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\column_visibility\text.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\flash\copyi18n.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\flash\filename.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\flash\hidden.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\flash\index.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\flash\pdfMessage.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\flash\pdfPage.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\flash\simple.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\flash\swfPath.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\flash\tsv.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\html5\columns.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\html5\copyi18n.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\html5\customFile.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\html5\excelBorder.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\html5\excelCellShading.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\html5\excelTextBold.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\html5\filename.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\html5\index.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\html5\outputFormat-function.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\html5\outputFormat-orthogonal.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\html5\pdfImage.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\html5\pdfMessage.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\html5\pdfOpen.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\html5\pdfPage.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\html5\simple.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\html5\tsv.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\index.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\initialisation\className.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\initialisation\collections-autoClose.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\initialisation\collections-sub.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\initialisation\collections.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\initialisation\custom.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\initialisation\export.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\initialisation\index.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\initialisation\keys.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\initialisation\multiple.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\initialisation\new.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\initialisation\pageLength.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\initialisation\plugins.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\initialisation\simple.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\print\autoPrint.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\print\columns.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\print\customisation.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\print\index.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\print\message.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\print\select.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\print\simple.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\styling\bootstrap.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\styling\bootstrap4.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\styling\foundation.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\styling\icons.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\styling\index.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\styling\jqueryui.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\examples\styling\semanticui.html" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\js\buttons.bootstrap.js" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\js\buttons.bootstrap.min.js" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\js\buttons.bootstrap4.js" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\js\buttons.bootstrap4.min.js" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\js\buttons.colVis.js" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\js\buttons.colVis.min.js" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\js\buttons.flash.js" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\js\buttons.flash.min.js" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\js\buttons.foundation.js" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\js\buttons.foundation.min.js" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\js\buttons.html5.js" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\js\buttons.html5.min.js" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\js\buttons.jqueryui.js" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\js\buttons.jqueryui.min.js" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\js\buttons.print.js" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\js\buttons.print.min.js" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\js\buttons.semanticui.js" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\js\buttons.semanticui.min.js" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\js\dataTables.buttons.js" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\js\dataTables.buttons.min.js" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\License.txt" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\swf\flashExport.swf" />
     <Content Include="Temas\Plantilla\plugins\datatables\extensions\ColReorder\css\dataTables.colReorder.css" />
     <Content Include="Temas\Plantilla\plugins\datatables\extensions\ColReorder\css\dataTables.colReorder.min.css" />
     <Content Include="Temas\Plantilla\plugins\datatables\extensions\ColReorder\examples\alt_insert.html" />
@@ -2744,9 +3109,328 @@
     <Content Include="Temas\Plantilla\plugins\ionslider\ion.rangeSlider.min.js" />
     <Content Include="Temas\Plantilla\plugins\ionslider\ion.rangeSlider.skinFlat.css" />
     <Content Include="Temas\Plantilla\plugins\ionslider\ion.rangeSlider.skinNice.css" />
+    <Content Include="Temas\Plantilla\plugins\jquery-ui-1.12.1\AUTHORS.txt" />
+    <Content Include="Temas\Plantilla\plugins\jquery-ui-1.12.1\external\jquery\jquery.js" />
+    <Content Include="Temas\Plantilla\plugins\jquery-ui-1.12.1\images\ui-icons_444444_256x240.png" />
+    <Content Include="Temas\Plantilla\plugins\jquery-ui-1.12.1\images\ui-icons_555555_256x240.png" />
+    <Content Include="Temas\Plantilla\plugins\jquery-ui-1.12.1\images\ui-icons_777620_256x240.png" />
+    <Content Include="Temas\Plantilla\plugins\jquery-ui-1.12.1\images\ui-icons_777777_256x240.png" />
+    <Content Include="Temas\Plantilla\plugins\jquery-ui-1.12.1\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Temas\Plantilla\plugins\jquery-ui-1.12.1\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Temas\Plantilla\plugins\jquery-ui-1.12.1\index.html" />
+    <Content Include="Temas\Plantilla\plugins\jquery-ui-1.12.1\jquery-ui.css" />
+    <Content Include="Temas\Plantilla\plugins\jquery-ui-1.12.1\jquery-ui.js" />
+    <Content Include="Temas\Plantilla\plugins\jquery-ui-1.12.1\jquery-ui.min.css" />
+    <Content Include="Temas\Plantilla\plugins\jquery-ui-1.12.1\jquery-ui.min.js" />
+    <Content Include="Temas\Plantilla\plugins\jquery-ui-1.12.1\jquery-ui.structure.css" />
+    <Content Include="Temas\Plantilla\plugins\jquery-ui-1.12.1\jquery-ui.structure.min.css" />
+    <Content Include="Temas\Plantilla\plugins\jquery-ui-1.12.1\jquery-ui.theme.css" />
+    <Content Include="Temas\Plantilla\plugins\jquery-ui-1.12.1\jquery-ui.theme.min.css" />
+    <Content Include="Temas\Plantilla\plugins\jquery-ui-1.12.1\LICENSE.txt" />
     <Content Include="Temas\Plantilla\plugins\jQueryUI\jquery-ui.js" />
     <Content Include="Temas\Plantilla\plugins\jQueryUI\jquery-ui.min.js" />
     <Content Include="Temas\Plantilla\plugins\jQuery\jquery-2.2.3.min.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\.gitignore" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\build.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\dist\jspdf.debug.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\dist\jspdf.min.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\docs\examples_js_editor.js.html" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\docs\examples_js_test_harness.js.html" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\docs\FontObject.html" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\docs\global.html" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\docs\index.html" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\docs\jsPDF.html" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\docs\jspdf.js.html" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\docs\libs_css_colors.js.html" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\docs\libs_html2pdf.js.html" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\docs\libs_require_require.js.html" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\docs\old-tests_libs_qunit.js.html" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\docs\plugins_acroform.js.html" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\docs\plugins_addhtml.js.html" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\docs\plugins_addimage.js.html" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\docs\plugins_annotations.js.html" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\docs\plugins_autoprint.js.html" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\docs\plugins_cell.js.html" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\docs\plugins_context2d.js.html" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\docs\plugins_from_html.js.html" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\docs\plugins_outline.js.html" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\docs\plugins_split_text_to_size.js.html" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\docs\plugins_svg.js.html" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\docs\plugins_xmp_metadata.js.html" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\docs\PubSub.html" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\docs\scripts\linenumber.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\docs\scripts\prettify\Apache-License-2.0.txt" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\docs\scripts\prettify\lang-css.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\docs\scripts\prettify\prettify.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\docs\specs_utils_compare.js.html" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\docs\specs_utils_reference-server.js.html" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\docs\styles\jsdoc.css" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\docs\styles\prettify.css" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\docs\test_libs_qunit.js.html" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\annotation\test_annotation.html" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\annotation\test_annotation_2.html" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\basic.html" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\bootstrap\css\bootstrap-responsive.css" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\bootstrap\css\bootstrap-responsive.min.css" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\bootstrap\css\bootstrap.css" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\bootstrap\img\glyphicons-halflings-white.png" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\bootstrap\img\glyphicons-halflings.png" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\bootstrap\js\bootstrap.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\canvg_context2d\bar_graph_with_text_and_lines.html" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\context2d\test_context2d.html" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\context2d\test_context2d_paths.html" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\css\editor.css" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\css\main.css" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\css\smoothness\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\css\smoothness\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\css\smoothness\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\css\smoothness\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\css\smoothness\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\css\smoothness\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\css\smoothness\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\css\smoothness\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\css\smoothness\images\ui-icons_222222_256x240.png" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\css\smoothness\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\css\smoothness\images\ui-icons_454545_256x240.png" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\css\smoothness\images\ui-icons_888888_256x240.png" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\css\smoothness\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\css\smoothness\jquery-ui-1.8.17.custom.css" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\downloadify.html" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\html2pdf\auto_break.html" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\html2pdf\examples.css" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\html2pdf\images\favicon.png" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\html2pdf\lists.html" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\html2pdf\page_break.html" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\html2pdf\pdf.html" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\html2pdf\pdf2.html" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\html2pdf\showcase.html" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\html2pdf\showcase_supported_html.html" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\html2pdf\simple.html" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\html2pdf\tables.html" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\html2pdf\total_mess.html" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\images.html" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\images\24_bit.png" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\images\32_bit.png" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\images\grayscale_16bpc.png" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\images\grayscale_8bpc.png" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\images\grayscale_alpha_16_bpc.png" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\images\grayscale_alpha_8bpc.png" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\images\grid.png" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\images\jpg.jpg" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\images\png8_flat.png" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\images\png8_trans.png" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\images\RGBA_16bpc.png" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\images\RGB_16bpc.png" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\images\tiny_png_indexed.png" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\jaxer.html" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\jspdf.PLUGINTEMPLATE.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\js\acroforms.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\js\autoprint.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\js\basic.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\js\circles.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\js\editor.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\js\font-faces.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\js\font-size.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\js\from-html.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\js\html2canvas.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\js\images.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\js\images_png.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\js\jquery\jquery-1.7.1.min.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\js\jquery\jquery-ui-1.8.17.custom.min.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\js\kitchen-sink.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\js\landscape.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\js\lines.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\js\rectangles.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\js\string-splitting.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\js\test_harness.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\js\text-colors.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\js\theme-ambiance.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\js\triangles.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\js\two-page.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\js\user-input.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\null-logo-trans.png" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\octocat.jpg" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\octocat.png" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\outline\test_outline.html" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\runner.html" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\test_from_html.html" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\test_from_html_css_page_breaks.html" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\test_insert_page.html" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\thinking-monkey.jpg" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\index.html" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\jspdf.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\karma.conf.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\libs\canvg_context2d\canvg.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\libs\canvg_context2d\libs\rgbcolor.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\libs\canvg_context2d\libs\StackBlur.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\libs\css_colors.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\libs\deflate.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\libs\Downloadify\images\download.png" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\libs\Downloadify\js\downloadify.min.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\libs\Downloadify\js\swfobject.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\libs\Downloadify\LICENSE.txt" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\libs\Downloadify\media\downloadify.swf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\libs\Downloadify\src\downloadify.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\libs\Downloadify\test.html" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\libs\html2canvas\dist\html2canvas.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\libs\html2canvas\src\clone.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\libs\html2canvas\src\color.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\libs\html2canvas\src\core.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\libs\html2canvas\src\dummyimagecontainer.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\libs\html2canvas\src\fallback.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\libs\html2canvas\src\font.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\libs\html2canvas\src\fontmetrics.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\libs\html2canvas\src\framecontainer.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\libs\html2canvas\src\gradientcontainer.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\libs\html2canvas\src\imagecontainer.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\libs\html2canvas\src\imageloader.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\libs\html2canvas\src\lineargradientcontainer.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\libs\html2canvas\src\log.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\libs\html2canvas\src\nodecontainer.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\libs\html2canvas\src\nodeparser.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\libs\html2canvas\src\promise.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\libs\html2canvas\src\proxy.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\libs\html2canvas\src\proxyimagecontainer.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\libs\html2canvas\src\pseudoelementcontainer.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\libs\html2canvas\src\renderer.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\libs\html2canvas\src\renderers\canvas.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\libs\html2canvas\src\stackingcontext.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\libs\html2canvas\src\support.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\libs\html2canvas\src\svgcontainer.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\libs\html2canvas\src\svgnodecontainer.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\libs\html2canvas\src\textcontainer.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\libs\html2canvas\src\utils.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\libs\html2canvas\src\webkitgradientcontainer.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\libs\html2canvas\src\xhr.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\libs\html2pdf.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\libs\png_support\png.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\libs\png_support\zlib.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\libs\polyfill.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\libs\require\config.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\libs\require\require.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\main.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\MIT-LICENSE.txt" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\old-tests\013_sillysvgrenderer.svg" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\old-tests\014_addImage.jpeg" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\old-tests\014_addImage.jpeg.base64.txt" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\old-tests\014_addImage.pdf.base64.txt" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\old-tests\014_addImage.txt" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\old-tests\015_splittext.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\old-tests\components_tests.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\old-tests\index.htm" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\old-tests\libs\curl-0.5.4.min.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\old-tests\libs\custom_fill.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\old-tests\libs\qunit.css" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\old-tests\libs\qunit.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\old-tests\pdf_generate_tests.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\old-tests\test.html" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\old-tests\test_from_html_css_page_breaks.html" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\old-tests\test_harness.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\old-tests\test_min.html" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\plugins\acroform.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\plugins\addhtml.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\plugins\addimage.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\plugins\annotations.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\plugins\autoprint.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\plugins\canvas.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\plugins\cell.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\plugins\context2d.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\plugins\from_html.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\plugins\javascript.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\plugins\outline.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\plugins\png_support.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\plugins\prevent_scale_to_fit.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\plugins\split_text_to_size.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\plugins\standard_fonts_metrics.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\plugins\svg.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\plugins\total_pages.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\plugins\xmp_metadata.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\saucelabs.karma.conf.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\acroform\standard.spec.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\addhtml\standard.spec.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\annotations\standard.spec.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\autoprint\standard.spec.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\init\standard.spec.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\pages\display-mode.spec.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\pages\standard.spec.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\shapes\standard.spec.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\text\standard.spec.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\utils\compare.js" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\utils\reference-server.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\.gitignore" />
+    <Content Include="Temas\Plantilla\plugins\jszip\dist\jszip.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\dist\jszip.min.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\docs\APPNOTE.TXT" />
+    <Content Include="Temas\Plantilla\plugins\jszip\docs\references.txt" />
+    <Content Include="Temas\Plantilla\plugins\jszip\docs\ZIP spec.txt" />
+    <Content Include="Temas\Plantilla\plugins\jszip\documentation\css\main.css" />
+    <Content Include="Temas\Plantilla\plugins\jszip\documentation\css\pygments.css" />
+    <Content Include="Temas\Plantilla\plugins\jszip\documentation\examples\download-zip-file.html" />
+    <Content Include="Temas\Plantilla\plugins\jszip\documentation\examples\downloader.html" />
+    <Content Include="Temas\Plantilla\plugins\jszip\documentation\examples\downloader.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\documentation\examples\get-binary-files-ajax.html" />
+    <Content Include="Temas\Plantilla\plugins\jszip\documentation\examples\read-local-file-api.html" />
+    <Content Include="Temas\Plantilla\plugins\jszip\documentation\_layouts\default.html" />
+    <Content Include="Temas\Plantilla\plugins\jszip\Gruntfile.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\index.html" />
+    <Content Include="Temas\Plantilla\plugins\jszip\lib\base64.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\lib\compressedObject.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\lib\compressions.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\lib\crc32.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\lib\defaults.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\lib\external.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\lib\flate.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\lib\generate\index.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\lib\generate\ZipFileWorker.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\lib\index.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\lib\license_header.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\lib\load.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\lib\nodejsUtils.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\lib\nodejs\NodejsStreamInputAdapter.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\lib\nodejs\NodejsStreamOutputAdapter.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\lib\object.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\lib\readable-stream-browser.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\lib\reader\ArrayReader.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\lib\reader\DataReader.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\lib\reader\NodeBufferReader.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\lib\reader\readerFor.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\lib\reader\StringReader.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\lib\reader\Uint8ArrayReader.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\lib\signature.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\lib\stream\ConvertWorker.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\lib\stream\Crc32Probe.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\lib\stream\DataLengthProbe.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\lib\stream\DataWorker.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\lib\stream\GenericWorker.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\lib\stream\StreamHelper.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\lib\support.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\lib\utf8.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\lib\utils.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\lib\zipEntries.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\lib\zipEntry.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\lib\zipObject.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\asserts\constructor.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\asserts\delete.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\asserts\deprecated.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\asserts\external.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\asserts\file.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\asserts\filter.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\asserts\foreach.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\asserts\generate.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\asserts\load.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\asserts\permissions.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\asserts\stream.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\asserts\unicode.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\asserts\version.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\helpers\browser-test-utils.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\helpers\node-test-utils.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\helpers\test-utils.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\index.html" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\jquery-1.8.3.min.js" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\smile.gif" />
+    <Content Include="Temas\Plantilla\plugins\jszip\vendor\FileSaver.js" />
     <Content Include="Temas\Plantilla\plugins\jvectormap\jquery-jvectormap-1.2.2.css" />
     <Content Include="Temas\Plantilla\plugins\jvectormap\jquery-jvectormap-1.2.2.min.js" />
     <Content Include="Temas\Plantilla\plugins\jvectormap\jquery-jvectormap-usa-en.js" />
@@ -2759,6 +3443,82 @@
     <Content Include="Temas\Plantilla\plugins\pace\pace.js" />
     <Content Include="Temas\Plantilla\plugins\pace\pace.min.css" />
     <Content Include="Temas\Plantilla\plugins\pace\pace.min.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\.gitignore" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\.gitmodules" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\build\pdfmake.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\build\pdfmake.min.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\build\vfs_fonts.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\dev-playground\public\ace.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\dev-playground\public\index.html" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\dev-playground\public\mode-javascript.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\dev-playground\public\pdfmake.css" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\dev-playground\public\playground.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\dev-playground\public\theme-monokai.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\dev-playground\public\worker-javascript.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\dev-playground\server.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\examples\absolute.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\examples\background.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\examples\basics.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\examples\columns_simple.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\examples\fonts\sampleImage.jpg" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\examples\images.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\examples\lists.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\examples\margins.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\examples\qrCode.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\examples\relative.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\examples\styling_inlines.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\examples\styling_named_styles.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\examples\styling_named_styles_with_overrides.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\examples\styling_properties.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\examples\tables.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\examples\textDecorations.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\examples\toc.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\examples\vectors.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\examples\watermark.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\gulpfile.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\src\browser-extensions\pdfMake.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\src\browser-extensions\virtual-fs.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\src\columnCalculator.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\src\docMeasure.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\src\docPreprocessor.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\src\documentContext.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\src\elementWriter.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\src\fontProvider.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\src\helpers.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\src\imageMeasure.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\src\layoutBuilder.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\src\line.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\src\pageElementWriter.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\src\printer.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\src\qrEnc.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\src\standardPageSizes.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\src\styleContextStack.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\src\tableProcessor.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\src\textDecorator.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\src\textTools.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\src\traversalTracker.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\tests\columnCalculator.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\tests\docMeasure.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\tests\documentContext.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\tests\elementWriter.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\tests\fontProvider.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\tests\fonts\sampleImage.jpg" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\tests\integration\alignment.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\tests\integration\background.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\tests\integration\basics.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\tests\integration\columns.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\tests\integration\images.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\tests\integration\integrationTestHelper.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\tests\integration\lists.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\tests\integration\tables.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\tests\layoutBuilder.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\tests\line.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\tests\pageElementWriter.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\tests\printer.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\tests\styleContextStack.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\tests\tableProcessor.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\tests\textTools.js" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\webpack.config.js" />
     <Content Include="Temas\Plantilla\plugins\select2\i18n\ar.js" />
     <Content Include="Temas\Plantilla\plugins\select2\i18n\az.js" />
     <Content Include="Temas\Plantilla\plugins\select2\i18n\bg.js" />
@@ -3155,9 +3915,269 @@
     <Content Include="Temas\Plantilla\plugins\ionicons-2.0.1\scss\_ionicons-icons.scss" />
     <Content Include="Temas\Plantilla\plugins\ionicons-2.0.1\scss\_ionicons-variables.scss" />
     <Content Include="Views\Facturar\Index.cshtml" />
+    <Content Include="Views\Informes\ListarProductos.cshtml" />
+    <Content Include="Views\Informes\Index.cshtml" />
+    <Content Include="Views\Informes\_Productos.cshtml" />
+    <Content Include="Views\Informes\TodosProductos.cshtml" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\css\common.scss" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\css\mixins.scss" />
+    <Content Include="Temas\Plantilla\plugins\datatables\extensions\Buttons-1.3.1\Readme.md" />
+    <Content Include="Temas\Plantilla\plugins\jszip\.codeclimate.yml" />
+    <Content Include="Temas\Plantilla\plugins\jszip\.editorconfig" />
+    <Content Include="Temas\Plantilla\plugins\jszip\.jshintignore" />
+    <Content Include="Temas\Plantilla\plugins\jszip\.jshintrc" />
+    <Content Include="Temas\Plantilla\plugins\jszip\.npmignore" />
+    <Content Include="Temas\Plantilla\plugins\jszip\.travis.yml" />
+    <Content Include="Temas\Plantilla\plugins\jszip\bower.json" />
+    <Content Include="Temas\Plantilla\plugins\jszip\CHANGES.md" />
+    <Content Include="Temas\Plantilla\plugins\jszip\component.json" />
+    <Content Include="Temas\Plantilla\plugins\jszip\documentation\api_jszip.md" />
+    <Content Include="Temas\Plantilla\plugins\jszip\documentation\api_jszip\constructor.md" />
+    <Content Include="Temas\Plantilla\plugins\jszip\documentation\api_jszip\external.md" />
+    <Content Include="Temas\Plantilla\plugins\jszip\documentation\api_jszip\file_data.md" />
+    <Content Include="Temas\Plantilla\plugins\jszip\documentation\api_jszip\file_name.md" />
+    <Content Include="Temas\Plantilla\plugins\jszip\documentation\api_jszip\file_regex.md" />
+    <Content Include="Temas\Plantilla\plugins\jszip\documentation\api_jszip\filter.md" />
+    <Content Include="Temas\Plantilla\plugins\jszip\documentation\api_jszip\folder_data.md" />
+    <Content Include="Temas\Plantilla\plugins\jszip\documentation\api_jszip\folder_regex.md" />
+    <Content Include="Temas\Plantilla\plugins\jszip\documentation\api_jszip\for_each.md" />
+    <Content Include="Temas\Plantilla\plugins\jszip\documentation\api_jszip\generate_async.md" />
+    <Content Include="Temas\Plantilla\plugins\jszip\documentation\api_jszip\generate_internal_stream.md" />
+    <Content Include="Temas\Plantilla\plugins\jszip\documentation\api_jszip\generate_node_stream.md" />
+    <Content Include="Temas\Plantilla\plugins\jszip\documentation\api_jszip\load_async.md" />
+    <Content Include="Temas\Plantilla\plugins\jszip\documentation\api_jszip\load_async_object.md" />
+    <Content Include="Temas\Plantilla\plugins\jszip\documentation\api_jszip\remove.md" />
+    <Content Include="Temas\Plantilla\plugins\jszip\documentation\api_jszip\support.md" />
+    <Content Include="Temas\Plantilla\plugins\jszip\documentation\api_jszip\version.md" />
+    <Content Include="Temas\Plantilla\plugins\jszip\documentation\api_streamhelper.md" />
+    <Content Include="Temas\Plantilla\plugins\jszip\documentation\api_streamhelper\accumulate.md" />
+    <Content Include="Temas\Plantilla\plugins\jszip\documentation\api_streamhelper\on.md" />
+    <Content Include="Temas\Plantilla\plugins\jszip\documentation\api_streamhelper\pause.md" />
+    <Content Include="Temas\Plantilla\plugins\jszip\documentation\api_streamhelper\resume.md" />
+    <Content Include="Temas\Plantilla\plugins\jszip\documentation\api_zipobject.md" />
+    <Content Include="Temas\Plantilla\plugins\jszip\documentation\api_zipobject\async.md" />
+    <Content Include="Temas\Plantilla\plugins\jszip\documentation\api_zipobject\internal_stream.md" />
+    <Content Include="Temas\Plantilla\plugins\jszip\documentation\api_zipobject\node_stream.md" />
+    <Content Include="Temas\Plantilla\plugins\jszip\documentation\contributing.md" />
+    <Content Include="Temas\Plantilla\plugins\jszip\documentation\examples.md" />
+    <Content Include="Temas\Plantilla\plugins\jszip\documentation\faq.md" />
+    <Content Include="Temas\Plantilla\plugins\jszip\documentation\howto\read_zip.md" />
+    <Content Include="Temas\Plantilla\plugins\jszip\documentation\howto\write_zip.md" />
+    <Content Include="Temas\Plantilla\plugins\jszip\documentation\limitations.md" />
+    <Content Include="Temas\Plantilla\plugins\jszip\documentation\upgrade_guide.md" />
+    <Content Include="Temas\Plantilla\plugins\jszip\LICENSE.markdown" />
+    <Content Include="Temas\Plantilla\plugins\jszip\package.json" />
+    <Content Include="Temas\Plantilla\plugins\jszip\README.markdown" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\ref\all-stream.zip" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\ref\all.7zip.zip" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\ref\all.windows.zip" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\ref\all.zip" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\ref\all_appended_bytes.zip" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\ref\all_missing_bytes.zip" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\ref\all_prepended_bytes.zip" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\ref\archive_comment.zip" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\ref\backslash.zip" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\ref\complex_files\AntarcticaTemps.ods" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\ref\complex_files\AntarcticaTemps.xlsx" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\ref\complex_files\Franz Kafka - The Metamorphosis.epub" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\ref\complex_files\Outlook2007_Calendar.xps" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\ref\data_descriptor.zip" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\ref\deflate-stream.zip" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\ref\deflate.zip" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\ref\empty.zip" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\ref\encrypted.zip" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\ref\extra_attributes.zip" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\ref\folder.zip" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\ref\image.zip" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\ref\invalid\bad_decompressed_size.zip" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\ref\invalid\bad_offset.zip" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\ref\invalid\compression.zip" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\ref\invalid\crc32.zip" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\ref\local_encoding_in_name.zip" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\ref\nested.zip" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\ref\nested_data_descriptor.zip" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\ref\nested_zip64.zip" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\ref\permissions\linux_7z.zip" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\ref\permissions\linux_ark.zip" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\ref\permissions\linux_file_roller-ubuntu.zip" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\ref\permissions\linux_file_roller-xubuntu.zip" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\ref\permissions\linux_zip.zip" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\ref\permissions\mac_finder.zip" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\ref\permissions\windows_7z.zip" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\ref\permissions\windows_compressed_folders.zip" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\ref\permissions\windows_izarc.zip" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\ref\permissions\windows_winrar.zip" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\ref\pile_of_poo.zip" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\ref\slashes_and_izarc.zip" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\ref\store-stream.zip" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\ref\store.zip" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\ref\subfolder.zip" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\ref\text.zip" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\ref\utf8.zip" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\ref\utf8_in_name.zip" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\ref\winrar_utf8_in_name.zip" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\ref\zip64.zip" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\ref\zip64_appended_bytes.zip" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\ref\zip64_missing_bytes.zip" />
+    <Content Include="Temas\Plantilla\plugins\jszip\test\ref\zip64_prepended_bytes.zip" />
+    <Content Include="Temas\Plantilla\plugins\jszip\_config.yml" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\.editorconfig" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\.jshintrc" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\.npmignore" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\.travis.yml" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\bower.json" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\build\pdfmake.min.js.map" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\composer.json" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\CONTRIBUTING.md" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\dev-playground\package.json" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\dev-playground\public\samples\basics" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\dev-playground\public\samples\columns" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\dev-playground\public\samples\images" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\dev-playground\public\samples\inline-styling" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\dev-playground\public\samples\lists" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\dev-playground\public\samples\margins" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\dev-playground\public\samples\named-styles" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\dev-playground\public\samples\style-overrides" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\dev-playground\public\samples\tables" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\dev-playground\README.md" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\dev-playground\yarn.lock" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\examples\fonts\Roboto-Italic.ttf" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\examples\fonts\Roboto-Medium.ttf" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\examples\fonts\Roboto-MediumItalic.ttf" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\examples\fonts\Roboto-Regular.ttf" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\examples\pdfs\absolute.pdf" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\examples\pdfs\background.pdf" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\examples\pdfs\basics.pdf" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\examples\pdfs\columns_simple.pdf" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\examples\pdfs\images.pdf" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\examples\pdfs\lists.pdf" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\examples\pdfs\margins.pdf" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\examples\pdfs\named_styles.pdf" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\examples\pdfs\named_styles_with_overrides.pdf" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\examples\pdfs\qrCode.pdf" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\examples\pdfs\relative.pdf" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\examples\pdfs\styling_inlines.pdf" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\examples\pdfs\styling_properties.pdf" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\examples\pdfs\tables.pdf" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\examples\pdfs\textDecorations.pdf" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\examples\pdfs\toc.pdf" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\examples\pdfs\vectors.pdf" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\examples\pdfs\watermark.pdf" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\LICENSE" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\package.json" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\README.md" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\tests\fonts\Roboto-Italic.ttf" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\tests\fonts\Roboto-Medium.ttf" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\tests\fonts\Roboto-MediumItalic.ttf" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\tests\fonts\Roboto-Regular.ttf" />
+    <Content Include="Temas\Plantilla\plugins\pdfmake\yarn.lock" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\.codeclimate.yml" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\.csslintrc" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\.eslintignore" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\.eslintrc" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\.sauce.yml" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\.travis.yml" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\bower.json" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\CNAME" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\docs\getting_started.md" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\annotation\test_annotation-magFactor.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\annotation\test_annotation.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\examples\outline\test_outline.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\HOTFIX_README.md" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\ISSUE_TEMPLATE.md" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\jsdoc.json" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\libs\canvg_context2d\README.md" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\libs\Downloadify\README.textile" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\libs\Downloadify\src\com\dynamicflash\util\Base64.as" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\libs\Downloadify\src\com\dynamicflash\util\tests\Base64Test.as" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\libs\Downloadify\src\Downloadify.as" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\libs\html2canvas\LICENSE" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\libs\html2canvas\readme.md" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\libs\README" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\old-tests\001_blankpdf.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\old-tests\002_twopagedoc.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\old-tests\002_twopagedoc_oldapi.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\old-tests\003_demolandscape.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\old-tests\004_fontsizes.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\old-tests\005_demofonttypes.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\old-tests\006_demotestcolors.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\old-tests\007_demometadata.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\old-tests\008_demorectangles.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\old-tests\009_demoliness.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\old-tests\010_democircles.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\old-tests\011_multilinetext.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\old-tests\012_multiplelines.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\old-tests\013_sillysvgrenderer.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\old-tests\015_splittext.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\package.json" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\README.md" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\RELEASE.md" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\acroform\reference\checkbox.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\acroform\reference\combobox.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\acroform\reference\listbox.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\acroform\reference\password.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\acroform\reference\pushbutton.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\acroform\reference\radiogroup.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\acroform\reference\textfield.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\addhtml\reference\html-output.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\annotations\reference\closed.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\annotations\reference\freetext.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\annotations\reference\open.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\autoprint\reference\autoprint.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\init\reference\cm.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\init\reference\compress.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\init\reference\em.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\init\reference\ex.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\init\reference\in.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\init\reference\landscape.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\init\reference\mm.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\init\reference\pc.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\init\reference\properties.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\init\reference\pt.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\init\reference\px.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\pages\reference\continuous.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\pages\reference\deleted-page.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\pages\reference\fullscreen.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\pages\reference\insert-page-middle.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\pages\reference\insert-page.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\pages\reference\move-page-2.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\pages\reference\move-page.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\pages\reference\outlines.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\pages\reference\set-page.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\pages\reference\single.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\pages\reference\thumbs.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\pages\reference\twoleft.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\pages\reference\tworight.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\pages\reference\zoom-2x.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\pages\reference\zoom-3x.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\pages\reference\zoom-full-height.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\pages\reference\zoom-full-page.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\pages\reference\zoom-full-width.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\pages\reference\zoom-original.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\README.md" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\shapes\reference\circles.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\shapes\reference\fill-color.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\shapes\reference\line.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\shapes\reference\lines.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\shapes\reference\rectangles.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\text\reference\alignment.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\text\reference\angle.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\text\reference\blank.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\text\reference\color.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\text\reference\different-sizes.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\text\reference\font-faces.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\text\reference\letter-spacing.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\text\reference\line-break.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\text\reference\red-black.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\text\reference\standard.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\text\reference\stroke.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\tests\text\reference\two-page.pdf" />
+    <Content Include="Temas\Plantilla\plugins\jsPDF\yarn.lock" />
+    <Content Include="Temas\Plantilla\plugins\jquery-ui-1.12.1\package.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Temas\Plantilla\plugins\pdfmake\libs\FileSaver.js\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -3180,6 +4200,13 @@
   <ItemGroup>
     <Content Include="Scripts\jquery-3.1.1.min.map" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Reports\Productos\ReporteProductos.rdlc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.1.1.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.1.1.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -3201,7 +4228,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>61114</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:61114/</IISUrl>
+          <IISUrl>http://localhost:61116/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

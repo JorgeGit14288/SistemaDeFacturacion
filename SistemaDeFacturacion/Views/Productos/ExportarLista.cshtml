@@ -1,0 +1,88 @@
+﻿@model IEnumerable<SistemaDeFacturacion.Models.Productos>
+
+@{
+    ViewBag.Title = "ExportarLista";
+    Layout = "~/Views/Shared/Plantilla1.cshtml";
+}
+
+<h2>ExportarLista</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.precioCompra)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.precio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.descuentoVenta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.existencia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.observacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.imagen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.creado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.modificado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Categorias.nombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.precioCompra)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.precio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.descuentoVenta)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.existencia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.observacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.imagen)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.creado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.modificado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Categorias.nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idProducto }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idProducto }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idProducto })
+        </td>
+    </tr>
+}
+
+</table>

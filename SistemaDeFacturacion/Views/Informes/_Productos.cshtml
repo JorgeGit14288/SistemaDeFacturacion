@@ -1,0 +1,33 @@
+﻿<div class="row">
+    <div class="col-md-8">
+        <div class="col-md-4">
+            <a href="@Url.Action("TodosProductos","Informes")" class="btn btn-primary form-control" role="button">Todos los Productos</a>
+        </div>
+        <div class="col-md-4">
+            <a href="@Url.Action("TodosAgotados","Informes")" class="btn btn-primary form-control" role="button">Productos Agotados</a>
+        </div>
+        <div class="col-md-4">
+            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Producto por Existencia</button>
+            <div id="demo" class="collapse">    
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">Menores A</div>
+                    <div class="panel-body">
+                        <form id="fMenoresA" method="get" action="@Url.Action("ExitenciaMenorA","Informes")">
+                            <div class="form-group">
+                                <label class="sr-only" for="form-group-input">Menores a</label>
+                                <input type="number" class="form-control" id="menorA" name="menorA" placeholder="menor a" min="1" value="1">
+                                <input id="btnEnvar" type="submit" value="Ver Informe" class="btn btn-primary" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <h3>Ayuda</h3>
+    </div>
+    
+</div>
