@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 
 namespace SistemaDeFacturacion.Controllers
 {
+    [Authorize]
     //[Authorize(Roles = "Administrador, Bodega")]
     public class AgregarCompraController : Controller
     {

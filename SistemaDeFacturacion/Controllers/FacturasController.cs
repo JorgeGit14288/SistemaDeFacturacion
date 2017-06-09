@@ -12,6 +12,7 @@ using SistemaDeFacturacion.Dao;
 
 namespace SistemaDeFacturacion.Controllers
 {
+    [Authorize]
     public class FacturasController : Controller
     {
         private FacturacionDbEntities db = new FacturacionDbEntities();

@@ -15,6 +15,7 @@ using System.Security.Claims;
 
 namespace SistemaDeFacturacion.Controllers
 {
+    [Authorize]
     public class AspNetUsersController : Controller
     {
         private FacturacionDbEntities ctx = new FacturacionDbEntities();

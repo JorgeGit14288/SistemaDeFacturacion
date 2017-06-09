@@ -14,6 +14,7 @@ using Microsoft.Reporting.WebForms;
 
 namespace SistemaDeFacturacion.Controllers
 {
+    [Authorize]
     public class ProductosController : Controller
     {
        

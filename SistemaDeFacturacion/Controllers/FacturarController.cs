@@ -9,6 +9,7 @@ using System.ComponentModel;
 
 namespace SistemaDeFacturacion.Controllers
 {
+    [Authorize]
     public class FacturarController : Controller
     {
         IClientesDao daoCliente = new ClientesDao();

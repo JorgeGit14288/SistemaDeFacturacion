@@ -8,6 +8,7 @@ using SistemaDeFacturacion.Models;
 
 namespace SistemaDeFacturacion.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private FacturacionDbEntities ctx = new FacturacionDbEntities();
@@ -39,20 +40,21 @@ namespace SistemaDeFacturacion.Controllers
                 return View();
             } 
         }
-
+        [AllowAnonymous]
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
 
             return View();
         }
-
+        [AllowAnonymous]
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
 
             return View();
         }
+        [AllowAnonymous]
         public ActionResult Error()
         {
             ViewBag.Message = "Your contact page.";

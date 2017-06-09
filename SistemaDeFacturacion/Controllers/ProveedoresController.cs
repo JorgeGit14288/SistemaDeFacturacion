@@ -11,6 +11,7 @@ using SistemaDeFacturacion.Models;
 
 namespace SistemaDeFacturacion.Controllers
 {
+    [Authorize]
     public class ProveedoresController : Controller
     {
         private FacturacionDbEntities db = new FacturacionDbEntities();

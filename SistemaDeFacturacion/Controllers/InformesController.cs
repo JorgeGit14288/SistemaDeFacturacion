@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using SistemaDeFacturacion.Models;
 namespace SistemaDeFacturacion.Controllers
 {
+    [Authorize]
     public class InformesController : Controller
     {
         private FacturacionDbEntities ctx = new FacturacionDbEntities();

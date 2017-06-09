@@ -8,6 +8,7 @@ using SistemaDeFacturacion.Dao;
 
 namespace SistemaDeFacturacion.Controllers
 {
+    [Authorize]
     public class CotizarController : Controller
     {
         // objetos de acceso a datoa

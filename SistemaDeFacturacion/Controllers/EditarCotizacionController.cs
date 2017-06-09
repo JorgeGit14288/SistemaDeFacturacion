@@ -7,6 +7,7 @@ using SistemaDeFacturacion.Models;
 using SistemaDeFacturacion.Dao;
 namespace SistemaDeFacturacion.Controllers
 {
+    [Authorize]
     public class EditarCotizacionController : Controller
     {
         // objetos de acceso a datoa
