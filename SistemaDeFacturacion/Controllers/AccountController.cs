@@ -116,7 +116,7 @@ namespace SistemaDeFacturacion.Controllers
             catch(Exception ex)
             {
                 ViewBag.ReturnUrl = returnUrl;
-                ViewBag.Error = "Error " + ex.ToString();
+                ViewBag.Error = "Error " + ex.Message;
                 return View();
             }
         }
@@ -209,7 +209,18 @@ namespace SistemaDeFacturacion.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View();
+            try
+            {
+                FacturacionDbEntities ctx = new FacturacionDbEntities();
+                ViewBag.NoUsers = ctx.AspNetUsers.Count();
+                return View();
+            }
+            catch(Exception ex)
+            {
+                ViewBag.Error = ex.Message;
+                return View();
+            }
+           
         }
 
         //
@@ -219,48 +230,58 @@ namespace SistemaDeFacturacion.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
-            FacturacionDbEntities ctx = new FacturacionDbEntities();
-            ViewBag.NoUsers = ctx.AspNetUsers.Count();           
-            
-            if (ModelState.IsValid)
+            try
             {
 
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, nombre = model.nombre, direccion = model.direccion, PhoneNumber = model.PhoneNumber, Activo = true, };
-                var result = await UserManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
+
+                FacturacionDbEntities ctx = new FacturacionDbEntities();
+                ViewBag.NoUsers = ctx.AspNetUsers.Count();
+
+                if (ModelState.IsValid)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
-                    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-                    // Enviar correo electrónico con este vínculo
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirmar cuenta", "Para confirmar la cuenta, haga clic <a href=\"" + callbackUrl + "\">aquí</a>");
-                    AspNetUsers usuario = new AspNetUsers();
-                    AspNetRoles rol = new AspNetRoles();
-                    if (ctx.AspNetUsers.Count() == 1)
+                    var user = new ApplicationUser { UserName = model.Email, Email = model.Email, nombre = model.nombre, direccion = model.direccion, PhoneNumber = model.PhoneNumber, Activo = true, };
+                    var result = await UserManager.CreateAsync(user, model.Password);
+                    if (result.Succeeded)
                     {
-                        rol = ctx.AspNetRoles.Find("1");
-                        usuario = ctx.AspNetUsers.SingleOrDefault(u => u.Email == model.Email);
-                        usuario.AspNetRoles.Add(rol);
-                        ctx.SaveChanges();
-                    }
-                    else
-                    {
-                        rol = ctx.AspNetRoles.Find("4");
-                        usuario = ctx.AspNetUsers.SingleOrDefault(u => u.Email == model.Email);
-                        usuario.AspNetRoles.Add(rol);
-                        ctx.SaveChanges();
-                    }
+                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
-                    Session["Usuario"] = model.nombre;
-                    return RedirectToAction("Index", "Home");
+                        // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
+                        // Enviar correo electrónico con este vínculo
+                        // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                        // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                        // await UserManager.SendEmailAsync(user.Id, "Confirmar cuenta", "Para confirmar la cuenta, haga clic <a href=\"" + callbackUrl + "\">aquí</a>");
+                        AspNetUsers usuario = new AspNetUsers();
+                        AspNetRoles rol = new AspNetRoles();
+                        if (ctx.AspNetUsers.Count() == 1)
+                        {
+                            rol = ctx.AspNetRoles.Find("1");
+                            usuario = ctx.AspNetUsers.SingleOrDefault(u => u.Email == model.Email);
+                            usuario.AspNetRoles.Add(rol);
+                            ctx.SaveChanges();
+                        }
+                        else
+                        {
+                            rol = ctx.AspNetRoles.Find("4");
+                            usuario = ctx.AspNetUsers.SingleOrDefault(u => u.Email == model.Email);
+                            usuario.AspNetRoles.Add(rol);
+                            ctx.SaveChanges();
+                        }
+
+                        Session["Usuario"] = model.nombre;
+                        return RedirectToAction("Index", "Home");
+                    }
+                    AddErrors(result);
                 }
-                AddErrors(result);
-            }
 
-            // Si llegamos a este punto, es que se ha producido un error y volvemos a mostrar el formulario
-            return View(model);
+                // Si llegamos a este punto, es que se ha producido un error y volvemos a mostrar el formulario
+                return View(model);
+            }
+            catch(Exception ex)
+            {
+                ViewBag.Error = ex.Message;
+                return View(model);
+            }
         
     }
 

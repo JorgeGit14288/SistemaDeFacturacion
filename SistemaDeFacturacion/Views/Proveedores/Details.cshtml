@@ -8,7 +8,7 @@
     Layout = "~/Views/Shared/Plantilla1.cshtml";
 }
 <div>
-
+    <center><h4>Informacion del Proveedor</h4></center>
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.idProveedor)
@@ -76,7 +76,9 @@
     </dl>
 </div>
 <p>
-    <input type="button" class="btn btn-info" value="Actualizar Registro" onclick="location.href='@Url.Action("Edit", "Proveedores", new {id = Model.idProveedor })'" /> |
-    <input type="button" class="btn btn-danger" value="Eliminar Registro" onclick="location.href='@Url.Action("Delete", "Proveedores", new {id = Model.idProveedor })'" /> |
-    <a href="@Url.Action("Index","Proveedores")" class="btn btn-success">Regresar a la lista</a>
+    <center>
+        <input type="button" class="btn btn-info" value="Actualizar Registro" onclick="location.href='@Url.Action("Edit", "Proveedores", new {id = Model.idProveedor })'" /> |
+        <input type="button" class="btn btn-danger" value="Eliminar Registro" onclick="location.href='@Url.Action("Delete", "Proveedores", new {id = Model.idProveedor })'" /> |
+        <a href="@Url.Action("Index","Proveedores")" class="btn btn-success">Regresar a la lista</a>
+    </center>
 </p>

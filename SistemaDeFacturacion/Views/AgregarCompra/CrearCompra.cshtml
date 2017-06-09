@@ -37,7 +37,7 @@
                         if (compra.idFactura > 0)
                         {
                              <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
-                            <div class="panel box box-primary">
+                            <div class="panel box box-danger">
                               
                                 <div class="box-header with-border">
                                     <center>
@@ -65,13 +65,13 @@
                         else
                         {
                              <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
-                            <div class="panel box box-primary">
+                            <div class="panel box box-danger">
                                 <div class="box-header with-border">
                                     <center>
                                         <h4 class="box-title">
                                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                                                Ingrese la informacion de la compra
-                                            </a>
+                                                <strong><text class="text-black">   AGREGAR INFORMACION DE LA COMPRA</text> </strong>
+                                            </a>                                         
                                         </h4>
                                     </center>
                                 </div>
@@ -91,7 +91,8 @@
                                     <center>
                                         <h4 class="box-title">
                                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                                                Ingrese los datos del proveedor
+                                                <strong><text class="text-black">   AGREGAR INFORMACION DEL PROVEEDOR</text> </strong> 
+                                          
                                             </a>
                                         </h4>
                                     </center>
@@ -112,7 +113,8 @@
                                         <center>
                                             <h4 class="box-title">
                                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                                                    Ingrese los datos del proveedor.
+                                                    <strong><text class="text-black">   AGREGAR INFORMACION DEL PROVEEDOR</text> </strong> 
+                                             
                                                 </a>
                                             </h4>
                                         </center>
@@ -158,12 +160,12 @@
                         }
                         if (String.IsNullOrEmpty(proveedor.empresa) || compra.idFactura <= 0)
                         {
-                            <div class="panel box box-success">
+                            <div class="panel box box-danger">
                                 <div class="box-header with-border">
                                     <center>
                                         <h4 class="box-title">
                                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-                                                Detalles de Compra
+                                                <strong><text class="text-black">   DETALLES DE PRODUCTOS A INGRESAR</text> </strong> 
                                             </a>
                                         </h4>
                                     </center>
@@ -179,13 +181,13 @@
                         else
                         {
 
-                            <div class="panel box box-success">
+                            <div class="panel box box-danger">
                                 <div class="box-header with-border">
                                     <center>
                                         <h4 class="box-title">
 
                                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-                                                Detalles de Compra
+                                                <strong><text class="text-black">   DETALLES DE PRODUCTOS A INGRESAR</text> </strong> 
                                             </a>
                                         </h4>
                                     </center>

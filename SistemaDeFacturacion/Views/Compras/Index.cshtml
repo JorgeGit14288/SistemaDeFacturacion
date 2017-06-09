@@ -10,9 +10,8 @@
 
 <div class="row">
     <div class="col-md-12">
-        <div class="col-md-4">
-            @Html.ActionLink("Create", "Create")
-            <a href="@Url.Action("IgresarCompra","IngresoMercaderia")" class="btn btn-primary" role="button">Ingresar Compra</a>
+        <div class="col-md-4">          
+            <a href="@Url.Action("CrearCompra","AgregarCompra")" class="btn btn-primary" role="button">Ingresar Compra</a>
         </div>
         <div class="col-md-8">
             <form id="fBuscarId" action="Details" method="get" class="form-inline">
@@ -30,6 +29,9 @@
 </p>
 <table id="example1" class="table table-bordered table-striped">
     <thead>
+        <tr>
+            <td colspan="7" class="bg-info"><center>LISTADO DE PRODUCTOS REGISTRADOS</center></td>
+        </tr>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.idCompra)
@@ -50,7 +52,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Proveedores.empresa)
             </th>
-            <th></th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>

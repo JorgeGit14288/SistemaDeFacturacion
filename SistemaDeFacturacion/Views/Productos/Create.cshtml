@@ -11,7 +11,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="col-md-8">
-
+            <center><h4>Datos del Producto</h4></center>
             @using (Html.BeginForm("Create", "Productos", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
                 @Html.AntiForgeryToken()
@@ -88,10 +88,26 @@
             }
 
         </div>
+        <div class="col-md-4">
+            <div class="alert alert-default alert-dismissable fade in">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Aviso!</strong>
+                <p class="text text-justify">
+                    Antes de crear un nuevo producto en el inventario, realice una busqueda en los productos existente,
+                    si este ya exite puede ver sus detalles y modificar algunas de sus caracteristicas.
+                    <br />
+                    <br />
+                    La existencia y el precio de compra unicamente se podra registrar cuando realice una compra a algun proveedor,
+                    para esto click en el menu Compras y Agregar Mercaderia.
+                    <br />
+                    Cualquier otra consulta realicela con el administrador del sistema, Gracias!
+                </p>
+            </div>
+        </div>
     </div>
 </div>
 <div class="row">
-    <a href="@Url.Action("Index","Productos")" class="btn btn-success">Regresar a la lista</a>
+    <center>  <a href="@Url.Action("Index","Productos")" class="btn btn-success">Ver Productos Registrados</a></center>
 </div>
 
 @section Scripts {

@@ -57,8 +57,14 @@ namespace SistemaDeFacturacion.Controllers
         [AllowAnonymous]
         public ActionResult Error()
         {
-            ViewBag.Message = "Your contact page.";
-
+            ViewBag.Message = "Your contact page.";        
+            return View();
+        }
+        [AllowAnonymous]
+        public ActionResult ErrorPage(string mensaje)
+        {
+            //ViewBag.Message = "Your contact page.";
+            ViewBag.MensajeDeError = mensaje;
             return View();
         }
     }

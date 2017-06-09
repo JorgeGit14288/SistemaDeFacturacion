@@ -56,7 +56,7 @@
                     </ul>
                 </li>             
                 <!-- User Account: style can be found in dropdown.less -->
-                <li class="dropdown user user-menu">
+                <li class="dropdown user user-menu bg-black-gradient">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="~/Temas/Plantilla/dist/img/avatar5.png" class="user-image" alt="User Image">
                         <span class="hidden-xs">@User.Identity.Name</span>
@@ -87,7 +87,7 @@
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="@Url.Action("EditarUsuarios","AspNetUsers")" class="btn btn-default btn-flat">Perfil</a>
+                                <a href="@Url.Action("EditarUsuarios","AspNetUsers")" class="btn btn-primary btn-flat">Perfil</a>
                             </div>
 
                             @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
@@ -95,7 +95,7 @@
                                 @Html.AntiForgeryToken()
 
                                 <div class="pull-right">
-                                    <a href="javascript:document.getElementById('logoutForm').submit()" class="btn btn-default btn-flat">Salir</a>
+                                    <a href="javascript:document.getElementById('logoutForm').submit()" class="btn btn-danger btn-flat">Salir</a>
                                 </div>
                             }
                         </li>

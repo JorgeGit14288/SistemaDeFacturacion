@@ -13,8 +13,10 @@
 
 
 <p>
-    <a href="@Url.Action("Create","Categorias")" class="btn btn-primary" role="button">Crear Nueva</a>
+    <br />
+    <a href="@Url.Action("Create","Categorias")" class="btn btn-primary" role="button">Registrar Nueva Categoria</a>
 </p>
+<center><h3>LISTADO DE REGISTROS</h3></center>
 <table class="table table-responsive table-bordered table-striped" id="example1">
     <thead>
         <tr>
@@ -31,7 +33,6 @@
                 Imagen
             </th>
             <th></th>
-
         </tr>
     </thead>
 
@@ -54,14 +55,13 @@
                 <td>
                     <form id="fDetalles" method="get" action="Details">
                         <input type="hidden" name="id" id="id" value="@item.idCategoria" />
-                        <input type="submit" value="Ver Detalles" name="btnDetalles" class="btn btn-info" />
+                        <input type="submit" value="Ver Detalles" name="btnDetalles" class="icon icon-search btn btn-info " />
                     </form>
                 </td>
             </tr>
         }
     </tbody>
 </table>
-
 @section scripts {
     <script>
         $(document).ready(function () {

@@ -11,6 +11,7 @@
 <div class="row">
     <div class="co-md-12">
         <div class="col-md-8">
+            <center><h4>Datos del Proveedor</h4></center>
             @using (Html.BeginForm())
             {
                 @Html.AntiForgeryToken()
@@ -75,11 +76,22 @@
         </div>
     </div>
     <div class="col-md-4">
-
+        <div class="alert alert-default alert-dismissable fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Aviso!</strong>
+            <p class="text text-justify">
+                Antes de crear un registro en este modulo, por favor asegurese de que el proveedor no exista ya en la base de datos
+                de ser asi, haga referencia al proveedor por su codigo,
+                <br />
+                Si tiene alguna duda consulte con el administrador
+            </p>
+        </div>
     </div>
 </div>
 <div class="row">
-    <a href="@Url.Action("Index","Proveedores")" class="btn btn-success">Regresar a la lista</a>
+    <center>
+        <a href="@Url.Action("Index","Proveedores")" class="btn btn-success">Ver Proveedores Registrados</a>
+    </center>
 </div>
 
 @section Scripts {

@@ -5,70 +5,83 @@
 
     ViewBag.Title = "Iniciar sesión";
 }
-<center><h3>@ViewBag.Title.</h3></center>
+
 <div class="row">
     <div class="col-md-12">
-        <section id="loginForm">
-            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        <center> <button data-toggle="collapse" data-target="#demo" class=" btn btn-lg btn btn-danger bg-red-gradient  form-control"> LOGIN</button></center>
+        <br />
+
+        <div id="demo" class="collapse">
+            .<section id="loginForm">
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
-                @Html.AntiForgeryToken()
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    <label class="col-md-4 control-label">Email</label>
-                    <div class="col-md-8">
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Password, new { @class = "col-md-4 control-label" })
-                    <div class="col-md-8">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                    </div>
-                </div>            
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <div class="checkbox">
-                            @Html.CheckBoxFor(m => m.RememberMe)
-                            @Html.LabelFor(m => m.RememberMe)
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Email</label>
+                        <div class="col-md-8">
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-8">
-                        <input type="submit" value="Iniciar sesión" class="btn btn-danger form-control" />
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Password, new { @class = "col-md-4 control-label" })
+                        <div class="col-md-8">
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                        </div>
                     </div>
-                </div>
-                if (Convert.ToInt32(ViewBag.NoUsers) == 0)
-                {
-                    <center>
-                        <p>
-                            <div class="col-md-offset-2 col-md-8">
-                                <a href="@Url.Action("Register","Account")" class="btn btn-success form-control" role="button">Registrar Primer Usuario</a>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <div class="checkbox">
+                                @Html.CheckBoxFor(m => m.RememberMe)
+                                @Html.LabelFor(m => m.RememberMe)
                             </div>
-                        </p>
-                    </center>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-8">
+                            <input type="submit" value="Iniciar sesión" class="btn btn-danger form-control" />
+
+                        </div>
+                    </div>
+                    if (Convert.ToInt32(ViewBag.NoUsers) == 0)
+                    {
+                        <center>
+                            <p>
+                                <div class="col-md-offset-2 col-md-8">
+                                    <a href="@Url.Action("Register","Account")" class="btn btn-success form-control" role="button">Registrar Primer Usuario</a>
+                                </div>
+                            </p>
+                        </center>
+                    }
+       
+                    @* Habilite esta opción después de habilitar la confirmación de la cuenta para la función de restablecimiento de contraseña
+
+                        <p>
+
+                            @Html.ActionLink("¿Ha olvidado su contraseña?", "ForgotPassword")
+
+                        </p>*@
                 }
-                <center>
-                    <p>
-                        <label>Cuenta ejemplo</label>
-                        <br /> email: sistema@sistema.com
-                         <br />password: Sistema.14288
-                        <div class="alert-error">
-                            @ViewBag.Error
-                        </div>                     
-                    </p>
-                </center>
-                @* Habilite esta opción después de habilitar la confirmación de la cuenta para la función de restablecimiento de contraseña
+            </section>
+            <div class="alert-error">
+                @ViewBag.Error
+            </div>
 
-                    <p>
+        </div>
 
-                        @Html.ActionLink("¿Ha olvidado su contraseña?", "ForgotPassword")
+    </div>
+    <div>
+        <center>
+            <p>
+                <br />
+                <label>Cuenta ejemplo</label>
+                <br /> email: sistema@sistema.com
+                <br />password: Sistema.14288
 
-                    </p>*@
-            }
-        </section>
+            </p>
+        </center>
     </div>
     @* <div class="col-md-4">
             <section id="socialLoginForm">

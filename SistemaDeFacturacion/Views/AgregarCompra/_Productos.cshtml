@@ -47,25 +47,23 @@
 }
 
 
-<div class="panel panel-default">
+<div class="panel panel-info">
     <div class="panel-heading"><center><strong>AGREGAR DETALLE</strong></center></div>
     <div class="panel-body">
         <div class="row">
             <div class="col-md-12">
-                <form id="fBuscarProducto" method="post" action="@Url.Action("BuscarProducto","AgregarCompra")" class="form-inline">
-                    <label> Producto:</label>
-
-                    <select class="selectpicker" data-live-search="true" id="id" name="id" required>
+                <form id="fBuscarProducto" method="post" action="@Url.Action("BuscarProducto","AgregarCompra")" class="form-inline">                 
+                    <select class="selectpicker"  data-live-search="true" id="id" name="id" required>
                         <option></option>
                         @{
                             foreach (var p in productos)
                             {
-                                <option value="@p.idProducto" data-subtext="@p.existencia" data-tokens="@p.idProducto @p.nombre">  @p.idProducto, @p.nombre </option>
+                                <option value="@p.idProducto" data-subtext="@p.existencia"  data-tokens="@p.idProducto @p.nombre">  @p.idProducto, @p.nombre </option>
 
                             }
                         }
                     </select>
-                    <input type="submit" value="Buscar" class="btn btn-info" />
+                    <input type="submit" value="Buscar Producto" class="btn btn-info" />
                 </form>
             </div>
         </div>
@@ -88,6 +86,7 @@
                                     }
                                 </select>
                                 Observaciones: <input type="text" name="observacion" id="observacion" class="form-control input-sm" value="@temp.observacion" />
+                            <br />
                             <center><input type="submit" class="btn btn-primary" value="Crear Nuevo" /></center>
                             </form>
                             <div class="row">

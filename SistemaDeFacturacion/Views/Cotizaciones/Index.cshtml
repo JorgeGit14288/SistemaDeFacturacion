@@ -12,18 +12,23 @@
     <div class="col-md-12">
         <div class="col-md-4">
             <a href="@Url.Action("Cotizar","Cotizar")" class="btn btn-primary" role="button">CREAR NUEVA COTIZACION</a>
+            <br />
         </div>
         <div class="col-md-8">
             <form id="form1" method="get" action="@Url.Action("RealizarVenta","Facturar")">
-                <label>Id Cotizacion</label>
+                <label>Buscar Id</label>
                 <input type="number" name="id" id="id" class="form-inline" min="1" required />
                 <input type="submit" name="btnVenta" value="Buscar Cotizacion" class="btn btn-info" />
             </form>
         </div>
     </div>
 </div>
+<br />
 <table id="example1" class="table table-bordered table-striped">
     <thead>
+        <tr>
+            <td colspan="7" class="bg-info"><center><strong>LISTADO DE COTIZACIONES REGISTRADAS EN LA BASE DE DATOS</strong></center></td>
+        </tr>
         <tr>
             <th>
                Id

@@ -4,14 +4,14 @@
     ViewBag.TituloControlador = "CLIENTES";
 
     ViewBag.InfoPagina = "Informacion registrada del Cliente";
-    ViewBag.TituloVentana = "Datos del Dliente";
+    ViewBag.TituloVentana = "Detalles de Clientes";
     ViewBag.FooterVentana = "Puede editar y actualizar este registro, click en el boton editar";
     Layout = "~/Views/Shared/Plantilla1.cshtml";
 }
 
 
 <div>
-
+    <center><h4>Informacion del Cliente</h4></center>
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.nit)
@@ -61,7 +61,9 @@
     </dl>
 </div>
 <p>
-    <input type="button" class="btn btn-info" value="Actualizar Registro" onclick="location.href='@Url.Action("Edit", "Clientes", new {id = Model.nit })'" /> |
-    <input type="button" class="btn btn-danger" value="Eliminar Registro" onclick="location.href='@Url.Action("Delete", "Clientes", new {id = Model.nit })'" /> |
-    <a href="@Url.Action("Index","Clientes")" class="btn btn-success">Regresar a la lista</a>
+    <center>
+        <input type="button" class="btn btn-info" value="Actualizar Registro" onclick="location.href='@Url.Action("Edit", "Clientes", new {id = Model.nit })'" /> |
+        <input type="button" class="btn btn-danger" value="Eliminar Registro" onclick="location.href='@Url.Action("Delete", "Clientes", new {id = Model.nit })'" /> |
+        <a href="@Url.Action("Index","Clientes")" class="btn btn-success">Regresar a la lista</a>
+    </center>
 </p>

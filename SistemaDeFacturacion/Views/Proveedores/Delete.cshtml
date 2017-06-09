@@ -8,7 +8,7 @@
     ViewBag.TituloVentana = "Informacion a eliminar";
     ViewBag.FooterVentana = "Puede que la base de datos no le permita eliminar el regisro, de ser asi, contacte con el tecnico";
 }
-<h3>En realidad desea eliminar el Registro?</h3>
+<h4>En realidad desea eliminar el Registro?</h4>
 <div>
 
     <hr />
@@ -80,10 +80,12 @@
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-        <div class="form-actions no-color">
-            <input type="submit" value="Eliminar" class="btn btn-danger" /> |
-            <input type="button" class="btn btn-info" value="Editar Registro" onclick="location.href='@Url.Action("Edit", "Proveedores", new {id = Model.idProveedor })'" /> |
-            <a href="@Url.Action("Index","Proveedores")" class="btn btn-success">Regresar a la lista</a>
-        </div>
+        <center>
+            <div class="form-actions no-color">
+                <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+                <input type="button" class="btn btn-info" value="Editar Registro" onclick="location.href='@Url.Action("Edit", "Proveedores", new {id = Model.idProveedor })'" /> |
+                <a href="@Url.Action("Index","Proveedores")" class="btn btn-success">Regresar a la lista</a>
+            </div>
+        </center>
     }
 </div>

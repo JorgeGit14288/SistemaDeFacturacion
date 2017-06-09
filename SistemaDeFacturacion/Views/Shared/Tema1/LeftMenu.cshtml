@@ -28,12 +28,12 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu bg-black-gradient">
             <li class="header bg-red-gradient"><center class="Bold"><strong>MENU DE OPCIONES</strong></center></li>
-            <li class="treeview">
+            <li class="treeview bg-black-gradient">
                 <a href="@Url.Action("Index","Home")">
-                    <i class="fa fa-dashboard"></i> <span>Inicio</span>
+                    <i class="fa fa-dashboard"></i> <span class="text-red Bold">Inicio</span>
                 </a>
             </li>
-            <li class="treeview">
+            <li class="treeview bg-black-gradient">
                 <a href="">
                     <i class="ion ion-clock"></i>
                     <span>Acciones rapidas</span>
@@ -44,12 +44,12 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="@Url.Action("Cotizar","Cotizar")"><i class="fa fa-cart-plus"></i>Nueva Cotizacion</a></li>
+                    <li><a href="@Url.Action("Cotizar","Cotizar")"><i class="fa fa-shopping-cart"></i>Nueva Cotizacion</a></li>
                     <li><a href="@Url.Action("Index","Facturar")"><i class="ion ion-edit"></i>Facturar Venta</a></li>
-                    <li><a href="@Url.Action("CrearCompra","AgregarCompra")"><i class="ion ion-ios-cart-outline"></i> Agregar Producto</a></li>                                    
+                    <li><a href="@Url.Action("CrearCompra","AgregarCompra")"><i class="fa fa-cart-plus"></i> Agregar Producto</a></li>
                 </ul>
             </li>                      
-            <li class="treeview">
+            <li class="treeview bg-black-gradient">
                 <a href="">
                     <i class="ion ion-edit"></i>
                     <span>Facturas</span>
@@ -60,12 +60,11 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="@Url.Action("FacturarVenta","Facturar")"><i class="fa fa-circle-o"></i>Lista de Facturas</a></li>
-                    <li><a href="@Url.Action("Index","Facturas")"><i class="fa fa-circle-o"></i>Lista de Facturas</a></li>
-                                    
+                    <li><a href="@Url.Action("Index","Facturas")"><i class="fa fa-list-ol"></i>Lista de Facturas</a></li>
+                    <li><a href="@Url.Action("Index","Facturar")"><i class="fa fa-pencil-square-o"></i>Facturar Venta</a></li>
                 </ul>
             </li>
-            <li class="treeview">
+            <li class="treeview bg-black-gradient">
                 <a href="">
                     <i class="ion ion-document-text"></i>
                     <span>Cotizaciones</span>
@@ -75,13 +74,15 @@
                         </span>
                     </span>
                 </a>
+
                 <ul class="treeview-menu">
-                    <li><a href="@Url.Action("Index","Cotizaciones")"><i class="fa fa-circle-o"></i>Lista de Cotizaciones</a></li>
+                    <li><a href="@Url.Action("Index","Cotizaciones")"><i class="fa fa-list-ol"></i>Lista de Cotizaciones</a></li>
+                    <li><a href="@Url.Action("Cotizar","Cotizar")"><i class="fa fa-pencil-square-o"></i>Crear Cotizacion</a></li>
 
                 </ul>
             </li>
  
-            <li class="treeview">
+            <li class="treeview bg-black-gradient">
                 <a href="">
                     <i class="ion ion-ios-cart-outline"></i>
                     <span>Compras</span>
@@ -92,31 +93,30 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="@Url.Action("CrearCompra","AgregarCompra")"><i class="fa fa-circle-o"></i>Ingresar Compra</a></li>
-                    <li><a href="@Url.Action("Index","Compras")"><i class="fa fa-circle-o"></i>Todas las compras</a></li>
-                  
+                    <li><a href="@Url.Action("Index","Compras")"><i class="fa fa-list-ol"></i>Todas las compras</a></li>
+                    <li><a href="@Url.Action("CrearCompra","AgregarCompra")"><i class="fa fa-pencil-square-o"></i>Ingresar Producto</a></li>
                 </ul>
             </li>
             
-            <li class="treeview">
+            <li class="treeview bg-black-gradient">
                 <a href="">
-                    <i class="fa  fa-plus"></i>
+                    <i class="fa fa-product-hunt"></i>
                     <span>Productos</span>
                     <span class="pull-right-container">
                         <span class="label label-primary pull-right bg-red-gradient">
                             <i class="fa fa-angle-down pull-right"></i>
-                            </span>
-                     </span>
+                        </span>
+                    </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="@Url.Action("Index","Productos")"><i class="fa fa-circle-o"></i> Productos Existentes</a></li>
-                    <li><a href="@Url.Action("Create","Productos")"><i class="fa fa-circle-o"></i> Registrar Nuevo</a></li>
-                    <li><a href="@Url.Action("Index","Categorias")"><i class="fa fa-circle-o"></i>Categorias</a></li>                                                                                         
-                    
+                    <li><a href="@Url.Action("Index","Productos")"><i class="fa fa-list-ol"></i> Productos Existentes</a></li>
+                    <li><a href="@Url.Action("Create","Productos")"><i class="fa fa-pencil-square-o"></i> Registrar Nuevo</a></li>
+                    <li><a href="@Url.Action("Index","Categorias")"><i class="fa fa-list"></i>Categorias</a></li>
+
                 </ul>
             </li>
 
-            <li class="treeview">
+            <li class="treeview bg-black-gradient">
                 <a href="">
                     <i class="fa fa-users"></i>
                     <span>Cartera de Clientes</span>
@@ -127,11 +127,11 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="@Url.Action("Index","Clientes")"><i class="fa fa-circle-o"></i>Clientes Registrados</a></li>
-                    <li><a href="@Url.Action("Create","Clientes")"><i class="fa fa-circle-o"></i>Registrar Nuevo</a></li>
+                    <li><a href="@Url.Action("Index","Clientes")"><i class="fa fa-list-ol"></i>Clientes Registrados</a></li>
+                    <li><a href="@Url.Action("Create","Clientes")"><i class="fa fa-user-plus"></i>Registrar Cliente</a></li>
                 </ul>
             </li>
-            <li class="treeview">
+            <li class="treeview bg-black-gradient">
                 <a href="">
                     <i class="fa fa-briefcase"></i>
                     <span>Cartera de Proveedores</span>
@@ -142,11 +142,11 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="@Url.Action("Index","Proveedores")"><i class="fa fa-circle-o"></i>Proveedores Registrados</a></li>
-                    <li><a href="@Url.Action("Create","Proveedores")"><i class="fa fa-circle-o"></i>Registrar Nuevo</a></li>
+                    <li><a href="@Url.Action("Index","Proveedores")"><i class="fa fa-list-ol"></i>Proveedores Registrados</a></li>
+                    <li><a href="@Url.Action("Create","Proveedores")"><i class="fa fa-user-plus"></i>Registrar Proveedor</a></li>
                 </ul>
             </li>
-            <li class="treeview">
+            <li class="treeview bg-black-gradient">
                 <a href="">
                     <i class="fa fa-files-o"></i>
                     <span>Reportes</span>
@@ -157,11 +157,10 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="@Url.Action("Index","Reportes")"><i class="fa fa-circle-o"></i>Reportes Disponibles</a></li>
-                    <li><a href="@Url.Action("Busqueda","Reporte")"><i class="fa fa-circle-o"></i>Reportes Facturas del ria</a></li>
+                    <li><a href="@Url.Action("Index","Reportes")"><i class="fa fa-list-ol"></i>Reportes Disponibles</a></li>
                 </ul>
             </li>
-            <li class="treeview">
+            <li class="treeview bg-black-gradient">
                 <a href="">
                     <i class="ion ion-person-stalker"></i>
                     <span>Usuarios</span>
@@ -172,8 +171,20 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="@Url.Action("Index","AspNetUsers")"><i class="fa fa-circle-o"></i>Usuarios </a></li>                
+                    <li><a href="@Url.Action("Index","AspNetUsers")"><i class="fa fa-list-ol"></i>Usuarios</a></li>
+                    <li><a href="@Url.Action("Register","Account")"><i class="fa fa-user-plus"></i>Registrar Nuevo</a></li>
                 </ul>
+            </li>
+            <li class="bg-black-gradient">
+                <a href="javascript:document.getElementById('logoutForm').submit()">
+                    <i class="fa fa-sign-out"></i>
+                    <span class="text-red">Cerrar Sesion</span>
+                    <span class="pull-right-container">
+                        <span class="label label-primary pull-right bg-red-gradient">
+                            <i class="fa fa-chevron-circle-down"></i>
+                        </span>
+                    </span>
+                </a>
             </li>
         </ul>
     </section>

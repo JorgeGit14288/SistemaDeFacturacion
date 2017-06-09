@@ -558,6 +558,8 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\fondo_rojo_blanco.jpg" />
+    <Content Include="Content\Images\fondo_rojo_blanco2.jpg" />
     <Content Include="Content\Images\rojooscuro.jpg" />
     <Content Include="Content\Images\icono.ico" />
     <Content Include="Content\Images\shopping_cart.png" />
@@ -4177,6 +4179,7 @@
     <Content Include="Temas\Plantilla\plugins\jsPDF\tests\text\reference\two-page.pdf" />
     <Content Include="Temas\Plantilla\plugins\jsPDF\yarn.lock" />
     <Content Include="Temas\Plantilla\plugins\jquery-ui-1.12.1\package.json" />
+    <Content Include="Views\Home\ErrorPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
