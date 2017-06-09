@@ -18,9 +18,9 @@
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <div class="form-group">
-                        <label class="control-label col-sm-5 JustifyRight " for="idFactura" > Total Q.</label>
+                        <label class="control-label col-sm-5 JustifyRight text-right " > Total Q.</label>
                         <div class="col-sm-7 ">
-                            <input type="number" name="totalFactura" id="totalFactura" value="@Session["totalC"]" class="form-control bg-red-active" required readonly />
+                            <input type="text" step="0.01" name="totalFactura" id="totalFactura" value="@Session["totalC"]" class="form-control bg-red-active" required readonly />
                         </div>
                     </div>
                 </div>

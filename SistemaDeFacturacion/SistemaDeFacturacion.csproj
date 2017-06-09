@@ -598,6 +598,7 @@
     <Content Include="dsFacturacion.xss">
       <DependentUpon>dsFacturacion.xsd</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
@@ -3581,7 +3582,9 @@
     <Content Include="Temas\Plantilla\plugins\timepicker\bootstrap-timepicker.min.css" />
     <Content Include="Temas\Plantilla\plugins\timepicker\bootstrap-timepicker.min.js" />
     <Content Include="Temas\Plantilla\starter.html" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

@@ -40,17 +40,17 @@
                     <input type="submit" value="Buscar" class="btn btn-info" />
 
                 </div>
-                <div class="col-md-3">
-                    <div class="col-md-6">
+                <div class="col-md-4">
+                    <div class="col-md-5">
                         <label>Cotizacion</label>
                     </div>
                     <input type="number" name="idFactura" id="idFactura" value="@Session["idCotizacion"]" class="input-sm" size="10" required readonly />
                 </div>
-                <div class="col-md-4">
-                    <div class="col-md-3">
+                <div class="col-md-3">
+                    <div class="col-md-4">
                       <label>Fecha:</label>  
                     </div>
-                    <input type="text" name="fecha" id="fecha" value="@DateTime.Now" class="input-sm"  size="20" required readonly />
+                    <input type="text" name="fecha" id="fecha" value="@DateTime.Now.ToShortDateString()" class="input-sm"  size="10" required readonly />
                 </div>
             </div>
         </form>

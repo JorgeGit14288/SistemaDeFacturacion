@@ -103,7 +103,7 @@ namespace SistemaDeFacturacion.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idProducto,nombre,precio,existencia,observacion, imagen")] Productos productos, HttpPostedFileBase imagenMunicipio, FormCollection form)
+        public ActionResult Create([Bind(Include = "idProducto,nombre,precio,existencia,observacion,idCategoria,imagen")] Productos productos, HttpPostedFileBase imagenMunicipio, FormCollection form)
         {
             //HttpPostedFileBase laImagen = Convert.toh form["imagenProducto"];
 
@@ -155,7 +155,7 @@ namespace SistemaDeFacturacion.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idProducto,nombre,precio,existencia,observacion,imagen")] Productos productos)
+        public ActionResult Edit([Bind(Include = "idProducto,nombre,precio,existencia,observacion,idCategoria,imagen")] Productos productos)
         {
             if (ModelState.IsValid)
             {

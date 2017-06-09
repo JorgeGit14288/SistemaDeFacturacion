@@ -23,87 +23,98 @@
 
 <div class="row">
     <div class="col-md-12">
-        <div class="col-md-2"></div>
-        <form id="fBuscarProveedor" action="BuscarProveedor" method="post" class="form-inline">
-            <div class="form-group">
-                <label >Proveedor:</label>
-                <select class="selectpicker" data-live-search="true" id="idProveedor" name="idProveedor" required>
-                    <option></option>
-                    @{
-                        foreach (var p in proveedores)
-                        {
-                            <option value="@p.idProveedor" data-subtext="@p.direccion" data-tokens="@p.idProveedor @p.nombre @p.empresa">  @p.idProveedor, @p.empresa , @p.nombre </option>
+        <div class="col-md-6">
+            <form id="fBuscarProveedor" action="BuscarProveedor" method="post" class="form-inline">
+                <div class="form-group">
+                    <label>Buscar Proveedor:</label>
+                    <select class="selectpicker" data-live-search="true" id="idProveedor" name="idProveedor" required>
+                        <option></option>
+                        @{
+                            foreach (var p in proveedores)
+                            {
+                                <option value="@p.idProveedor" data-subtext="@p.direccion" data-tokens="@p.idProveedor @p.nombre @p.empresa">  @p.idProveedor, @p.empresa , @p.nombre </option>
+                            }
                         }
-                    }
-                </select>
-                
-                <input type="submit" value="Buscar" class="btn btn-info" />
-            </div>
-        </form>
+                    </select>
+                    <input type="submit" value="Buscar" class="btn btn-info form-control" />
+
+                </div>
+            </form>
+        </div>
+        <div class="col-md-3">
+            <button data-toggle="collapse" data-target="#demo" class="btn btn-danger form-control">Registrar Nuevo Proveedor</button>      
+        </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-md-12">
-        <form id="fCargarProveedor" action="CargarProveedor" method="post" class="form-horizontal">
-            <center><h4>Datos del Proveedor</h4></center>
-            <div class="form-inline">
-                <div class="row col-md-12">
-                    <div class="col-md-4">
-                        <div class="col-md-4">
-                            Id:
-                        </div>
-                        <input type="text" name="idProveedor" id="idProveedor" value="@proveedor.idProveedor" required class="form-control" />
-                    </div>
-                    <div class="col-md-4">
-                        <div class="col-md-4">
-                            Empresa
-                        </div>
-                        <input type="text" name="empresa" id="empresa" value="@proveedor.empresa" required class="form-control" />
-                    </div>
-                    <div class="col-md-4">
-                        <div class="col-md-4">
-                            Contacto
-                        </div>
-                        <input type="text" name="nombre" id="nombre" value="@proveedor.nombre" required class="form-control" />
-                    </div>
-                </div>
-            </div>
-            <br />
-            <div class="form-inline">
-                <div class="row col-md-12">
 
-                    <div class="col-md-4">
-                        <div class="col-md-4">
-                            Tel:
-                        </div>
-                        <input type="tel" name="telefono" id="telefono" value="@proveedor.telefono" required class="form-control" />
-                    </div>
-                    <div class="col-md-4">
-                        <div class="col-md-4">
-                            Direccion:
-                        </div>
-                        <input type="text" name="direccion" id="direccion" value="@proveedor.direccion" required class="form-control" />
-                    </div>
-                    <div class="col-md-4">
-                        <div class="col-md-4">
-                            Email:
-                        </div>
-                        <input type="email" name="email" id="email" value="@proveedor.email" class="form-control" />
-                    </div>
-                </div>
+<div id="demo" class="collapse">
 
-            </div>
-            <div class="row col-md-12">
-                <div class="col-md-4"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <form id="fCargarProveedor" action="CargarProveedor" method="post" class="form-horizontal">
                 <div class="form-inline">
-                    <input type="submit" value="Cargar Proveedor" class="btn btn-primary" />
-                    <input type="reset" value="Borrar Datos" class="btn btn-warning" />
+                    <div class="row col-md-12">
+                        <div class="col-md-4">
+                            <div class="col-md-4">
+                                Id:
+                            </div>
+                            <input type="text" name="idProveedor" id="idProveedor" value="@proveedor.idProveedor" required class="form-control" />
+                        </div>
+                        <div class="col-md-4">
+                            <div class="col-md-4">
+                                Empresa
+                            </div>
+                            <input type="text" name="empresa" id="empresa" value="@proveedor.empresa" required class="form-control" />
+                        </div>
+                        <div class="col-md-4">
+                            <div class="col-md-4">
+                                Contacto
+                            </div>
+                            <input type="text" name="nombre" id="nombre" value="@proveedor.nombre" required class="form-control" />
+                        </div>
+                    </div>
                 </div>
-            </div>
+                <br />
+                <div class="form-inline">
+                    <div class="row col-md-12">
 
-        </form>
+                        <div class="col-md-4">
+                            <div class="col-md-4">
+                                Tel:
+                            </div>
+                            <input type="tel" name="telefono" id="telefono" value="@proveedor.telefono" required class="form-control" />
+                        </div>
+                        <div class="col-md-4">
+                            <div class="col-md-4">
+                                Direccion:
+                            </div>
+                            <input type="text" name="direccion" id="direccion" value="@proveedor.direccion" required class="form-control" />
+                        </div>
+                        <div class="col-md-4">
+                            <div class="col-md-4">
+                                Email:
+                            </div>
+                            <input type="email" name="email" id="email" value="@proveedor.email" class="form-control" />
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row col-md-12">
+                    <center>
+                        <div class="form-group">
+                            <br />
+                            <input type="submit" value="Cargar Proveedor" class="btn btn-primary" />
+                            <input type="reset" value="Borrar Datos" class="btn btn-warning" />
+                        </div>
+                    </center>
+                </div>
+
+            </form>
+        </div>
     </div>
-</div>
+   
+</div> 
 @section scripts{
     <script>
         $('.selectpicker').selectpicker({

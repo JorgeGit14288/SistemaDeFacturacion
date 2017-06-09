@@ -8,67 +8,67 @@
     else
     {
         detalles = (List<DetallesCompra>)Session["detCompra"];
-}
-
-}
-
-<table class="table table-responsive table-bordered table-hover" >
-    <thead>
-        <tr>
-            <td colspan="7" class="bg-info"><Center><strong>DETALLES DE LA COMPRA  </strong> </Center></td>
-        </tr>
-        <tr>
-
-            <th>
-                Id Detalle
-            </th>
-            <th>
-                Cantidad
-            </th>
-            <th>
-                Producto
-            </th>
-            <th>
-                Precio
-            </th>
-            <th>
-                PreVenta
-            </th>
-            <th>
-                SubTotal
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    @foreach (var item in detalles)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.idDetalle)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.cantidad)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Productos.nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.precio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.precioVenta)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.subTotal)
-            </td>
-            
-            
-            <td>
-                @Html.ActionLink("Editar", "EditarDetalle", new { id = item.idDetalle }) |
-                @Html.ActionLink("Eliminar", "EliminarDetalle", new {id=item.idDetalle })
-            </td>
-        </tr>
     }
 
-</table>
+}
+<div class="panel panel-default">
+    <div class="panel-heading"><center><strong>DETALLES AGREGADOS A LA COMPRA</strong></center></div>
+    <div class="panel-body">
+        <table class="table table-responsive table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        No.
+                    </th>
+                    <th>
+                        Cantidad
+                    </th>
+                    <th>
+                        Producto
+                    </th>
+                    <th>
+                        Precio
+                    </th>
+                    <th>
+                        PreVenta
+                    </th>
+                    <th>
+                        SubTotal
+                    </th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            @foreach (var item in detalles)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.idDetalle)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.cantidad)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Productos.nombre)
+                    </td>
+                    <td>
+                        Q @Html.DisplayFor(modelItem => item.precio)
+                    </td>
+                    <td>
+                        Q @Html.DisplayFor(modelItem => item.precioVenta)
+                    </td>
+                    <td>
+                        Q @Html.DisplayFor(modelItem => item.subTotal)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "EditarDetalle", new { id = item.idDetalle }) |
+                        @Html.ActionLink("Eliminar", "EliminarDetalle", new { id = item.idDetalle })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+
+    
 

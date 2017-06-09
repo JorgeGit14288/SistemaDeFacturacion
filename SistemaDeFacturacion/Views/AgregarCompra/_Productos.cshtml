@@ -21,7 +21,7 @@
         prod = (Productos)ViewBag.Prod;
     }
     var temp = new Productos();
-    if (ViewBag.tempProd==null)
+    if (ViewBag.tempProd == null)
     {
 
     }
@@ -30,7 +30,7 @@
         temp = (Productos)ViewBag.tempProd;
     }
     var modDetalle = new DetallesCompra();
-    if(ViewBag.modDetalle==null)
+    if (ViewBag.modDetalle == null)
     {
 
     }
@@ -39,128 +39,138 @@
         modDetalle = (DetallesCompra)ViewBag.modDetalle;
     }
     List<Categorias> categorias = new List<Categorias>();
-    if (ViewBag.Categorias!=null)
+    if (ViewBag.Categorias != null)
     {
         categorias = (List<Categorias>)ViewBag.Categorias;
     }
 
 }
-<div class="row">
-    <div class="col-md-12">
-        <form id="fBuscarProducto" method="post" action="@Url.Action("BuscarProducto","AgregarCompra")" class="form-inline">
-            <label> Producto:</label>
-            
-            <select class="selectpicker" data-live-search="true" id="id" name="id" required >
-                <option></option>
-                @{
-                    foreach (var p in productos)
-                    {
-                        <option value="@p.idProducto" data-subtext="@p.existencia" data-tokens="@p.idProducto @p.nombre" >  @p.idProducto, @p.nombre </option>
-                        
-                    }
-                }
-            </select>
-            <input type="submit" value="Buscar" class="btn btn-info" />
-        </form>
-    </div>
-</div>
 
-@{
-    if (ViewBag.Prod == null)
-    {
+
+<div class="panel panel-default">
+    <div class="panel-heading"><center><strong>AGREGAR DETALLE</strong></center></div>
+    <div class="panel-body">
         <div class="row">
             <div class="col-md-12">
-                <form action="@Url.Action("CrearProducto","AgregarCompra")" id="fCrearProducto" method="post" class="form-horizontal">
-                    Id: <input type="text" name="idProducto" id="idProducto" class="form-control input-sm" value="@temp.idProducto" required />
-                    Nombre: <input type="text" name="nombre" id="nombre" class="form-control input-sm" value="@temp.nombre" required />
-                    <select class="selectpicker form-control" title="Seleccione una Categoria" data-live-search="true" id="idCategoria" name="idCategoria" required>
+                <form id="fBuscarProducto" method="post" action="@Url.Action("BuscarProducto","AgregarCompra")" class="form-inline">
+                    <label> Producto:</label>
+
+                    <select class="selectpicker" data-live-search="true" id="id" name="id" required>
                         <option></option>
-                        <option value="@categorias[0].idCategoria" selected>@categorias[0].nombre<option>
-                        @foreach (var c in categorias)
-                        {                                           
-                          <option value="@c.idCategoria" data-subtext="@c.descripcion " data-tokens="@c.nombre @c.idCategoria">@c.nombre</option>
+                        @{
+                            foreach (var p in productos)
+                            {
+                                <option value="@p.idProducto" data-subtext="@p.existencia" data-tokens="@p.idProducto @p.nombre">  @p.idProducto, @p.nombre </option>
+
+                            }
                         }
                     </select>
-                    Observaciones: <input type="text" name="observacion" id="observacion" class="form-control input-sm" value="@temp.observacion" required />
-                    <input type="submit" class="btn btn-primary" value="Crear Nuevo" />
+                    <input type="submit" value="Buscar" class="btn btn-info" />
                 </form>
-                <div class="row">
-                    @ViewBag.ErrorProducto
-                </div>
             </div>
         </div>
-    }
-    else
-    {
-        <div class="row">
-            <div class="col-md-12">
-                <form id="fCargarProducto" method="post" action="@Url.Action("CargarProducto","AgregarCompra")" class="form-inline">
-                    <table class="table table-responsive table-bordered">
-                        <thead>
-                            <tr>
-                                <td></td>
-                                <td>Actual</td>
-                                <td>Nuevo</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Id</td>
-                                <td>@prod.idProducto</td>
-                                <td><input type="hidden" name="idProducto" id="idProducto" value="@prod.idProducto" />
-                                    <input type="hidden" name="idDetalle" id="idDetalle" value="@modDetalle.idDetalle" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Nombre</td>
-                                <td>@prod.nombre</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>Cantidad</td>
-                                <td>@prod.existencia</td>
-                                <td> <input type="number" name="cantidad" step="any" id="cantidad" size="6" min="1" value="@modDetalle.cantidad" required class="input-sm" /> </td>
-                            </tr>
-                            <tr>
-                                <td>Precio</td>
-                                <td>@prod.precioCompra</td>
-                                <td> <input type="number" name="precio" step="any"  id="precio" size="6" min="1" value="@modDetalle.precio"  required class=" input-sm" /> </td>
-                            </tr>
-                            <tr>
-                                <td>Prec.Venta</td>
-                                <td>@prod.precio</td>
-                                <td> <input type="number" name="precioVenta" step="any" id="precioVenta" value="@modDetalle.precioVenta" size="6" min="1"  required class=" input-sm" /> </td>
-                            </tr>
-                            <tr>
-                                <td>Observ.</td>
-                                <td>@prod.observacion</td>
-                                <td> </td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                  @{
-                                      if (ViewBag.modDetalle == null)
-                                      {
-                                        <td><input type="submit" value="Agregar" class="btn btn-primary" /></td>
-                                      }
-                                      else
-                                      {
-                                        <td><input type="submit" value="Agregar" formaction="@Url.Action("EditarDetalle","AgregarCompra")" class="btn btn-primary" /></td>
-                                        <td><input type="submit" value="Cancelar" formaction="@Url.Action("CancelarEdicion","AgregarCompra")" class="btn btn-warning" /></td>
-                                      }
-                                }                              
-                             </tr>         
-                        </tbody>
-                    </table>
+        <br />
+        @{
+            if (ViewBag.Prod == null)
+            {
+                <div class="row">
+                    <div class="col-md-12">
+                        <form action="@Url.Action("CrearProducto","AgregarCompra")" id="fCrearProducto" method="post" class="form-horizontal">
+                            Id: <input type="text" name="idProducto" id="idProducto" class="form-control input-sm" value="@temp.idProducto" required />
+                            Nombre: <input type="text" name="nombre" id="nombre" class="form-control input-sm" value="@temp.nombre" required />
+                            <select class="selectpicker form-control" title="Seleccione una Categoria" data-live-search="true" id="idCategoria" name="idCategoria" required>
+                                <option></option>
+                                <option value="@categorias[0].idCategoria" selected>@categorias[0].nombre
+                                <option>
+                                    @foreach (var c in categorias)
+                                    {
+                                    <option value="@c.idCategoria" data-subtext="@c.descripcion " data-tokens="@c.nombre @c.idCategoria">@c.nombre</option>
+                                    }
+                                </select>
+                                Observaciones: <input type="text" name="observacion" id="observacion" class="form-control input-sm" value="@temp.observacion" />
+                            <center><input type="submit" class="btn btn-primary" value="Crear Nuevo" /></center>
+                            </form>
+                            <div class="row">
+                                @ViewBag.ErrorProducto
+                            </div>
+                        </div>
+                    </div>
+            }
+            else
+            {
+                <div class="row">
+                    <div class="col-md-12">
+                        <form id="fCargarProducto" method="post" action="@Url.Action("CargarProducto","AgregarCompra")" class="form-inline">
+                            <table class="table table-responsive table-bordered">
+                                <thead>
+                                    <tr>
+                                        <td colspan="3"><center><label>Producto</label></center></td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><label>Id</label></td>
+                                        <td>@prod.idProducto</td>
+                                        <td>
+                                            <input type="hidden" name="idProducto" id="idProducto" value="@prod.idProducto" />
+                                            <input type="hidden" name="idDetalle" id="idDetalle" value="@modDetalle.idDetalle" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><label>Nombre</label></td>
+                                        <td>@prod.nombre</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label>Cantidad</label></td>
+                                        <td>@prod.existencia</td>
+                                        <td> <input type="number" name="cantidad" step="0.01" id="cantidad" size="6" min="1" value="@modDetalle.cantidad" required class="input-sm" /> </td>
+                                    </tr>
+                                    <tr>
+                                        <td><label>Precio</label></td>
+                                        <td>Q @prod.precioCompra</td>
+                                        <td> <input type="number" name="precio" step="0.01" id="precio" size="6" min="0.01" value="@modDetalle.precio" required class=" input-sm" /> </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Prec.Venta</td>
+                                        <td>Q @prod.precio</td>
+                                        <td> <input type="number" name="precioVenta" step="0.01" id="precioVenta" value="@modDetalle.precioVenta" size="6" min="0.01" required class=" input-sm" /> </td>
+                                    </tr>
+                                    <tr>
+                                        <td><label>Observ.</label></td>
+                                        <td>@prod.observacion</td>
+                                        <td> </td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        @{
+                                            if (ViewBag.modDetalle == null)
+                                            {
+                                                <td><input type="submit" value="Agregar" class="btn btn-primary" /></td>
+                                                <td><a href="@Url.Action("CancelarEdicion","AgregarCompra")" class="btn btn-warning" role="button"> Cancelar </a></td>
+                                            }
+                                            else
+                                            {
+                                                <td><input type="submit" value="Agregar" formaction="@Url.Action("EditarDetalle","AgregarCompra")" class="btn btn-primary" /></td>
+                                                <td><input type="submit" value="Cancelar" formaction="@Url.Action("CancelarEdicion","AgregarCompra")" class="btn btn-warning" /></td>
+                                            }
+                                        }
+                                    </tr>
+                                </tbody>
+                            </table>
 
-                </form>
-                <div class="row">
-                    @ViewBag.ErrorProducto
+                        </form>
+                        <div class="row">
+                            @ViewBag.ErrorProducto
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    }
-}
+                                            }
+        }
+    </div>
+
+</div>
+
 
 @section scripts{
     <script>

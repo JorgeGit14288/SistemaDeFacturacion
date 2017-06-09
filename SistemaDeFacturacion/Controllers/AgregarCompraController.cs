@@ -14,9 +14,9 @@ namespace SistemaDeFacturacion.Controllers
     public class AgregarCompraController : Controller
     {
         // objetos de acceso a datoa
-        IProductosDao daoProductos = new ProductosDao();
-        IComprasDao daoCompras = new ComprasDao();
-        IAgregarComprasDao daoAgregarCompras = new AgregarComprasDao();
+       private IProductosDao daoProductos = new ProductosDao();
+       private IComprasDao daoCompras = new ComprasDao();
+      private  IAgregarComprasDao daoAgregarCompras = new AgregarComprasDao();
         private FacturacionDbEntities ctx = new FacturacionDbEntities();
         // GET: AgregarCompra
         public ActionResult CrearCompra()
@@ -75,14 +75,19 @@ namespace SistemaDeFacturacion.Controllers
                     Session["Compra"] = "";
                     Session["detCompra"] = "";
                     Session["totalCompra"] = "";
-                    Session["idCompra"] = "1";
-                    Session["idDetalle"] = 1;
+                    int idCompra2 = daoCompras.ObtenerIdActual();
+                    if (idCompra2 == 0)
+                    {
+                        idCompra2 = 1;
+                    }
+                    Session["idCompra"] = idCompra2;
+                    Session["idDetalle"] = 0;
                     Session["Proveedor"] = "";
 
                     ViewBag.Proveedores = ctx.Proveedores.ToList();
                     ViewBag.Categorias = ctx.Categorias.ToList();
                     ViewBag.Productos = daoProductos.Listar();
-                    ViewBag.Mensaje = "Se ha Creado la Factura";
+                    ViewBag.Mensaje = "Se ha Registrado la Compra Corretamente";
                     return View();
                 }
                 else
@@ -317,7 +322,7 @@ namespace SistemaDeFacturacion.Controllers
                 // instanceamos las variables de session con los nuevos datos
                 Session["detCompras"] = nuevaLista;
                 idDetalle = nuevaLista.Count();
-                Session["idDetalleC"] = idDetalle;
+                Session["idDetalle"] = idDetalle;
                 Session["totalCompra"] = totalCompra;
                 //devolvemos los datos
 
@@ -587,9 +592,9 @@ namespace SistemaDeFacturacion.Controllers
                     if (temp == null)
                     {
                         // creamos un nuevo detalle, obtenemos el id de la factura
-                        // int idDetalle = Int32.Parse(Session["idDetalleC"].ToString());
+                        // int idDetalle = Int32.Parse(Session["idDetalle"].ToString());
                         // iniciamos el contador para llenar la lista de detalles
-                        int idDetalle = Int32.Parse(Session["idDetalleC"].ToString()) + 1;
+                        int idDetalle = Int32.Parse(Session["idDetalle"].ToString()) + 1;
 
                         //creamos el nuevo detalle
                         DetallesCompra d = new DetallesCompra();
@@ -617,7 +622,7 @@ namespace SistemaDeFacturacion.Controllers
                         totalCompra = totalCompra + Convert.ToDecimal(d.subTotal);
                         Session["totalCompra"] = totalCompra;
                         //volvemos a parsear el al objeto sessio
-                        Session["idDetalleC"] = idDetalle;
+                        Session["idDetalle"] = idDetalle;
                         Session["detCompra"] = detalles;
                         // para devolver la lista de productos
                     }
