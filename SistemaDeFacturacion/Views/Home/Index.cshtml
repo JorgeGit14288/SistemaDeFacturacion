@@ -10,7 +10,7 @@
     Layout = "~/Views/Shared/Plantilla2.cshtml";
 }
 
- <!-- Small boxes (Stat box) -->
+<!-- Small boxes (Stat box) -->
 <div class="row">
     <center><h3>REPORTE DEL DIA</h3></center>
     <div class="col-lg-3 col-xs-6">
@@ -18,8 +18,9 @@
         <div class="small-box bg-green-gradient">
             <div class="inner">
                 <h3>@ViewBag.noCotizaciones</h3>
-                <p>Cotizaciones del dia <br />
-                Del Mes: @ViewBag.CotizacionesMes
+                <p>
+                    Cotizaciones del dia <br />
+                    Del Mes: @ViewBag.CotizacionesMes
                 </p>
             </div>
             <div class="icon">
@@ -51,8 +52,9 @@
         <div class="small-box bg-yellow">
             <div class="inner">
                 <h3>@ViewBag.noCompras</h3>
-                <p>Compras Hoy <br />
-                Del Mes: @ViewBag.ComprasMes
+                <p>
+                    Compras Hoy <br />
+                    Del Mes: @ViewBag.ComprasMes
                 </p>
             </div>
             <div class="icon">
@@ -68,15 +70,85 @@
             <div class="inner">
                 <h3>@ViewBag.noProductos</h3>
                 <p>
-                <label>Productos</label>  <br />
-                 Agotados:  @ViewBag.ProductosSinExistencia
-                </p>          
+                    <label>Productos</label>  <br />
+                    Agotados:  @ViewBag.ProductosSinExistencia
+                </p>
             </div>
             <div class="icon">
                 <i class="ion ion-information-circled"></i>
             </div>
             <a href="@Url.Action("Index","Productos")" class="small-box-footer">Ver Productos <i class="fa fa-arrow-circle-right"></i></a>
         </div>
+    </div>
+    <!-- ./col -->
+</div>
+<!-- /.row -->
+<!-- Small boxes (Stat box) -->
+<div class="row">
+    <center><h3>ACCIONES RAPIDAS</h3></center>
+    <div class="col-lg-3 col-xs-6">
+        <a href="@Url.Action("Index","Cotizaciones")" class="small-box-footer">
+            <div class="small-box bg-red-gradient">
+                <div class="inner">
+                    <h3>Nueva Venta</h3>
+                    <p>
+                        <label>Crear Cotizacion</label>                        
+                    </p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-ios-cart-outline"></i>
+                </div>              
+            </div>
+        </a>
+
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-3 col-xs-6">
+        <a href="@Url.Action("Index","Facturar")" class="small-box-footer">
+            <div class="small-box bg-orange-active">
+                <div class="inner">
+                    <h3>Facturar</h3>
+                    <p>
+                        <label>Facturar Cotizacion</label>
+                    </p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-checkmark"></i>
+                </div>
+            </div>
+        </a>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-3 col-xs-6">
+        <a href="@Url.Action("CrearCompra","AgregarCompra")" class="small-box-footer">
+            <div class="small-box bg-green-gradient">
+                <div class="inner">
+                    <h3>Ingr. Compra</h3>
+                    <p>
+                        <label>Ingresar producto al inventario</label>
+                    </p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-android-add"></i>
+                </div>
+            </div>
+        </a>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-3 col-xs-6">
+        <a href="@Url.Action("Index","Informes")" class="small-box-footer">
+            <div class="small-box bg-aqua-gradient">
+                <div class="inner">
+                    <h3>Reportes</h3>
+                    <p>
+                        <label>Generar Reportes</label>
+                    </p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-document-text"></i>
+                </div>
+            </div>
+        </a>
     </div>
     <!-- ./col -->
 </div>

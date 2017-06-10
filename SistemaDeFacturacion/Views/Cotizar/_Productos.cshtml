@@ -14,21 +14,23 @@
 
 <div class="row">
     <div class="col-md-12">
-        @{
-            if (ViewBag.modIdProducto == null)
-            {
-                <form class="form-inline" id="formCargarProductos" method="post" action="@Url.Action("CargarProducto","Cotizar")">
-                    <div class="row">
-                        <div class="col-md-5">
-                            
-                            <select class="selectpicker form-control" title="Buscar producto por nombre o Id" data-live-search="true"  id="idProducto" name="idProducto" required>
+    @{
+        if (ViewBag.modIdProducto == null)
+        {
+            <div class="row">
+                <div class="col-md-12">
+                    <form class="form-inline" id="formCargarProductos" method="post" action="@Url.Action("CargarProducto","Cotizar")">
+                        <div class="col-md-4">
+                          <center>
+                              <label>Producto:</label>
+                            </center>
+                            <select class="selectpicker form-control" title="Buscar producto por nombre o Id" data-live-search="true" id="idProducto" name="idProducto" required>
                                 <option></option>
-
                                 @foreach (var p in productos)
                                 {
                                     if (p.existencia == 0)
                                     {
-                                         <option value="@p.idProducto"  disabled data-tokens="@p.idProducto @p.nombre"> <text class="text-danger"> @p.idProducto, @p.nombre  , NO HAY EXISTENCIAS </text></option>
+                                        <option value="@p.idProducto" disabled data-tokens="@p.idProducto @p.nombre"> <text class="text-danger"> @p.idProducto, @p.nombre  , NO HAY EXISTENCIAS </text></option>
 
                                     }
                                     else
@@ -39,24 +41,39 @@
                                 }
                             </select>
                         </div>
-                        <div class="col-md-7">
+                        <div class="col-md-2">
                             <div class="form-group ">
-                                <label for="cantidad">Cantidad:</label>
-                                <input type="number" step="any" name="cantidad" id="cantidad" min="1" class="form-control" max="9999" size="6" required />
-                                <label for="Descuento">Descuento:</label>
-                                <input type="number"  name="descuento" id="descuento" value="0" min="0" maxlength="2"  max="99" size="6" required />
-                                <input type="submit" value="Agregar" id="btnAgregarProducto"  class="btn btn-success" />
-                                <a href="@Url.Action("Index","Productos")" class="btn btn-info">Ver Productos</a>
+                                <center>
+                                    <label>Cantidad:</label>
+                                </center>
+                                <input type="number" step="0.01" name="cantidad" id="cantidad" min="0.5" class="input-sm" max="9999" value="1" size="6" required />                                
                             </div>
                         </div>
-                    </div>
-  
-                </form>
+                        <div class="col-md-2">
+                            <div class="form-group ">
+                                <center>
+                                    <label>Descuento:</label>
+                                </center>
+                                <input type="number" name="descuento" id="descuento" value="0" min="0x" maxlength="2" class="input-sm" max="99" size="6" required />
+                                
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <br />
+                            <input type="submit" value="Agregar Producto" id="btnAgregarProducto" class="btn btn-success form-control" />
+                            
+                        </div>
+                        <div class="col-md-2">
+                            <br />
+                            <a href="@Url.Action("Index","Productos")" class="btn btn-info form-control">Ver Productos</a>
+                        </div>
+                    </form>
+                </div>
+        </div>
+        }
+        else
+        {
 
-            }
-            else
-            {
-                
                 <form class="form-inline" id="formCargarProductos" method="post" action="AgregarProducto">
                     <div class="col-md-12">
                         <div class="form-group">
