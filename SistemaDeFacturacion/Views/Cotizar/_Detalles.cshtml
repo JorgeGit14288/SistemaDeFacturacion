@@ -1,6 +1,6 @@
 ﻿@using SistemaDeFacturacion.Models;
 
-@{ 
+@{
     List<DetallesCotizacion> detalles = new List<DetallesCotizacion>();
     if (Session["DetallesC"].ToString() == "")
     {
@@ -12,125 +12,143 @@
     }
 }
 <div class="col-md-12">
-    <div class=" table table-responsive table-bordered table-hover  " >
-        <table class="table table-responsive table-bordered table-striped" id="table1" >
-            <thead>
-                <tr>
-                    <td colspan="7" class="bg-info"><center><srong>DETALLES DE PRODUCTOS</srong></center></td>
-                </tr>
-                <tr>
-                    <th>
-                        Id
-                    </th>
+    <div class="panel panel-info">
+        <div class="panel-heading"><center><strong>DETALLES AGREGADOS A LA COTIZACION</strong></center></div>
+        <div class="panel-body">
+            <div class=" table table-responsive table-bordered table-hover  ">
+                <table class="table table-responsive table-bordered table-striped" id="table1">
+                    <thead>                        
+                        <tr>
+                            <th>
+                                Id
+                            </th>
 
-                    <th>
-                        Cantidad
-                    </th>
-                    <th>
-                        Nombre
-                    </th>
-                    <th>
-                        Precio
-                    </th>
-                    <th>
-                        Descuento
-                    </th>
-                    <th>
-                        SubTotal
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in detalles)
+                            <th>
+                                Cantidad
+                            </th>
+                            <th>
+                                Nombre
+                            </th>
+                            <th>
+                                Precio
+                            </th>
+                            <th>
+                                Descuento
+                            </th>
+                            <th>
+                                SubTotal
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in detalles)
             {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.idDetalle)
-                        </td>
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.idDetalle)
+                                </td>
 
-                        <td>
-                            @Html.DisplayFor(modelItem => item.cantidad)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.idProducto)
-                            @Html.DisplayFor(modelItem => item.Productos.nombre)
-                        </td>
-                        <td>
-                          Q. @Html.DisplayFor(modelItem => item.precio)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.descuento) %
-                        </td>
-                        <td>
-                          Q. @Html.DisplayFor(modelItem => item.subTotal)
-                        </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.cantidad)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.idProducto)
+                                    @Html.DisplayFor(modelItem => item.Productos.nombre)
+                                </td>
+                                <td>
+                                    Q. @Html.DisplayFor(modelItem => item.precio)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.descuento) %
+                                </td>
+                                <td>
+                                    Q. @Html.DisplayFor(modelItem => item.subTotal)
+                                </td>
 
 
-                        <td>
-                            @Html.ActionLink("Editar", "EditarDetalle", new {  id=item.idDetalle  }) |
-                            @Html.ActionLink("Eliminar", "EliminarDetalle", new {  id=item.idDetalle  })
-                        </td>
-                    </tr>
-                }
-            </tbody>
+                                <td>
+                                    @Html.ActionLink("Editar", "EditarDetalle", new { id = item.idDetalle }) |
+                                    @Html.ActionLink("Eliminar", "EliminarDetalle", new { id = item.idDetalle })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
 
-        </table>
-    </div>
+                </table>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-6">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="col-md-4 text-right">
+                            <label>Total Q</label>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" step="0.01" name="totalFactura" id="totalFactura" value="@Session["totalC"]" class="form-control bg-red-active" required readonly />
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
 </div>
 @section scripts {
     <script>
-            $(document).ready(function () {
-                $('#table1').DataTable({
-                    "language": {
+        $(document).ready(function () {
+            $('#table1').DataTable({
+                "language": {
 
-                        "sProcessing": "Procesando...",
+                    "sProcessing": "Procesando...",
 
-                        "sLengthMenu": "Mostrar _MENU_ registros",
+                    "sLengthMenu": "Mostrar _MENU_ registros",
 
-                        "sZeroRecords": "No se encontraron resultados",
+                    "sZeroRecords": "No se encontraron resultados",
 
-                        "sEmptyTable": "Ningún dato disponible en esta tabla",
+                    "sEmptyTable": "Ningún dato disponible en esta tabla",
 
-                        "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
 
-                        "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
 
-                        "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
 
-                        "sInfoPostFix": "",
+                    "sInfoPostFix": "",
 
-                        "sSearch": "Buscar:",
+                    "sSearch": "Buscar:",
 
-                        "sUrl": "",
+                    "sUrl": "",
 
-                        "sInfoThousands": ",",
+                    "sInfoThousands": ",",
 
-                        "sLoadingRecords": "Cargando...",
+                    "sLoadingRecords": "Cargando...",
 
-                        "oPaginate": {
+                    "oPaginate": {
 
-                            "sFirst": "Primero",
+                        "sFirst": "Primero",
 
-                            "sLast": "Último",
+                        "sLast": "Último",
 
-                            "sNext": "Siguiente",
+                        "sNext": "Siguiente",
 
-                            "sPrevious": "Anterior"
+                        "sPrevious": "Anterior"
 
-                        },
+                    },
 
-                        "oAria": {
+                    "oAria": {
 
-                            "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
 
-                            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-
-                        }
+                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
 
                     }
-                });
+
+                }
             });
+        });
     </script>
 
 

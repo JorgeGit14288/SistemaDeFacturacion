@@ -1,26 +1,29 @@
 ﻿<div class="row">
     <form name="formImprimir" action="@Url.Action("Cotizar","Cotizar")" method="post">
-        <div class="col-md-3">
+        <div class="col-md-2">
+
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="COTIZAR" class="btn btn-danger form-control" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <input type="submit" value="Cancelar" formaction="@Url.Action("BorrarCotizacion","Cotizar")" class="btn btn-success form-control" />
+                    
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-2">
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="COTIZAR"  class="btn btn-danger form-control" />
-                </div>
-            </div>
-        </div>
-        <div class="col-md-5">
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <div class="form-group">
-                        <label class="control-label col-sm-5 JustifyRight text-right " > Total Q.</label>
+                    <div class="form-group">                       
                         <div class="col-sm-7 ">
-                            <input type="text" step="0.01" name="totalFactura" id="totalFactura" value="@Session["totalC"]" class="form-control bg-red-active" required readonly />
+                            <input type="hidden" step="0.01" name="totalFactura" id="totalFactura" value="@Session["totalC"]" class="form-control bg-red-active" required readonly />
                         </div>
                     </div>
                 </div>

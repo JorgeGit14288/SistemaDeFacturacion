@@ -108,7 +108,8 @@ namespace SistemaDeFacturacion.Controllers
                 }
                 if (Request.IsAuthenticated)
                 {
-                    return RedirectToAction("Error", "Home");
+                    return RedirectToAction("ErrorPage", "Home", new {mensaje="Parece ser que no tiene los privilegios para acceder a la vista+" +
+                        "intente nuevamente o contante al administrador del sistema para que le brinde los privilegios necesarios."});
                 }
                 ViewBag.ReturnUrl = returnUrl;
                 return View();

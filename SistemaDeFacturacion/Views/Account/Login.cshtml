@@ -10,13 +10,15 @@
     <div class="col-md-12">
         <center> <button data-toggle="collapse" data-target="#demo" class=" btn btn-lg btn btn-danger bg-red-gradient  form-control"> INGRESAR AL SISTEMA</button></center>
         <br />
-
+        <center>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        </center>
         <div id="demo" class="collapse">
             .<section id="loginForm">
                 @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
                     @Html.AntiForgeryToken()
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                  
                     <div class="form-group">
                         <label class="col-md-4 control-label">Email</label>
                         <div class="col-md-8">
@@ -65,23 +67,24 @@
                         </p>*@
                 }
             </section>
-            <div class="alert-error">
-                @ViewBag.Error
-            </div>
-
         </div>
 
     </div>
     <div>
-        <center>
-            <p>
-                <br />
-                <label>Cuenta ejemplo</label>
-                <br /> email: sistema@sistema.com
-                <br />password: Sistema.14288
+        <div class="alert-error">
+            @ViewBag.Error
+        </div>
+        <div>
+            <center>
+                <p>
+                    <br />
+                    <label>Cuenta ejemplo</label>
+                    <br /> email: sistema@sistema.com
+                    <br />password: Sistema.14288
 
-            </p>
-        </center>
+                </p>
+            </center>
+        </div>
     </div>
     @* <div class="col-md-4">
             <section id="socialLoginForm">

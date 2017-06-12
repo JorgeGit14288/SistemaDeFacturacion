@@ -123,17 +123,17 @@
                                     <tr>
                                         <td><label>Cantidad</label></td>
                                         <td>@prod.existencia</td>
-                                        <td> <input type="number" name="cantidad" step="0.01" id="cantidad" size="6" min="1" value="@modDetalle.cantidad" required class="input-sm" /> </td>
+                                        <td> <input type="number" name="cantidad" placeholder="0.00" step="0.01" id="cantidad" size="6" min="1" value="@modDetalle.cantidad" required class="input-sm" /> </td>
                                     </tr>
                                     <tr>
                                         <td><label>Precio</label></td>
                                         <td>Q @prod.precioCompra</td>
-                                        <td> <input type="number" name="precio" step="0.01" id="precio" size="6" min="0.01" value="@modDetalle.precio" required class=" input-sm" /> </td>
+                                        <td> <input type="number" name="precio" placeholder="@prod.precioCompra" step="0.01" id="precio" size="6" min="0.01" value="@modDetalle.precio" required class=" input-sm" /> </td>
                                     </tr>
                                     <tr>
                                         <td>Prec.Venta</td>
                                         <td>Q @prod.precio</td>
-                                        <td> <input type="number" name="precioVenta" step="0.01" id="precioVenta" value="@modDetalle.precioVenta" size="6" min="0.01" required class=" input-sm" /> </td>
+                                        <td> <input type="number" name="precioVenta" placeholder="@prod.precio" step="0.01" id="precioVenta" value="@modDetalle.precioVenta" size="6" min="0.01" required class=" input-sm" /> </td>
                                     </tr>
                                     <tr>
                                         <td><label>Observ.</label></td>

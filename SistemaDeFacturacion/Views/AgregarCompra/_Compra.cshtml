@@ -12,30 +12,30 @@
 
 }
 <div class="row">
-    <div class="col-md-12">       
+    <div class="col-md-12">
         <form id="fCargarCompra" action="CargarCompra" method="post" class="form-inline">
             <div class="form-inline">
                 <div class="row col-md-12">
                     <div class="col-md-3">
                         <div class="col-md-4">
-                            Fecha:
+                            <label>Fecha:</label>
                         </div>
-                        <input type="tel" name="fecha" id="fecha" value="@DateTime.Now" size="10" required class="input-sm" readonly />
+                        <input type="tel" name="fecha" id="fecha" value="@DateTime.Now.ToShortDateString()" size="10" required class="input-sm form-control" readonly />
                     </div>
                     <div class="col-md-3">
-                        <div class="col-md-4">
-                           Compra:
+                        <div class="col-md-6">
+                            <label>Compra No:</label>
                         </div>
-                        <input type="number" name="idCompra" id="idCompra" value="@Session["idCompra"]" size="6" required class="input-sm" readonly />
+                        <input type="number" name="idCompra" id="idCompra" value="@Session["idCompra"]" size="6" required class="input-sm form-control" readonly />
                     </div>
                     <div class="col-md-3">
                         <div class="col-md-5">
-                            Envio No.
+                            <label>Envio No.</label>
                         </div>
                         <input type="text" name="idFactura" id="idFactura" value="@compra.idFactura" size="9" required class=" input-sm" />
                     </div>
                     <div class="col-md-2">
-                        <input type="submit" value="Cargar Compra" formaction="CargarCompra" class="btn btn-primary" />
+                        <input type="submit" value="Cargar Compra" formaction="CargarCompra" class="btn btn-primary form-control" />
                     </div>
                 </div>
             </div>

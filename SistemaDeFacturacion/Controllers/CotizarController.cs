@@ -317,11 +317,15 @@ namespace SistemaDeFacturacion.Controllers
                 ViewBag.Clientes = daoClientes.Listar();
                 // para devolver la lista de productos
                 ViewBag.Productos = daoProductos.Listar();
-
+               
                 if (String.IsNullOrEmpty(p.idProducto))
                 {
-                    ViewBag.ErrorProducto = "No existe  el producto o la existencia es menor a la cantidad solicitada";
-                    ViewBag.Productos = daoProductos.Listar();
+                    ViewBag.Error = "No existe  el producto o la existencia es menor a la cantidad solicitada";                 
+                    return View("Cotizar");
+                }
+                if (descuento>95 || descuento<0)
+                {
+                    ViewBag.Error = "El descuento solicitado no es valido, intente con otra cantidad.";
                     return View("Cotizar");
                 }
                 else
@@ -329,7 +333,7 @@ namespace SistemaDeFacturacion.Controllers
                     // evaluamos si la existencia es menor a la cantidad solicitada
                     if (p.existencia < cantidad)
                     {
-                        ViewBag.ErrorProducto = "Error, La cantidad solicitada es menor a la existencia,";
+                        ViewBag.Error = "La cantidad solicitada es menor a la existencia,";
                         ViewBag.Productos = daoProductos.Listar();
                         return View("Cotizar");
 
@@ -411,7 +415,7 @@ namespace SistemaDeFacturacion.Controllers
                             }
                             Session["totalC"] = totalC;
                             Session["DetallesC"] = DetallesCotizacion;
-                            ViewBag.ErrorProducto = "se Modifico " + cantidad + " " + p.nombre + " precio Q" + p.precio + "sub Total  Q" + temp.subTotal;
+                            ViewBag.Mensaje = "se Modifico " + cantidad + " " + p.nombre + " precio Q" + p.precio + "sub Total  Q" + temp.subTotal;
                         }
                         ViewBag.Productos = daoProductos.Listar();
                         return View("Cotizar");
@@ -423,8 +427,8 @@ namespace SistemaDeFacturacion.Controllers
                 ViewBag.Clientes = daoClientes.Listar();
                 // para devolver la lista de productos
                 ViewBag.Productos = daoProductos.Listar();
-                ViewBag.Error = "No hay conexion con la base de datos";
-                ViewBag.ErrorProducto = "No se pudo agregar el producto";
+                //ViewBag.Error = "No hay conexion con la base de datos";
+                ViewBag.Error = "No se pudo agregar el producto, verifique que la existencia sea mayor  a la cantidad solicitada";
                 return View("Cotizar");
             }
         }
@@ -472,7 +476,7 @@ namespace SistemaDeFacturacion.Controllers
                 //devolvemos los datos
 
 
-                ViewBag.ErrorProducto = "Se elimino =" + d.Productos.nombre;
+                ViewBag.Mensaje = "Se elimino =" + d.Productos.nombre;
                 // para devolver la lista de productos
                 ViewBag.Productos = daoProductos.Listar();
                 return View("Cotizar");
@@ -507,7 +511,7 @@ namespace SistemaDeFacturacion.Controllers
                 ViewBag.modCantidad = d.cantidad;
                 ViewBag.modIdDetalle = d.idDetalle;
                 ViewBag.modDescuento = d.descuento;
-                ViewBag.ErrorProducto = "Se elimino =" + d.Productos.nombre;
+                ViewBag.Mensaje= "Se elimino =" + d.Productos.nombre;
                 // para devolver la lista de productos
                 ViewBag.Productos = daoProductos.Listar();
                 return View("Cotizar");
@@ -548,11 +552,15 @@ namespace SistemaDeFacturacion.Controllers
                 if (d.cantidad == cantidad && d.descuento ==descuento)
                 {
                     //las cantidad ingresada es la misma, entonces no hacemos algo solo retornamos la vista
-                    ViewBag.ErrorProducto = "La cantidad ingresada es la misa, no se modifico el producto";
-                    // para devolver la lista de productos
-                    ViewBag.Productos = daoProductos.Listar();
+                    ViewBag.Error= "La cantidad ingresada es la misa, no se modifico el producto";
+                    // para devolver la lista de productos            
                     return View("Cotizar");
 
+                }
+                if (descuento > 95 || descuento < 0)
+                {
+                    ViewBag.Error = "El descuento solicitado no es valido, intente con otra cantidad.";
+                    return View("Cotizar");
                 }
                 else
                 {
@@ -585,7 +593,7 @@ namespace SistemaDeFacturacion.Controllers
                     }
                     Session["totalC"] = totalC;
                     //modificamos el detalle en la lista
-                    ViewBag.ErrorProducto = "Se modifico el producto =" + d.Productos.nombre + " cantidad= " + d.cantidad;
+                    ViewBag.Mensaje = "Se modifico el producto =" + d.Productos.nombre + " cantidad= " + d.cantidad;
                     // para devolver la lista de productos
                     ViewBag.Productos = daoProductos.Listar();
                     return View("Cotizar");
