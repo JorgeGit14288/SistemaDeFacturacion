@@ -601,6 +601,7 @@ namespace SistemaDeFacturacion.Controllers
                         d.idCompra = compra.idCompra;
                         d.idDetalle = idDetalle;
                         d.Productos = p;
+                        d.descripcion = p.nombre;
                         d.idProducto = p.idProducto;
                         d.cantidad = cantidad;
                         d.precio = precio;

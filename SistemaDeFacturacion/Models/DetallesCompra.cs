@@ -23,6 +23,7 @@ namespace SistemaDeFacturacion.Models
         public Nullable<decimal> descuento { get; set; }
         public Nullable<decimal> subTotal { get; set; }
         public string observaciones { get; set; }
+        public string descripcion { get; set; }
     
         public virtual Compras Compras { get; set; }
         public virtual Productos Productos { get; set; }

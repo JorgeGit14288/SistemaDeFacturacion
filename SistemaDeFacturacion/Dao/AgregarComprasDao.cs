@@ -38,7 +38,7 @@ namespace SistemaDeFacturacion.Dao
                         {
                             // si retorna un valor, el proveedor existe entonces  no agregamos nada
 
-                        }
+                        }                      
                         //Creamos la compra
                         ctx2.Entry(mc.compra).State = EntityState.Added;
 
@@ -49,6 +49,7 @@ namespace SistemaDeFacturacion.Dao
                             DetallesCompra temp = new DetallesCompra();
                             temp.idCompra = d.idCompra;
                             temp.idDetalle = d.idDetalle;
+                            temp.descripcion = d.descripcion;
                             temp.idProducto = d.idProducto;
                             temp.cantidad = d.cantidad;
                             temp.precio = d.precio;

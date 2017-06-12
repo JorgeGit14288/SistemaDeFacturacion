@@ -12,33 +12,34 @@
 
 }
 <div class="row">
-    <div class="col-md-12">
+
         <form id="fCargarCompra" action="CargarCompra" method="post" class="form-inline">
             <div class="form-inline">
                 <div class="row col-md-12">
                     <div class="col-md-3">
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <label>Fecha:</label>
                         </div>
-                        <input type="tel" name="fecha" id="fecha" value="@DateTime.Now.ToShortDateString()" size="10" required class="input-sm form-control" readonly />
+                        <input type="tel" name="fecha" id="fecha" value="@DateTime.Now.ToShortDateString()" size="10" required class=" form-control" readonly />
                     </div>
                     <div class="col-md-3">
-                        <div class="col-md-6">
+                        <div class="col-md-7">
                             <label>Compra No:</label>
                         </div>
-                        <input type="number" name="idCompra" id="idCompra" value="@Session["idCompra"]" size="6" required class="input-sm form-control" readonly />
+                        <input type="number" name="idCompra" id="idCompra" value="@Session["idCompra"]" size="6" required class="form-control" readonly />
                     </div>
                     <div class="col-md-3">
-                        <div class="col-md-5">
+                        <div class="col-md-7">
                             <label>Envio No.</label>
                         </div>
-                        <input type="text" name="idFactura" id="idFactura" value="@compra.idFactura" size="9" required class=" input-sm" />
+                        <input type="text" name="idFactura" id="idFactura" value="@compra.idFactura" size="9" required class="form-control" />
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-3">
+                        <br />
                         <input type="submit" value="Cargar Compra" formaction="CargarCompra" class="btn btn-primary form-control" />
                     </div>
                 </div>
             </div>
         </form>
-    </div>
+   
 </div>

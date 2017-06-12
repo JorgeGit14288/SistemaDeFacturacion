@@ -481,10 +481,10 @@
     <Compile Include="Dao\IFacturasDao.cs" />
     <Compile Include="Dao\IProductosDao.cs" />
     <Compile Include="Dao\ProductosDao.cs" />
-    <Compile Include="dsFacturacion.Designer.cs">
+    <Compile Include="FacturacionDbDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>dsFacturacion.xsd</DependentUpon>
+      <DependentUpon>FacturacionDbDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -589,16 +589,16 @@
     <Content Include="Models\FacturacionModel.edmx.diagram">
       <DependentUpon>FacturacionModel.edmx</DependentUpon>
     </Content>
-    <Content Include="dsFacturacion.xsc">
-      <DependentUpon>dsFacturacion.xsd</DependentUpon>
+    <Content Include="FacturacionDbDataSet.xsc">
+      <DependentUpon>FacturacionDbDataSet.xsd</DependentUpon>
     </Content>
-    <None Include="dsFacturacion.xsd">
+    <None Include="FacturacionDbDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>dsFacturacion.Designer.cs</LastGenOutput>
+      <LastGenOutput>FacturacionDbDataSet.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <Content Include="dsFacturacion.xss">
-      <DependentUpon>dsFacturacion.xsd</DependentUpon>
+    <Content Include="FacturacionDbDataSet.xss">
+      <DependentUpon>FacturacionDbDataSet.xsd</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
@@ -4207,6 +4207,7 @@
     <Content Include="Scripts\jquery-3.1.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Reports\Cotizaciones\repCotizacion.rdlc" />
     <EmbeddedResource Include="Reports\Productos\ReporteProductos.rdlc" />
   </ItemGroup>
   <ItemGroup>

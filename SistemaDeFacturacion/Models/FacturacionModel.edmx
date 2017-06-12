@@ -116,6 +116,7 @@
           <Property Name="idCompra" Type="int" Nullable="false" />
           <Property Name="idDetalle" Type="int" Nullable="false" />
           <Property Name="idProducto" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="50" />
           <Property Name="cantidad" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="precio" Type="decimal" Precision="10" Scale="2" />
           <Property Name="precioVenta" Type="decimal" Precision="10" Scale="2" />
@@ -131,6 +132,7 @@
           <Property Name="idDetalle" Type="int" Nullable="false" />
           <Property Name="idCotizacion" Type="int" Nullable="false" />
           <Property Name="idProducto" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="50" />
           <Property Name="cantidad" Type="decimal" Precision="9" Scale="2" Nullable="false" />
           <Property Name="precio" Type="decimal" Precision="9" Scale="2" Nullable="false" />
           <Property Name="descuento" Type="decimal" Precision="2" Scale="2" />
@@ -563,6 +565,7 @@
           <Property Name="observaciones" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Compras" Relationship="Self.FK_DetallesCompra_Compras" FromRole="DetallesCompra" ToRole="Compras" />
           <NavigationProperty Name="Productos" Relationship="Self.FK_DetallesCompra_Productos" FromRole="DetallesCompra" ToRole="Productos" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="DetallesCotizacion">
           <Key>
@@ -578,6 +581,7 @@
           <Property Name="subTotal" Type="Decimal" Precision="9" Scale="2" />
           <NavigationProperty Name="Cotizaciones" Relationship="Self.FK_DetallesCotizacion_Cotizaciones" FromRole="DetallesCotizacion" ToRole="Cotizaciones" />
           <NavigationProperty Name="Productos" Relationship="Self.FK_Detalles_Productos" FromRole="DetallesCotizacion" ToRole="Productos" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Facturas">
           <Key>
@@ -968,6 +972,7 @@
           <EntitySetMapping Name="DetallesCompra">
             <EntityTypeMapping TypeName="FacturacionDbModel.DetallesCompra">
               <MappingFragment StoreEntitySet="DetallesCompra">
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="idCompra" ColumnName="idCompra" />
                 <ScalarProperty Name="idDetalle" ColumnName="idDetalle" />
                 <ScalarProperty Name="idProducto" ColumnName="idProducto" />
@@ -983,6 +988,7 @@
           <EntitySetMapping Name="DetallesCotizacion">
             <EntityTypeMapping TypeName="FacturacionDbModel.DetallesCotizacion">
               <MappingFragment StoreEntitySet="DetallesCotizacion">
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="idDetalle" ColumnName="idDetalle" />
                 <ScalarProperty Name="idCotizacion" ColumnName="idCotizacion" />
                 <ScalarProperty Name="idProducto" ColumnName="idProducto" />

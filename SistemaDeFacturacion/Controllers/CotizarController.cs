@@ -368,6 +368,7 @@ namespace SistemaDeFacturacion.Controllers
                                 idCotizacion = idCotizacion,
                                 idDetalle = idDetalle,
                                 idProducto = p.idProducto,
+                                descripcion =p.nombre,
                                 precio = p.precio,
                                 cantidad = cantidad,
                                 Productos = p
@@ -613,6 +614,12 @@ namespace SistemaDeFacturacion.Controllers
         {
             return RedirectToAction("Cotizar");
         }
+        /** METODO PARA CREAR REPORTE DE COTIZACION
+        */
 
-    }
+        public ActionResult ImprimirCotizacion()
+        {
+            return View();
+        }       
+       }
 }
