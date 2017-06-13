@@ -28,6 +28,9 @@
 
 <div class="row">
     <center><h4><strong>INFORMACION SOBRE LA COTIZACION</strong></h4></center>
+    <center>
+        <a href="@Url.Action("ImprimirCotizacion","Informes", new { idCotizacion = Model.idCotizacion, vista = "RealizarVenta"})" class="btn btn-success">Imprimir Cotizacion</a>
+    </center>
     <div class="col-md-4">        
         <table id="table1" class="table table-responsive table-bordered table-hover">
             <thead>
