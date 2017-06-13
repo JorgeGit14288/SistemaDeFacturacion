@@ -506,6 +506,7 @@
     <Compile Include="Models\Clientes.cs">
       <DependentUpon>FacturacionModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CloneModel\CategoriasClon.cs" />
     <Compile Include="Models\CloneModel\ProductosClon.cs" />
     <Compile Include="Models\Compras.cs">
       <DependentUpon>FacturacionModel.tt</DependentUpon>
