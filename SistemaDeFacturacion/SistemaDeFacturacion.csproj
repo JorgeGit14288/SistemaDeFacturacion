@@ -507,6 +507,8 @@
       <DependentUpon>FacturacionModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CloneModel\CategoriasClon.cs" />
+    <Compile Include="Models\CloneModel\CotizacionClon.cs" />
+    <Compile Include="Models\CloneModel\DetallesCotizacionClon.cs" />
     <Compile Include="Models\CloneModel\ProductosClon.cs" />
     <Compile Include="Models\Compras.cs">
       <DependentUpon>FacturacionModel.tt</DependentUpon>
@@ -553,6 +555,12 @@
       <DependentUpon>FacturacionModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\Cotizaciones\crCotizacion.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crCotizacion.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\FacturacionDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -4200,7 +4208,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Reports\Cotizaciones\" />
     <Folder Include="Temas\Plantilla\plugins\pdfmake\libs\FileSaver.js\" />
   </ItemGroup>
   <ItemGroup>
@@ -4230,6 +4237,10 @@
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.1.1.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Reports\Cotizaciones\crCotizacion.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crCotizacion.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Productos\crProductos.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>crProductos.cs</LastGenOutput>

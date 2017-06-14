@@ -6,6 +6,9 @@ using System.Web.Mvc;
 using SistemaDeFacturacion.Models;
 using SistemaDeFacturacion.Dao;
 using System.ComponentModel;
+using CrystalDecisions.CrystalReports.Engine;
+using System.IO;
+using SistemaDeFacturacion.Models.CloneModel;
 
 namespace SistemaDeFacturacion.Controllers
 {
@@ -273,6 +276,72 @@ namespace SistemaDeFacturacion.Controllers
             catch
             {
                 return View();
+            }
+        }
+        public ActionResult Exportarcotizacion(int idCotizacion)
+        {//reporte que exporta todos los productos
+            //creamos la lista para el origen de datos
+         
+           
+            Cotizaciones coti = new Cotizaciones();
+            coti = ctx.Cotizaciones.Find(idCotizacion);
+            CotizacionClon clonCoti = new CotizacionClon();
+            clonCoti.idCotizacion = coti.idCotizacion;
+            clonCoti.estado = coti.estado;
+            clonCoti.fecha = coti.fecha;
+            clonCoti.direccion = coti.direccion;
+            clonCoti.nitCliente = coti.nitCliente;
+            clonCoti.subTotal = Convert.ToDecimal( coti.subTotal);
+            clonCoti.descuento =Convert.ToDecimal( coti.descuento);
+            clonCoti.usuario = coti.usuario;
+            clonCoti.nombre = coti.nombre;
+            clonCoti.total = Convert.ToDecimal(coti.total);
+
+            List<CotizacionClon> cotizaciones = new List<CotizacionClon>();
+            cotizaciones.Add(clonCoti);
+
+            List<DetallesCotizacion> detalles1 = new List<DetallesCotizacion>();
+            List<DetallesCotizacionClon> detalles = new List<DetallesCotizacionClon>();
+
+            detalles1 = ctx.DetallesCotizacion.Where(d => d.idCotizacion == idCotizacion).ToList();
+            foreach (var d in detalles1)
+            {
+                DetallesCotizacionClon dc = new DetallesCotizacionClon();
+                dc.idCotizacion = d.idCotizacion;
+                dc.idDetalle = d.idDetalle;
+                dc.idProducto = d.idProducto;
+                dc.cantidad = Convert.ToDecimal(d.cantidad);
+                dc.precio = Convert.ToDecimal(d.precio);
+                dc.subTotal = Convert.ToDecimal(d.subTotal);
+                dc.descripcion = d.descripcion;
+                dc.descuento = Convert.ToDecimal(d.descuento);
+
+                detalles.Add(dc);
+            }
+
+
+            //creamos el report document
+            ReportDocument repDocument = new ReportDocument();
+            repDocument.Load(Path.Combine(Server.MapPath
+                ("~/Reports/Cotizaciones"), "crCotizacion.rpt"));
+            // le agregamos los dos datasource, uno para cada tabla
+            repDocument.Database.Tables[0].SetDataSource(cotizaciones);
+            repDocument.Database.Tables[1].SetDataSource(detalles);
+
+            //esto no se para que sea 
+            Response.Buffer = false;
+            Response.ClearContent();
+            Response.ClearHeaders();
+            try
+            {
+                Stream stream = repDocument.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+                stream.Seek(0, SeekOrigin.Begin);
+                return File(stream, "application/pdf", "Cotizacion.pdf");
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = "Lo sentimos, no se pudo exportar el informe " + ex.Message;
+                return View("RealizarVenta", new { id = idCotizacion });
             }
         }
     }

@@ -50,10 +50,7 @@ namespace SistemaDeFacturacion.Controllers
                 pc.observacion = p.observacion;
                 pc.imagen = p.imagen;
                 listaClon.Add(pc);
-
-
             }
-
             //creamos el report document
             ReportDocument repDocument = new ReportDocument();
             repDocument.Load(Path.Combine(Server.MapPath
@@ -114,14 +111,11 @@ namespace SistemaDeFacturacion.Controllers
                 cc.descripcion = c.descripcion;
                 cc.imagen = c.imagen;
                 listaClonCat.Add(cc);
-            }
-           
-
+            }           
             //creamos el report document
             ReportDocument repDocument = new ReportDocument();
             repDocument.Load(Path.Combine(Server.MapPath
-                ("~/Reports/Productos"), "crProductosCategorias.rpt"));
-       
+                ("~/Reports/Productos"), "crProductosCategorias.rpt"));       
            // le agregamos los dos datasource, uno para cada tabla
             repDocument.Database.Tables[0].SetDataSource(listaClon);
             repDocument.Database.Tables[1].SetDataSource(listaClonCat);
