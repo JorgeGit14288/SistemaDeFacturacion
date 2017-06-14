@@ -507,6 +507,7 @@
       <DependentUpon>FacturacionModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CloneModel\CategoriasClon.cs" />
+    <Compile Include="Models\CloneModel\ClonFacturas.cs" />
     <Compile Include="Models\CloneModel\CotizacionClon.cs" />
     <Compile Include="Models\CloneModel\DetallesCotizacionClon.cs" />
     <Compile Include="Models\CloneModel\ProductosClon.cs" />
@@ -565,6 +566,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>FacturacionDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Facturas\crFactura.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crFactura.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Productos\crProductos.cs">
       <AutoGen>True</AutoGen>
@@ -4240,6 +4247,10 @@
     <EmbeddedResource Include="Reports\Cotizaciones\crCotizacion.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>crCotizacion.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Facturas\crFactura.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crFactura.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Productos\crProductos.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
