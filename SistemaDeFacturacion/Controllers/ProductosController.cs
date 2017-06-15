@@ -25,7 +25,16 @@ namespace SistemaDeFacturacion.Controllers
         // GET: Productos
         public ActionResult Index()
         {
-            return View(db.Productos.ToList());
+            try
+            {
+                return View(db.Productos.ToList());
+            }
+            
+            catch (Exception ex)
+            {
+                ViewBag.Error = "No se ha podido cargar la vista, Mensaje de error :" + ex.Message;
+                return View(new List<Productos>());
+            }
         }
         public ActionResult Report(string id)
         {
@@ -86,7 +95,8 @@ namespace SistemaDeFacturacion.Controllers
             Productos productos = db.Productos.Find(id);
             if (productos == null)
             {
-                return HttpNotFound();
+                //return HttpNotFound();
+                RedirectToAction("Index");
             }
             return View(productos);
         }
@@ -122,6 +132,11 @@ namespace SistemaDeFacturacion.Controllers
 
             if (ModelState.IsValid)
             {
+                if (db.Productos.FindAsync(productos.idProducto) != null)
+                {
+                    ViewBag.Error = "El Codigo del registro que ingreso ya esta siendo utilizado con otro registro, pruebe cambiar el id. ";
+                    return View(productos);
+                }
                 productos.creado = DateTime.Now;
                 productos.modificado = DateTime.Now;
                 db.Productos.Add(productos);
@@ -145,7 +160,8 @@ namespace SistemaDeFacturacion.Controllers
             Productos productos = db.Productos.Find(id);
             if (productos == null)
             {
-                return HttpNotFound();
+                //return HttpNotFound();
+                RedirectToAction("Index");
             }
             return View(productos);
         }
@@ -180,7 +196,8 @@ namespace SistemaDeFacturacion.Controllers
             Productos productos = db.Productos.Find(id);
             if (productos == null)
             {
-                return HttpNotFound();
+                //return HttpNotFound();
+                RedirectToAction("Index");
             }
             return View(productos);
         }

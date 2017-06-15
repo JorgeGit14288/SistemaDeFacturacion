@@ -19,26 +19,47 @@ namespace SistemaDeFacturacion.Controllers
         // GET: Cotizaciones
         public async Task<ActionResult> Index()
         {
-            return View(await db.Cotizaciones.ToListAsync());
+            try
+            {
+                return View(await db.Cotizaciones.ToListAsync());
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = "No se ha podido cargar la vista, Mensaje de error :" + ex.Message;
+                return View(new List<Cotizaciones>());
+            }
+           
         }
 
         // GET: Cotizaciones/Details/5
         public async Task<ActionResult> Details(int? id)
         {
-            if (id == null)
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Cotizaciones cotizaciones = await db.Cotizaciones.FindAsync(id);
+                if (cotizaciones == null)
+                { //return HttpNotFound();
+                    RedirectToAction("Index");
+                }
+
+                List<DetallesCotizacion> detalles = new List<DetallesCotizacion>();
+                detalles = db.DetallesCotizacion.Where(d => d.idCotizacion == id).ToList();
+                ViewBag.Detalles = detalles;
+                return View(cotizaciones);
+
             }
-            Cotizaciones cotizaciones = await db.Cotizaciones.FindAsync(id);
-            if (cotizaciones == null)
+            catch (Exception ex)
             {
-                return HttpNotFound();
+                ViewBag.Error = "No se ha podido cargar el registro, mensaje de error " + ex.Message;
+                ViewBag.Detalles = new List<DetallesCotizacion>();
+                return View(new Cotizaciones());
+               
             }
- 
-            List<DetallesCotizacion> detalles = new List<DetallesCotizacion>();
-            detalles = db.DetallesCotizacion.Where(d => d.idCotizacion == id).ToList();
-            ViewBag.Detalles = detalles;
-            return View(cotizaciones);
+            
         }
         public ActionResult DetallesVenta(int? id)
         {
@@ -125,7 +146,8 @@ namespace SistemaDeFacturacion.Controllers
             Cotizaciones cotizaciones = await db.Cotizaciones.FindAsync(id);
             if (cotizaciones == null)
             {
-                return HttpNotFound();
+                //return HttpNotFound();
+                RedirectToAction("Index");
             }
             return View(cotizaciones);
         }
@@ -156,7 +178,8 @@ namespace SistemaDeFacturacion.Controllers
             Cotizaciones cotizaciones = await db.Cotizaciones.FindAsync(id);
             if (cotizaciones == null)
             {
-                return HttpNotFound();
+                //return HttpNotFound();
+                RedirectToAction("Index");
             }
             return View(cotizaciones);
         }

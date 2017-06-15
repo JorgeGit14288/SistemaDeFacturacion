@@ -18,7 +18,16 @@ namespace SistemaDeFacturacion.Controllers
         // GET: Clientes
         public ActionResult Index()
         {
-            return View(db.Clientes.ToList());
+            try
+            {
+                return View(db.Clientes.ToList());
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = "No se ha podido cargar la vista, Mensaje de error :" + ex.Message;
+                return View(new List<Clientes>());
+            }
+           
         }
 
         // GET: Clientes/Details/5
@@ -31,7 +40,8 @@ namespace SistemaDeFacturacion.Controllers
             Clientes clientes = db.Clientes.Find(id);
             if (clientes == null)
             {
-                return HttpNotFound();
+                //return HttpNotFound();
+                RedirectToAction("Index");
             }
             return View(clientes);
         }
@@ -49,32 +59,56 @@ namespace SistemaDeFacturacion.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "nit,nombre,direccion,telefono")] Clientes clientes)
         {
-            if (ModelState.IsValid)
+            try
             {
-                clientes.creado = DateTime.Now;
-                clientes.modificado = DateTime.Now;
-                db.Clientes.Add(clientes);
-                db.SaveChanges();
-                ViewBag.Mensaje = "Se ha creado un nuevo registro en la base de datos";
-                return View("Index", db.Clientes.ToList());
+                if (ModelState.IsValid)
+                {
+                    if (db.Clientes.FindAsync(clientes.nit) != null)
+                    {
+                        ViewBag.Error = "El id esta siendo utilizado por otro registro, intente cambiar el id ";
+                        return View(clientes);
+                    }
+                    clientes.creado = DateTime.Now;
+                    clientes.modificado = DateTime.Now;
+                    db.Clientes.Add(clientes);
+                    db.SaveChanges();
+                    ViewBag.Mensaje = "Se ha creado un nuevo registro en la base de datos";
+                    return View("Index", db.Clientes.ToList());
+                }
+                ViewBag.Error = "No se ha podido crear el registro, puede que exista ya un cliente con este nit";
+                return View(clientes);
             }
-            ViewBag.Error = "No se ha podido crear el registro, puede que exista ya un cliente con este nit";
-            return View(clientes);
+            catch(Exception ex)
+            {
+                ViewBag.Error = "No se ha podido crear el registro, mensaje de error: "+ex.Message;
+                return View(clientes);
+            }
+            
         }
 
         // GET: Clientes/Edit/5
         public ActionResult Edit(string id)
         {
-            if (id == null)
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Clientes clientes = db.Clientes.Find(id);
-            if (clientes == null)
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Clientes clientes = db.Clientes.Find(id);
+                if (clientes == null)
+                {
+                    //return HttpNotFound();
+                    RedirectToAction("Index");
+                }
+                return View(clientes);
+            }        
+            catch (Exception ex)
             {
-                return HttpNotFound();
+                ViewBag.Error = "No se ha podido cargar el registro, mensaje de error: " + ex.Message;
+                return View(new Clientes());
             }
-            return View(clientes);
+
         }
 
         // POST: Clientes/Edit/5
@@ -84,31 +118,51 @@ namespace SistemaDeFacturacion.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "nit,nombre,direccion,telefono")] Clientes clientes)
         {
-            if (ModelState.IsValid)
+            try
             {
-                clientes.modificado = DateTime.Now;
-                db.Entry(clientes).State = EntityState.Modified;
-                db.SaveChanges();
-                ViewBag.Mensaje = "Se ha actualizado el registro del cliente en la ase de datos";
-                return View(clientes.nit);
+                if (ModelState.IsValid)
+                {
+                    clientes.modificado = DateTime.Now;
+                    db.Entry(clientes).State = EntityState.Modified;
+                    db.SaveChanges();
+                    ViewBag.Mensaje = "Se ha actualizado el registro del cliente en la ase de datos";
+                    return View(clientes.nit);
+                }
+                ViewBag.Error = "No se han podido guardar los cambios, si el problema persiste, contacte con el tecnico";
+                return View(clientes);
             }
-            ViewBag.Error = "No se han podido guardar los cambios, si el problema persiste, contacte con el tecnico";
-            return View(clientes);
+            
+            catch (Exception ex)
+            {
+                ViewBag.Error = "No se ha podido modificar el registro, mensaje de error: " + ex.Message;
+                return View(clientes);
+            }
+
         }
 
         // GET: Clientes/Delete/5
         public ActionResult Delete(string id)
         {
-            if (id == null)
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Clientes clientes = db.Clientes.Find(id);
+                if (clientes == null)
+                {
+                    //return HttpNotFound();
+                    RedirectToAction("Index");
+                }
+                return View(clientes);
             }
-            Clientes clientes = db.Clientes.Find(id);
-            if (clientes == null)
+            catch (Exception ex)
             {
-                return HttpNotFound();
+                ViewBag.Error = "No se ha cargar cargar el registro, mensaje de error: " + ex.Message;
+                return View(new Clientes());
             }
-            return View(clientes);
+
         }
 
         // POST: Clientes/Delete/5

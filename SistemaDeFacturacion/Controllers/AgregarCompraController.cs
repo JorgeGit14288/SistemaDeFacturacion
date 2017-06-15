@@ -507,7 +507,7 @@ namespace SistemaDeFacturacion.Controllers
                 }
                 else
                 {
-                    ViewBag.Prod = temp;
+                    ViewBag.tempProd = temp;
                     ViewBag.Error = "Ya existe un producto con el mismo id";
                     return View("CrearCompra");
                 }

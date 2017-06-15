@@ -1,4 +1,11 @@
-﻿using System;
+﻿/**
+ * Este controlador  dirige las operaciones de login, registro y autenticacion de usuarios
+ * creado con el asistente de microsoft identy.
+ *14-06-17 
+ * Jorge Fuentes
+ * */
+
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -24,14 +31,33 @@ namespace SistemaDeFacturacion.Controllers
         public ActionResult Index()
         {
             List<AspNetUsers> lista = new List<AspNetUsers>();
-            lista = ctx.AspNetUsers.ToList();
-            return View(lista);
+            try
+            {
+                lista = ctx.AspNetUsers.ToList();
+                return View(lista);
+            }
+            catch(Exception ex)
+            {
+                ViewBag.Error = "No se ha podido cargar la vista, Mensaje de error :" + ex.Message;
+                return View(lista);
+            }
+           
+           
         }
 
         // GET: Usuarios/Details/5
         public ActionResult Details(string id)
         {
-            return View(ctx.AspNetUsers.SingleOrDefault((r => r.Id == id)));
+            try
+            {
+                return View(ctx.AspNetUsers.SingleOrDefault((r => r.Id == id)));
+            }
+            catch(Exception ex)
+            {
+                ViewBag.Error = "No se ha podido cargar el registro, Mensaje de error: " + ex.Message;
+                return View(new  AspNetUsers());
+            }
+            
         }
 
         // GET: Usuarios/Create
@@ -43,8 +69,18 @@ namespace SistemaDeFacturacion.Controllers
         // GET: Usuarios/Edit/5
         public ActionResult Edit(string id)
         {
-            ViewBag.Roles = ctx.AspNetRoles.ToList();
-            return View(ctx.AspNetUsers.SingleOrDefault((r => r.Id == id)));
+            try
+            {
+                ViewBag.Roles = ctx.AspNetRoles.ToList();
+                return View(ctx.AspNetUsers.SingleOrDefault((r => r.Id == id)));
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = "No se pudo obtener la vista";
+               return RedirectToAction("Index");
+            }
+            
+            
         }
 
         // POST: Usuarios/Edit/5
@@ -83,7 +119,15 @@ namespace SistemaDeFacturacion.Controllers
         // GET: Usuarios/Delete/5
         public ActionResult Delete(string id)
         {
-            return View(ctx.AspNetUsers.SingleOrDefault((r => r.Id == id)));
+            try
+            {
+                return View(ctx.AspNetUsers.SingleOrDefault((r => r.Id == id)));
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = "No se ha podido cargar el registro, Mensaje de error: " + ex.Message;
+                return View(new AspNetUsers());
+            }
         }
 
         // POST: Usuarios/Delete/5
@@ -94,8 +138,8 @@ namespace SistemaDeFacturacion.Controllers
             {
                 AspNetUsers user = new AspNetUsers();
                 user = ctx.AspNetUsers.Find(id);
-                ctx.AspNetUsers.Remove(user);
-                ctx.SaveChanges();
+              //  ctx.AspNetUsers.Remove(user);
+               // ctx.SaveChanges();
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
@@ -104,7 +148,6 @@ namespace SistemaDeFacturacion.Controllers
                 return View(id);
             }
         }
-
         public ActionResult AgregarRol(string id)
         {
             ViewBag.Roles = ctx.AspNetRoles.ToList();
@@ -146,15 +189,24 @@ namespace SistemaDeFacturacion.Controllers
         [HttpGet]
         public ActionResult EditarUsuarios()      
         {
-            string nombre = Session["Usuario"].ToString();
-            if (String.IsNullOrEmpty(nombre))
+            try
             {
-                Session["Usuario"] = User.Identity.GetUserName();
-                nombre = User.Identity.GetUserName();
-                // return View("Error", "Home");
+                string nombre = Session["Usuario"].ToString();
+                if (String.IsNullOrEmpty(nombre))
+                {
+                    Session["Usuario"] = User.Identity.GetUserName();
+                    nombre = User.Identity.GetUserName();
+                    // return View("Error", "Home");
+                }
+                ViewBag.Roles = ctx.AspNetRoles.ToList();
+                return View(ctx.AspNetUsers.SingleOrDefault((r => r.UserName == nombre)));
             }
-            ViewBag.Roles = ctx.AspNetRoles.ToList();
-            return View(ctx.AspNetUsers.SingleOrDefault((r => r.UserName == nombre)));
+            catch (Exception ex)
+            {
+                ViewBag.Error = "No se ha podido cargar el registro, Mensaje de error: " + ex.Message;
+                return View(new AspNetUsers());
+            }
+            
         }
         // POST: Usuarios/Edit/5
         [HttpPost]
@@ -195,7 +247,6 @@ namespace SistemaDeFacturacion.Controllers
                 return View(user);
             }
         }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)

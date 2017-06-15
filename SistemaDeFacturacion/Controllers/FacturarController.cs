@@ -129,6 +129,8 @@ namespace SistemaDeFacturacion.Controllers
                 factura.subTotal = cotiz.subTotal;
                 factura.tipoPago = Convert.ToInt32(form["tipoPago"]);
                 factura.idPago = form["idPago"];
+
+            
                 if (cotiz.estado == "Facturado")
                 {
                     ViewBag.Error = "La cotizacion ya ha sido facturada ";
@@ -147,7 +149,28 @@ namespace SistemaDeFacturacion.Controllers
                     return View("RealizarVenta", coti);
                 }
 
-                
+                //verificamos si la factura ya existe
+                if (ctx.Facturas.FindAsync(factura.idFactura) != null)
+                {
+                   
+                    Cotizaciones coti = new Cotizaciones();
+                    List<DetallesCotizacion> detalles = new List<DetallesCotizacion>();
+                    coti = ctx.Cotizaciones.Find(id);
+                    detalles = ctx.DetallesCotizacion.Where(r => r.idCotizacion == id).ToList();
+                    //  factura = ctx.Facturas.SingleOrDefault(f => f.idCotizacion == coti.idCotizacion);
+                    List<TipoPago> tipoPagos = new List<TipoPago>();
+                    tipoPagos = ctx.TipoPago.ToList();
+                    ViewBag.Factura = factura;
+                    ViewBag.TipoPago = tipoPagos;
+                    ViewBag.Detalles = detalles;
+                    ViewBag.Cotizacion = coti;
+                    ViewBag.Error = "El Codigo del registro que ingreso ya esta siendo utilizado con otro registro, pruebe cambiar el id. ";
+                    return View("RealizarVenta", coti);
+                    
+                    
+                }
+
+
                 // creamos los datos del cliente
                 Clientes cliente = new Clientes();
                 cliente.nit = factura.nitCliente;
@@ -158,6 +181,7 @@ namespace SistemaDeFacturacion.Controllers
                 datosFacturar.factura = factura;
                 datosFacturar.idCotizacion = cotiz.idCotizacion;
                 datosFacturar.cliente = cliente;
+              
 
                 string resultado = daoFacturar.FacturarVenta(datosFacturar);
                 if (resultado == "ok")

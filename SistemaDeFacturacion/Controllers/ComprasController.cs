@@ -19,29 +19,48 @@ namespace SistemaDeFacturacion.Controllers
         // GET: Compras
         public ActionResult Index()
         {
-            var compras = db.Compras.Include(c => c.Proveedores);
-            return View(compras.ToList());
+            try
+            {
+                var compras = db.Compras.Include(c => c.Proveedores);
+                return View(compras.ToList());
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = "No se ha podido cargar la vista, Mensaje de error :" + ex.Message;
+                return View(new List<Compras>());
+            }
+            
         }
 
         // GET: Compras/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Compras compras = db.Compras.Find(id);
+                //var detallesCompra = db.DetallesCompra.Include(d => d.Compras).Include(d => d.Productos);
+                ViewBag.Detalles = db.DetallesCompra.Where(d => d.idCompra == id).ToList();
+                if (compras == null)
+                {
+
+                    var compras2 = db.Compras.Include(c => c.Proveedores);
+                    ViewBag.Error = "No se ha encontrado la compra con el id indicado, pruebe buscar en la tabla general";
+                    return View("Index", compras2.ToList());
+                }
+
+                return View(compras);
             }
-            Compras compras = db.Compras.Find(id);
-            //var detallesCompra = db.DetallesCompra.Include(d => d.Compras).Include(d => d.Productos);
-            ViewBag.Detalles = db.DetallesCompra.Where(d => d.idCompra == id).ToList();
-            if (compras == null)
+            catch(Exception ex)
             {
+                ViewBag.Error = "No se pudo cargar el registro, mensaje de error: " + ex.Message;
+                return View(new Compras());
 
-                var compras2 = db.Compras.Include(c => c.Proveedores);
-                ViewBag.Error = "No se ha encontrado la compra con el id indicado, pruebe buscar en la tabla general";
-                return View("Index", compras2.ToList());
             }
-
-            return View(compras);
+            
         }
 
         // GET: Compras/Create
@@ -58,17 +77,28 @@ namespace SistemaDeFacturacion.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "idCompra,idFactura,idProveedor,total,fecha,creado,modificado")] Compras compras)
         {
-            if (ModelState.IsValid)
+            try
             {
-                //compras.creado = DateTime.Now;
-                compras.modificado = DateTime.Now;
-                db.Compras.Add(compras);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+                if (ModelState.IsValid)
+                {
+                    //compras.creado = DateTime.Now;
+                    compras.modificado = DateTime.Now;
+                    db.Compras.Add(compras);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
 
-            ViewBag.idProveedor = new SelectList(db.Proveedores, "idProveedor", "empresa", compras.idProveedor);
-            return View(compras);
+                ViewBag.idProveedor = new SelectList(db.Proveedores, "idProveedor", "empresa", compras.idProveedor);
+                return View(compras);
+            }           
+           
+             catch (Exception ex)
+            {
+                ViewBag.idProveedor = new SelectList(db.Proveedores, "idProveedor", "empresa", compras.idProveedor);
+                ViewBag.Error = "No se pudo cargar el registro, mensaje de error: " + ex.Message;
+                return View(compras);
+
+            }
         }
 
         // GET: Compras/Edit/5
@@ -81,7 +111,8 @@ namespace SistemaDeFacturacion.Controllers
             Compras compras = db.Compras.Find(id);
             if (compras == null)
             {
-                return HttpNotFound();
+                //return HttpNotFound();
+                RedirectToAction("Index");
             }
             ViewBag.idProveedor = new SelectList(db.Proveedores, "idProveedor", "empresa", compras.idProveedor);
             return View(compras);
@@ -115,7 +146,8 @@ namespace SistemaDeFacturacion.Controllers
             Compras compras = db.Compras.Find(id);
             if (compras == null)
             {
-                return HttpNotFound();
+                //return HttpNotFound();
+                RedirectToAction("Index");
             }
             return View(compras);
         }

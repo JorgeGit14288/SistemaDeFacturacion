@@ -19,7 +19,16 @@ namespace SistemaDeFacturacion.Controllers
         // GET: TipoPagoes
         public async Task<ActionResult> Index()
         {
-            return View(await db.TipoPago.ToListAsync());
+            try
+            {
+                return View(await db.TipoPago.ToListAsync());
+            }
+            
+             catch (Exception ex)
+            {
+                ViewBag.Error = "No se ha podido cargar la vista, Mensaje de error :" + ex.Message;
+                return View(new List<TipoPago>());
+            }
         }
 
         // GET: TipoPagoes/Details/5
@@ -32,7 +41,8 @@ namespace SistemaDeFacturacion.Controllers
             TipoPago tipoPago = await db.TipoPago.FindAsync(id);
             if (tipoPago == null)
             {
-                return HttpNotFound();
+                //return HttpNotFound();
+                RedirectToAction("Index");
             }
             return View(tipoPago);
         }
@@ -52,6 +62,11 @@ namespace SistemaDeFacturacion.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (db.TipoPago.FindAsync(tipoPago.id) != null)
+                {
+                    ViewBag.Error = "El Codigo del registro que ingreso ya esta siendo utilizado con otro registro, pruebe cambiar el id. ";
+                    return View(tipoPago);
+                }
                 db.TipoPago.Add(tipoPago);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -70,7 +85,8 @@ namespace SistemaDeFacturacion.Controllers
             TipoPago tipoPago = await db.TipoPago.FindAsync(id);
             if (tipoPago == null)
             {
-                return HttpNotFound();
+                //return HttpNotFound();
+                RedirectToAction("Index");
             }
             return View(tipoPago);
         }
@@ -101,7 +117,8 @@ namespace SistemaDeFacturacion.Controllers
             TipoPago tipoPago = await db.TipoPago.FindAsync(id);
             if (tipoPago == null)
             {
-                return HttpNotFound();
+                //return HttpNotFound();
+                RedirectToAction("Index");
             }
             return View(tipoPago);
         }

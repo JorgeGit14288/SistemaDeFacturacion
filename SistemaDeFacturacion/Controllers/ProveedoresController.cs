@@ -19,7 +19,16 @@ namespace SistemaDeFacturacion.Controllers
         // GET: Proveedores
         public ActionResult Index()
         {
-            return View(db.Proveedores.ToList());
+            try
+            {
+                return View(db.Proveedores.ToList());
+            }
+            
+             catch (Exception ex)
+            {
+                ViewBag.Error = "No se ha podido cargar la vista, Mensaje de error :" + ex.Message;
+                return View(new List<Proveedores>());
+            }
         }
 
         // GET: Proveedores/Details/5
@@ -32,7 +41,8 @@ namespace SistemaDeFacturacion.Controllers
             Proveedores proveedores = db.Proveedores.Find(id);
             if (proveedores == null)
             {
-                return HttpNotFound();
+                //return HttpNotFound();
+                RedirectToAction("Index");
             }
             return View(proveedores);
         }
@@ -53,6 +63,11 @@ namespace SistemaDeFacturacion.Controllers
 
             if (ModelState.IsValid)
             {
+                if (db.Proveedores.FindAsync(proveedores.idProveedor) != null)
+                {
+                    ViewBag.Error = "El Codigo del registro que ingreso ya esta siendo utilizado con otro registro, pruebe cambiar el id. ";
+                    return View(proveedores);
+                }
                 proveedores.creado = DateTime.Now;
                 proveedores.modificado = DateTime.Now;
                 db.Proveedores.Add(proveedores);
@@ -74,7 +89,8 @@ namespace SistemaDeFacturacion.Controllers
             Proveedores proveedores = db.Proveedores.Find(id);
             if (proveedores == null)
             {
-                return HttpNotFound();
+                //return HttpNotFound();
+                RedirectToAction("Index");
             }
             return View(proveedores);
         }
@@ -109,7 +125,8 @@ namespace SistemaDeFacturacion.Controllers
             Proveedores proveedores = db.Proveedores.Find(id);
             if (proveedores == null)
             {
-                return HttpNotFound();
+                //return HttpNotFound();
+                RedirectToAction("Index");
             }
             return View(proveedores);
         }

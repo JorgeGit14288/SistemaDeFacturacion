@@ -24,7 +24,16 @@ namespace SistemaDeFacturacion.Controllers
         // GET: Facturas
         public ActionResult Index()
         {
-            return View(db.Facturas.ToList());
+            try
+            {
+                return View(db.Facturas.ToList());
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = "No se ha podido cargar la vista, Mensaje de error :" + ex.Message;
+                return View(new List<Facturas>());
+            }
+           
         }
         [HttpPost]
         public ActionResult Index(int id)
@@ -99,7 +108,8 @@ namespace SistemaDeFacturacion.Controllers
             Facturas facturas = db.Facturas.Find(id);
             if (facturas == null)
             {
-                return HttpNotFound();
+                //return HttpNotFound();
+                RedirectToAction("Index");
             }
             return View(facturas);
         }
@@ -130,7 +140,8 @@ namespace SistemaDeFacturacion.Controllers
             Facturas facturas = db.Facturas.Find(id);
             if (facturas == null)
             {
-                return HttpNotFound();
+                //return HttpNotFound();
+                RedirectToAction("Index");
             }
             return View(facturas);
         }
