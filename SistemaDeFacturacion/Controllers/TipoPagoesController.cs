@@ -34,17 +34,25 @@ namespace SistemaDeFacturacion.Controllers
         // GET: TipoPagoes/Details/5
         public async Task<ActionResult> Details(int? id)
         {
-            if (id == null)
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                TipoPago tipoPago = await db.TipoPago.FindAsync(id);
+                if (tipoPago == null)
+                {
+                    //return HttpNotFound();
+                    return RedirectToAction("Index");
+                }
+                return View(tipoPago);
             }
-            TipoPago tipoPago = await db.TipoPago.FindAsync(id);
-            if (tipoPago == null)
+            catch(Exception ex)
             {
-                //return HttpNotFound();
-                RedirectToAction("Index");
+                ViewBag.Error = " No se ha podido cargar el registro, mensaje de error: " + ex.Message;
+                return View(new TipoPago());
             }
-            return View(tipoPago);
         }
 
         // GET: TipoPagoes/Create
@@ -60,16 +68,26 @@ namespace SistemaDeFacturacion.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "id,nombre,descripcion")] TipoPago tipoPago)
         {
-            if (ModelState.IsValid)
+            try
             {
-                if (db.TipoPago.FindAsync(tipoPago.id) != null)
+
+
+                if (ModelState.IsValid)
                 {
-                    ViewBag.Error = "El Codigo del registro que ingreso ya esta siendo utilizado con otro registro, pruebe cambiar el id. ";
-                    return View(tipoPago);
+                    if (db.TipoPago.FindAsync(tipoPago.id) != null)
+                    {
+                        ViewBag.Error = "El Codigo del registro que ingreso ya esta siendo utilizado con otro registro, pruebe cambiar el id. ";
+                        return View(tipoPago);
+                    }
+                    db.TipoPago.Add(tipoPago);
+                    await db.SaveChangesAsync();
+                    return RedirectToAction("Index");
                 }
-                db.TipoPago.Add(tipoPago);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = " No se ha podido cargar el registro, mensaje de error: " + ex.Message;
+                return View(tipoPago);
             }
 
             return View(tipoPago);
@@ -78,17 +96,27 @@ namespace SistemaDeFacturacion.Controllers
         // GET: TipoPagoes/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
-            if (id == null)
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                TipoPago tipoPago = await db.TipoPago.FindAsync(id);
+                if (tipoPago == null)
+                {
+                    //return HttpNotFound();
+                   return RedirectToAction("Index");
+                }
+                return View(tipoPago);
             }
-            TipoPago tipoPago = await db.TipoPago.FindAsync(id);
-            if (tipoPago == null)
+            catch (Exception ex)
             {
-                //return HttpNotFound();
-                RedirectToAction("Index");
+                ViewBag.Error = " No se ha podido cargar el registro, mensaje de error: " + ex.Message;
+                return View(new TipoPago());
             }
-            return View(tipoPago);
         }
 
         // POST: TipoPagoes/Edit/5
@@ -98,29 +126,48 @@ namespace SistemaDeFacturacion.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "id,nombre,descripcion")] TipoPago tipoPago)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Entry(tipoPago).State = EntityState.Modified;
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+
+
+                if (ModelState.IsValid)
+                {
+                    db.Entry(tipoPago).State = EntityState.Modified;
+                    await db.SaveChangesAsync();
+                    return RedirectToAction("Index");
+                }
+                return View(tipoPago);
             }
-            return View(tipoPago);
+            catch (Exception ex)
+            {
+                ViewBag.Error = " No se ha podido modificar el registro, mensaje de error: " + ex.Message;
+                return View(tipoPago);
+            }
         }
 
         // GET: TipoPagoes/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
-            if (id == null)
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    // return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    return RedirectToAction("Index");
+                }
+                TipoPago tipoPago = await db.TipoPago.FindAsync(id);
+                if (tipoPago == null)
+                {
+                    //return HttpNotFound();
+                    return RedirectToAction("Index");
+                }
+                return View(tipoPago);
             }
-            TipoPago tipoPago = await db.TipoPago.FindAsync(id);
-            if (tipoPago == null)
+            catch (Exception ex)
             {
-                //return HttpNotFound();
-                RedirectToAction("Index");
+                ViewBag.Error = " No se ha podido cargar el registro, mensaje de error: " + ex.Message;
+                return View(new TipoPago());
             }
-            return View(tipoPago);
         }
 
         // POST: TipoPagoes/Delete/5
@@ -128,12 +175,22 @@ namespace SistemaDeFacturacion.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            TipoPago tipoPago = await db.TipoPago.FindAsync(id);
-            db.TipoPago.Remove(tipoPago);
-            await db.SaveChangesAsync();
-            return RedirectToAction("Index");
-        }
+            try
+            {
 
+
+                TipoPago tipoPago = await db.TipoPago.FindAsync(id);
+                db.TipoPago.Remove(tipoPago);
+                await db.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = " No se ha podido eliminar el registro, mensaje de error: " + ex.Message;
+                TipoPago tipoPago = await db.TipoPago.FindAsync(id);
+                return View(tipoPago);
+            }
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

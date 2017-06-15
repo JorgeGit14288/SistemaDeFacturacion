@@ -5,18 +5,35 @@ using System.Web;
 using System.Web.Mvc;
 using SistemaDeFacturacion.Dao.Helpers;
 using SistemaDeFacturacion.Models;
+using Microsoft.AspNetCore.Http.Authentication;
+using Microsoft.AspNet.Identity;
 
 namespace SistemaDeFacturacion.Controllers
 {
     [Authorize]
     public class HomeController : Controller
     {
+      
         private FacturacionDbEntities ctx = new FacturacionDbEntities();
         private HomeHelpers helper = new HomeHelpers();
+
+         public void CargarSesion()
+        {
+            // return View("LogOff", "Account");
+            if (Request.IsAuthenticated)
+            {
+                Session["Usuario"] = User.Identity.GetUserName();
+            }
+
+        }
         public ActionResult Index()
         {
             try
             {
+                if (Session["Usuario"] == null || Session["Usuario"].ToString() == "")
+                {
+                    CargarSesion();
+                }
                 ViewBag.noProductos = helper.ProductosHoy();
                 ViewBag.ProductosSinExistencia = helper.ProductosSinExistencia();
                 ViewBag.noCotizaciones = helper.CotizacionesHoy(DateTime.Now);
@@ -50,6 +67,10 @@ namespace SistemaDeFacturacion.Controllers
         [AllowAnonymous]
         public ActionResult Contact()
         {
+            if (Session["Usuario"] == null || Session["Usuario"].ToString()=="")
+            {
+                CargarSesion();
+            }
             ViewBag.Message = "Your contact page.";
 
             return View();
@@ -57,12 +78,20 @@ namespace SistemaDeFacturacion.Controllers
         [AllowAnonymous]
         public ActionResult Error()
         {
+            if (Session["Usuario"] == null || Session["Usuario"].ToString() == "")
+            {
+                CargarSesion();
+            }
             ViewBag.Message = "Your contact page.";        
             return View();
         }
         [AllowAnonymous]
         public ActionResult ErrorPage(string mensaje)
         {
+            if (Session["Usuario"] == null || Session["Usuario"].ToString() == "")
+            {
+                CargarSesion();
+            }
             //ViewBag.Message = "Your contact page.";
             ViewBag.MensajeDeError = mensaje;
             return View();

@@ -35,13 +35,14 @@ namespace SistemaDeFacturacion.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
+                //return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Clientes clientes = db.Clientes.Find(id);
             if (clientes == null)
             {
                 //return HttpNotFound();
-                RedirectToAction("Index");
+                return RedirectToAction("Index");
             }
             return View(clientes);
         }
@@ -99,7 +100,7 @@ namespace SistemaDeFacturacion.Controllers
                 if (clientes == null)
                 {
                     //return HttpNotFound();
-                    RedirectToAction("Index");
+                    return RedirectToAction("Index");
                 }
                 return View(clientes);
             }        
@@ -153,7 +154,7 @@ namespace SistemaDeFacturacion.Controllers
                 if (clientes == null)
                 {
                     //return HttpNotFound();
-                    RedirectToAction("Index");
+                  return  RedirectToAction("Index");
                 }
                 return View(clientes);
             }
@@ -181,7 +182,8 @@ namespace SistemaDeFacturacion.Controllers
             catch
             {
                 ViewBag.Error = "No se pudo elimnar el registro, puede que la conexion a el servidor no este estable, o que el cliente tanga facturas a su nombre, contacte con el tecnico";
-                return View(id);
+                Clientes clientes = db.Clientes.Find(id);
+                return View(clientes);
             }
         }
 

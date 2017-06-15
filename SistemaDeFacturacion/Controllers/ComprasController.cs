@@ -39,7 +39,7 @@ namespace SistemaDeFacturacion.Controllers
             {
                 if (id == null)
                 {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    return RedirectToAction("Index");
                 }
                 Compras compras = db.Compras.Find(id);
                 //var detallesCompra = db.DetallesCompra.Include(d => d.Compras).Include(d => d.Productos);
@@ -66,10 +66,21 @@ namespace SistemaDeFacturacion.Controllers
         // GET: Compras/Create
         public ActionResult Create()
         {
-            ViewBag.idProveedor = new SelectList(db.Proveedores, "idProveedor", "empresa");
-            return View();
+            try
+            {
+                ViewBag.idProveedor = new SelectList(db.Proveedores, "idProveedor", "empresa");
+                return View();
+            }
+          
+            catch(Exception ex)
+            {
+                ViewBag.Error = "Se ha producido una excepcion al cargar a los proveedores " + ex.Message;
+                return View();
+            }
         }
 
+        /**
+         * DESCOMENTAR PARA UTILIZAR LOS METODOS
         // POST: Compras/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -162,7 +173,7 @@ namespace SistemaDeFacturacion.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
+    **/
         protected override void Dispose(bool disposing)
         {
             if (disposing)

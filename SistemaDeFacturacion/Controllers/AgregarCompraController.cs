@@ -16,21 +16,33 @@ namespace SistemaDeFacturacion.Controllers
         // objetos de acceso a datoa
        private IProductosDao daoProductos = new ProductosDao();
        private IComprasDao daoCompras = new ComprasDao();
-      private  IAgregarComprasDao daoAgregarCompras = new AgregarComprasDao();
+       private  IAgregarComprasDao daoAgregarCompras = new AgregarComprasDao();
         private FacturacionDbEntities ctx = new FacturacionDbEntities();
         // GET: AgregarCompra
         public ActionResult CrearCompra()
         {
-            int idCompra = daoCompras.ObtenerIdActual();
-            if (idCompra==0)
+            try
             {
-                idCompra = 1;
+                int idCompra = daoCompras.ObtenerIdActual();
+                if (idCompra == 0)
+                {
+                    idCompra = 1;
+                }
+                Session["idCompra"] = idCompra;
+                ViewBag.Proveedores = ctx.Proveedores.ToList();
+                ViewBag.Categorias = ctx.Categorias.ToList();
+                ViewBag.Productos = daoProductos.Listar();
+                return View();
             }
-            Session["idCompra"] = idCompra;
-            ViewBag.Proveedores = ctx.Proveedores.ToList();
-            ViewBag.Categorias = ctx.Categorias.ToList();
-            ViewBag.Productos = daoProductos.Listar();
-            return View();
+            catch (Exception ex)
+            {
+                ViewBag.Proveedores = null;
+                ViewBag.Categorias = null;
+                ViewBag.Productos = null;
+                ViewBag.Error = "No se ha podido cargar la vista, mensaje de error: " + ex.Message;
+                return View();
+            }
+            
         }
         [HttpPost]
         public ActionResult CrearCompra(FormCollection form)
@@ -674,6 +686,14 @@ namespace SistemaDeFacturacion.Controllers
                 ViewBag.ErrorProducto = "No se pudo agregar el producto";
                 return View("CrearCompra");
             }
+        }
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                ctx.Dispose();
+            }
+            base.Dispose(disposing);
         }
 
     }

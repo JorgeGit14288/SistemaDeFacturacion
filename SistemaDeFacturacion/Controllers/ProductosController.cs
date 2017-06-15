@@ -36,6 +36,8 @@ namespace SistemaDeFacturacion.Controllers
                 return View(new List<Productos>());
             }
         }
+        /**
+         * para utilizar con reportt viewer
         public ActionResult Report(string id)
         {
             LocalReport lr = new LocalReport();
@@ -84,6 +86,7 @@ namespace SistemaDeFacturacion.Controllers
                 out warnings);
             return File(renderedBytes, mimeType);
         }
+    **/
 
         // GET: Productos/Details/5
         public ActionResult Details(string id)
@@ -96,7 +99,7 @@ namespace SistemaDeFacturacion.Controllers
             if (productos == null)
             {
                 //return HttpNotFound();
-                RedirectToAction("Index");
+                return RedirectToAction("Index");
             }
             return View(productos);
         }
@@ -104,8 +107,17 @@ namespace SistemaDeFacturacion.Controllers
         // GET: Productos/Create
         public ActionResult Create()
         {
-            ViewBag.idCategoria = new SelectList(db.Categorias, "idCategoria", "nombre");
-            return View();
+            try
+            {
+                ViewBag.idCategoria = new SelectList(db.Categorias, "idCategoria", "nombre");
+                return View();
+            }
+            catch(Exception ex)
+            {
+                ViewBag.Error = "No se ha podido cargar completamente la vista, mensaje de error: " + ex.Message;
+                return View();
+            }
+            
         }
 
         // POST: Productos/Create
@@ -152,18 +164,29 @@ namespace SistemaDeFacturacion.Controllers
         // GET: Productos/Edit/5
         public ActionResult Edit(string id)
         {
-            if (id == null)
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    // return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    return RedirectToAction("Index");
+                }
+                ViewBag.idCategoria = new SelectList(db.Categorias, "idCategoria", "nombre");
+                Productos productos = db.Productos.Find(id);
+                if (productos == null)
+                {
+                    //return HttpNotFound();
+                    return RedirectToAction("Index");
+                }
+                return View(productos);
             }
-            ViewBag.idCategoria = new SelectList(db.Categorias, "idCategoria", "nombre");
-            Productos productos = db.Productos.Find(id);
-            if (productos == null)
+            catch(Exception ex)
             {
-                //return HttpNotFound();
-                RedirectToAction("Index");
+                ViewBag.Error = "No se ha podido cargar el registro, mensaje de error: " + ex.Message;
+                return View(new Productos());
             }
-            return View(productos);
+
+            
         }
 
         // POST: Productos/Edit/5
@@ -173,33 +196,55 @@ namespace SistemaDeFacturacion.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "idProducto,nombre,precio,existencia,observacion,idCategoria,imagen")] Productos productos)
         {
-            if (ModelState.IsValid)
+            try
             {
-                productos.modificado = DateTime.Now;
-                db.Entry(productos).State = EntityState.Modified;
-                db.SaveChanges();
-                ViewBag.Mensaje = "Se ha actualizado el producto con exito";
+
+
+                if (ModelState.IsValid)
+                {
+                    productos.modificado = DateTime.Now;
+                    db.Entry(productos).State = EntityState.Modified;
+                    db.SaveChanges();
+                    ViewBag.Mensaje = "Se ha actualizado el producto con exito";
+                    return View(productos);
+                }
+                ViewBag.idCategoria = new SelectList(db.Categorias, "idCategoria", "nombre");
+                ViewBag.Error = "No se ha podido modificar el producto, compruebe que los nuevos datos son validos, si el problema persiste, contacte al tecnico";
                 return View(productos);
             }
-            ViewBag.idCategoria = new SelectList(db.Categorias, "idCategoria", "nombre");
-            ViewBag.Error = "No se ha podido modificar el producto, compruebe que los nuevos datos son validos, si el problema persiste, contacte al tecnico";
-            return View(productos);
+            catch (Exception ex)
+            {
+                ViewBag.Error = "No se ha podido cargar el registro, mensaje de error: " + ex.Message;
+                return View(productos);
+            }
         }
 
         // GET: Productos/Delete/5
         public ActionResult Delete(string id)
         {
-            if (id == null)
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+
+                if (id == null)
+                {
+                  return  RedirectToAction("Index");
+                    //return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Productos productos = db.Productos.Find(id);
+                if (productos == null)
+                {
+                    //return HttpNotFound();
+                   return RedirectToAction("Index");
+                }
+                return View(productos);
             }
-            Productos productos = db.Productos.Find(id);
-            if (productos == null)
+            catch(Exception ex)
             {
-                //return HttpNotFound();
-                RedirectToAction("Index");
+                ViewBag.Error = "No se ha podido cargar el registro, mensaje de error: " + ex.Message;
+                return View(new Productos());
             }
-            return View(productos);
+            
         }
 
         // POST: Productos/Delete/5
@@ -304,6 +349,17 @@ namespace SistemaDeFacturacion.Controllers
                 return View("Facturar");
             }
         }
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+        /**
+         * 
+         * DESCOMENTAR PARA AGREGAR EXISTENCIA SIN COMPRAS
         // GET: Productos/Edit/5
         public ActionResult AgregarExistencia(string id, FormCollection form)
         {
@@ -344,14 +400,7 @@ namespace SistemaDeFacturacion.Controllers
         }
 
 
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+    **/
+        
     }
 }

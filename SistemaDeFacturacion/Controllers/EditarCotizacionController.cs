@@ -742,5 +742,13 @@ namespace SistemaDeFacturacion.Controllers
             }
 
         }
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                ctx.Dispose();
+            }
+            base.Dispose(disposing);
+        }
     }
 }

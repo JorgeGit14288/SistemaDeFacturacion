@@ -23,21 +23,33 @@ namespace SistemaDeFacturacion.Controllers
         // GET: Facturar
         public ActionResult Cotizar()
         {
-            //ViewBag.Mensaje = "Todos los campos son requeridos";
-            //obtenermos el id de factura 
-            int idCotizacion = daoCoti.getIdCotizacion();
-            if (idCotizacion == 0)
+            try
             {
-                idCotizacion = 1;
-            }
-            Session["idCotizacion"] = idCotizacion;
+                //ViewBag.Mensaje = "Todos los campos son requeridos";
+                //obtenermos el id de factura 
+                int idCotizacion = daoCoti.getIdCotizacion();
+                if (idCotizacion == 0)
+                {
+                    idCotizacion = 1;
+                }
+                Session["idCotizacion"] = idCotizacion;
 
-            //ViewBag.idProducto = new SelectList(daoProductos.Listar(), "nombre", "precio","existencia");
-            // le devolvemos la lista de clientes
-            ViewBag.Clientes = daoClientes.Listar();
-            // para devolver la lista de productos
-            ViewBag.Productos = daoProductos.Listar();
-            return View(new Facturar());
+                //ViewBag.idProducto = new SelectList(daoProductos.Listar(), "nombre", "precio","existencia");
+                // le devolvemos la lista de clientes
+                ViewBag.Clientes = daoClientes.Listar();
+                // para devolver la lista de productos
+                ViewBag.Productos = daoProductos.Listar();
+                return View(new Facturar());
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Clientes = new List<Clientes>();
+                // para devolver la lista de productos
+                ViewBag.Productos = new List<Productos>();
+                ViewBag.Error = "No se ha podido cargar completamente la vista, mensaje de error: " + ex.Message;
+                return View(new Facturar());
+
+            }
         }
         [HttpPost]
         public ActionResult Cotizar(FormCollection form, CotizarModel model)
@@ -50,10 +62,10 @@ namespace SistemaDeFacturacion.Controllers
                 //obtenemos los objetos de sesiones
                 List<DetallesCotizacion> DetallesCotizacion = new List<DetallesCotizacion>();
                 Clientes c = new Clientes();
-                if((Session["ClienteC"] == null) || (Session["ClienteC"].ToString()=="") )
+                if ((Session["ClienteC"] == null) || (Session["ClienteC"].ToString() == ""))
                 {
                     // si no se ha ingesado ningun cliente retorna la misma vista sugiriendo que no pudede cotizar.
-                    ViewBag.Error = "Debe ingresar al menos el nombre de el cliente y la direccion para crear la cotizacion";         
+                    ViewBag.Error = "Debe ingresar al menos el nombre de el cliente y la direccion para crear la cotizacion";
                     return View();
                 }
                 else
@@ -71,21 +83,21 @@ namespace SistemaDeFacturacion.Controllers
                 if ((Session["DetallesC"].ToString() == "") || (Session["DetallesC"] == null))
                 {
                     //si no existe producto no podra crearse la cotizacion
-                    ViewBag.Error = "Debe de ingresar al menos un producto a la cotizacion";                  
+                    ViewBag.Error = "Debe de ingresar al menos un producto a la cotizacion";
                     return View();
                 }
-               
+
                 else
                 {
                     //si hay al menos un producto se creara la cotizacion;
                     DetallesCotizacion = (List<DetallesCotizacion>)Session["DetallesC"];
                 }
-                if (DetallesCotizacion==null)
+                if (DetallesCotizacion == null)
                 {
                     ViewBag.Error = "Debe de ingresar al menos un producto para crear una cotizacion";
                     return View();
                 }
-                
+
                 decimal totalC = Convert.ToDecimal(Session["totalC"]);
                 Cotizaciones coti = new Cotizaciones();
                 if (Session["Cotizacion"] == null || Session["Cotizacion"].ToString() == "")
@@ -107,7 +119,7 @@ namespace SistemaDeFacturacion.Controllers
                 coti.total = totalC;
                 coti.usuario = Session["Usuario"].ToString();
                 int tempIdCoti = daoCoti.getIdCotizacion();
-                if(tempIdCoti==0)
+                if (tempIdCoti == 0)
                 {
                     tempIdCoti = 1;
                 }
@@ -126,7 +138,7 @@ namespace SistemaDeFacturacion.Controllers
                 // para devolver la lista de productos
                 ViewBag.Productos = daoProductos.Listar();
                 string resultado = daoCotizar.Cotizar(datosCoti);
-                if (resultado =="ok")
+                if (resultado == "ok")
                 {
                     ViewBag.Mensaje = "Se ha creado la cotizacion Numero: " + datosCoti.cotizacion.idCotizacion;
                     Session["Cotizacion"] = "";
@@ -136,7 +148,7 @@ namespace SistemaDeFacturacion.Controllers
                     Session["DetallesC"] = "";
                     Session["idDetalleC"] = "0";
                     Session["totalC"] = "0";
-                    return RedirectToAction("RealizarVenta","Facturar",new { id =coti.idCotizacion});
+                    return RedirectToAction("RealizarVenta", "Facturar", new { id = coti.idCotizacion });
                 }
                 else
                 {
@@ -144,9 +156,9 @@ namespace SistemaDeFacturacion.Controllers
                     return View("Cotizar");
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                ViewBag.Error = "ha ocurrido un error "+ ex.Message;
+                ViewBag.Error = "ha ocurrido un error " + ex.Message;
                 // para devolver la lista de productos
                 ViewBag.Clientes = daoClientes.Listar();
                 ViewBag.Productos = daoProductos.Listar();
@@ -165,7 +177,7 @@ namespace SistemaDeFacturacion.Controllers
                 Session["DetallesC"] = "";
                 Session["idDetalleC"] = "0";
                 Session["totalC"] = "0";
-                
+
 
                 // para devolver la lista de productos
                 ViewBag.Clientes = daoClientes.Listar();
@@ -221,7 +233,7 @@ namespace SistemaDeFacturacion.Controllers
                     f.idCotizacion = Convert.ToInt32(Session["idCotizacion"]);
                     if (f.idCotizacion == 0)
                     {
-                        f.idCotizacion= daoFacturas.GetIdFactura();
+                        f.idCotizacion = daoFacturas.GetIdFactura();
                         f.fecha = DateTime.Now.Date;
                         Session["idCotizacion"] = f.idCotizacion;
                     }
@@ -233,7 +245,7 @@ namespace SistemaDeFacturacion.Controllers
             }
             catch (Exception ex)
             {
-                ViewBag.Error = "Mensaje de erro: " + ex.Message ;
+                ViewBag.Error = "Mensaje de erro: " + ex.Message;
                 // para devolver la lista de productos
                 ViewBag.Clientes = daoClientes.Listar();
                 ViewBag.Productos = daoProductos.Listar();
@@ -251,7 +263,7 @@ namespace SistemaDeFacturacion.Controllers
                     nombre = form["nombre"],
                     direccion = form["direccion"]
                 };
-                if (c.nit == "c/f" || c.nit == "C/F"|| c.nit==null)
+                if (c.nit == "c/f" || c.nit == "C/F" || c.nit == null)
                 {
                     //significa que el cliente no se debe de crear
                 }
@@ -288,7 +300,7 @@ namespace SistemaDeFacturacion.Controllers
                 f.usuario = Session["Usuario"].ToString();
                 Session["Cotizacion"] = f;
                 ViewBag.Mensaje = "Se cargo el cliente a la cotizacion";
-               
+
                 ViewBag.Clientes = daoClientes.Listar();
                 // para devolver la lista de productos
                 ViewBag.Productos = daoProductos.Listar();
@@ -296,7 +308,7 @@ namespace SistemaDeFacturacion.Controllers
             }
             catch (Exception ex)
             {
-                ViewBag.Error = "Mensaje de error: " + ex.Message ;
+                ViewBag.Error = "Mensaje de error: " + ex.Message;
                 ViewBag.Clientes = daoClientes.Listar();
                 // para devolver la lista de productos
                 ViewBag.Productos = daoProductos.Listar();
@@ -317,13 +329,13 @@ namespace SistemaDeFacturacion.Controllers
                 ViewBag.Clientes = daoClientes.Listar();
                 // para devolver la lista de productos
                 ViewBag.Productos = daoProductos.Listar();
-               
+
                 if (String.IsNullOrEmpty(p.idProducto))
                 {
-                    ViewBag.Error = "No existe  el producto o la existencia es menor a la cantidad solicitada";                 
+                    ViewBag.Error = "No existe  el producto o la existencia es menor a la cantidad solicitada";
                     return View("Cotizar");
                 }
-                if (descuento>95 || descuento<0)
+                if (descuento > 95 || descuento < 0)
                 {
                     ViewBag.Error = "El descuento solicitado no es valido, intente con otra cantidad.";
                     return View("Cotizar");
@@ -368,7 +380,7 @@ namespace SistemaDeFacturacion.Controllers
                                 idCotizacion = idCotizacion,
                                 idDetalle = idDetalle,
                                 idProducto = p.idProducto,
-                                descripcion =p.nombre,
+                                descripcion = p.nombre,
                                 precio = p.precio,
                                 cantidad = cantidad,
                                 Productos = p
@@ -512,7 +524,7 @@ namespace SistemaDeFacturacion.Controllers
                 ViewBag.modCantidad = d.cantidad;
                 ViewBag.modIdDetalle = d.idDetalle;
                 ViewBag.modDescuento = d.descuento;
-                ViewBag.Mensaje= "Se elimino =" + d.Productos.nombre;
+                ViewBag.Mensaje = "Se elimino =" + d.Productos.nombre;
                 // para devolver la lista de productos
                 ViewBag.Productos = daoProductos.Listar();
                 return View("Cotizar");
@@ -550,10 +562,10 @@ namespace SistemaDeFacturacion.Controllers
                 //busca el detalle en la lista, segun el id
                 d = DetallesCotizacion.Find(r => r.idDetalle == id);
 
-                if (d.cantidad == cantidad && d.descuento ==descuento)
+                if (d.cantidad == cantidad && d.descuento == descuento)
                 {
                     //las cantidad ingresada es la misma, entonces no hacemos algo solo retornamos la vista
-                    ViewBag.Error= "La cantidad ingresada es la misa, no se modifico el producto";
+                    ViewBag.Error = "La cantidad ingresada es la misa, no se modifico el producto";
                     // para devolver la lista de productos            
                     return View("Cotizar");
 
@@ -583,7 +595,7 @@ namespace SistemaDeFacturacion.Controllers
                     }
                     //d.Productos.nombre = p.nombre;
                     d.descuento = descuento;
-                  
+
                     //  d.descuento = desc;
                     DetallesCotizacion.Add(d);
                     //calculamos el nuevo total de la factura
@@ -614,12 +626,14 @@ namespace SistemaDeFacturacion.Controllers
         {
             return RedirectToAction("Cotizar");
         }
-        /** METODO PARA CREAR REPORTE DE COTIZACION
-        */
-
-        public ActionResult ImprimirCotizacion()
+        protected override void Dispose(bool disposing)
         {
-            return View();
-        }       
-       }
+            if (disposing)
+            {
+                ctx.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+    }
+       
 }

@@ -42,17 +42,26 @@ namespace SistemaDeFacturacion.Controllers
         // GET: Categorias/Details/5
         public async Task<ActionResult> Details(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            try
+            {          
+                if (id == null)
+                {
+                    RedirectToAction("Index");
+                    //return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Categorias categorias = await db.Categorias.FindAsync(id);
+                if (categorias == null)
+                {
+                    //return HttpNotFound();
+                   return RedirectToAction("Index");
+                }
+                return View(categorias);
             }
-            Categorias categorias = await db.Categorias.FindAsync(id);
-            if (categorias == null)
+            catch(Exception ex)
             {
-                //return HttpNotFound();
-                RedirectToAction("Index");
+                ViewBag.Error = "No se ha podido cargar el registro, mensaje de error: " + ex.Message;
+                return View(new Categorias());
             }
-            return View(categorias);
         }
 
         // GET: Categorias/Create
@@ -85,17 +94,27 @@ namespace SistemaDeFacturacion.Controllers
         // GET: Categorias/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            try
+            {              
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+              
+                Categorias categorias = await db.Categorias.FindAsync(id);
+                if (categorias == null)
+                {
+                    //return HttpNotFound();
+                  return  RedirectToAction("Index");
+                }
+                return View(categorias);
             }
-            Categorias categorias = await db.Categorias.FindAsync(id);
-            if (categorias == null)
+            catch (Exception ex)
             {
-               //return HttpNotFound();
-                RedirectToAction("Index");
+                ViewBag.Error = "No se ha podido cargar el registro " + ex.Message;
+
+                return View(new Categorias());
             }
-            return View(categorias);
         }
 
         // POST: Categorias/Edit/5
@@ -104,31 +123,55 @@ namespace SistemaDeFacturacion.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "idCategoria,nombre,descripcion,imagen")] Categorias categorias)
-        {            
-            if (ModelState.IsValid)
+        {
+            try
             {
-                db.Entry(categorias).State = EntityState.Modified;
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-            return View(categorias);
 
-        }
+
+                if (ModelState.IsValid)
+                {
+                    db.Entry(categorias).State = EntityState.Modified;
+                    await db.SaveChangesAsync();
+                    return RedirectToAction("Index");
+                }
+                return View(categorias);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = "No se ha podido modificar el registro, mensaje de error = " + ex.Message;
+                return View(categorias);
+            }
+       }
 
         // GET: Categorias/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
-            if (id == null)
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+               
+
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                if (db.Categorias.FindAsync(id) == null)
+                {
+                    ViewBag.Error = "El id esta siendo utilizado por otro registro, intente cambiar el id ";
+                    return RedirectToAction("Index");
+                }
+                Categorias categorias = await db.Categorias.FindAsync(id);
+                if (categorias == null)
+                {
+                    //return HttpNotFound();
+                    RedirectToAction("Index");
+                }
+                return View(categorias);
             }
-            Categorias categorias = await db.Categorias.FindAsync(id);
-            if (categorias == null)
+            catch(Exception ex)
             {
-                //return HttpNotFound();
-                RedirectToAction("Index");
+                ViewBag.Error = "No se ha podido cargar el registro, mensaje de error " + ex.Message;
+                return View(new Categorias());
             }
-            return View(categorias);
         }
 
         // POST: Categorias/Delete/5
@@ -146,27 +189,12 @@ namespace SistemaDeFacturacion.Controllers
             catch(Exception ex)
             {
                 ViewBag.Error = "No se ha podido eliminar el registro, puede ser que este enlazado con otros registros de la base de datos, por tanto no podra eliminarlos, el mensaje de error es: "+ex.Message;
-                return View(id);
+                Categorias categorias = await db.Categorias.FindAsync(id);                
+                return View("Details", categorias);
             }
            
         }
-        public bool Existe(int id)
-        {
-            try
-            {
-                if (db.Categorias.Where(r=> r.idCategoria==id).Count() >0)
-                {
-                    return true;
-                }
-                return false;
-            }
-            catch
-            {
-                return false;
-
-            }
-        }
-
+      
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -30,7 +30,18 @@ namespace SistemaDeFacturacion.Controllers
             }
            
         }
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
 
+        /**
+         * ESTOS METODOS NO SE UTILIZAN.
+         * 
         // GET: Cotizaciones/Details/5
         public async Task<ActionResult> Details(int? id)
         {
@@ -43,7 +54,7 @@ namespace SistemaDeFacturacion.Controllers
                 Cotizaciones cotizaciones = await db.Cotizaciones.FindAsync(id);
                 if (cotizaciones == null)
                 { //return HttpNotFound();
-                    RedirectToAction("Index");
+                   return RedirectToAction("Index");
                 }
 
                 List<DetallesCotizacion> detalles = new List<DetallesCotizacion>();
@@ -61,57 +72,96 @@ namespace SistemaDeFacturacion.Controllers
             }
             
         }
+        //muesta los detalles de una cotizacion en estado cotizacdo o vendido.
         public ActionResult DetallesVenta(int? id)
         {
+            try
+            {
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Cotizaciones cotizaciones = db.Cotizaciones.Find(id);
+                if (cotizaciones == null)
+                {
+                    return RedirectToAction("Index");
+                }
+                if (cotizaciones.estado == "Facturado")
+                {
+                    //si es estado es facturado lo manda a la vista factura..
+                    return RedirectToAction("DetallesFactura", new { id = id });
+                }
+                if (cotizaciones.estado == "Cotizado")
+                {
+                    return RedirectToAction("Details", new { id = id });
+                }
+                List<DetallesCotizacion> detalles = new List<DetallesCotizacion>();
+                detalles = db.DetallesCotizacion.Where(d => d.idCotizacion == id).ToList();
+                ViewBag.Detalles = detalles;
+                return View(cotizaciones);
 
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Cotizaciones cotizaciones =  db.Cotizaciones.Find(id);
-            if (cotizaciones == null)
+            catch(Exception ex)
             {
-                return HttpNotFound();
+
+                ViewBag.Error = "No se ha podido mostrar el registro, mensaje de error =" + ex.Message;
+                List<DetallesCotizacion> detalles = new List<DetallesCotizacion>();
+                
+                ViewBag.Detalles = detalles;
+                return View(new Cotizaciones());
             }
-            if (cotizaciones.estado == "Facturado")
-            {
-                return RedirectToAction ("DetallesFactura", new { id = id });
-            }
-            if (cotizaciones.estado == "Cotizado")
-            {
-                return RedirectToAction("Details", new { id = id });
-            }
-            List<DetallesCotizacion> detalles = new List<DetallesCotizacion>();
-            detalles = db.DetallesCotizacion.Where(d => d.idCotizacion == id).ToList();
-            ViewBag.Detalles = detalles;
-            return View(cotizaciones);
+            
         }
         public ActionResult DetallesFactura(int? id)
         {
-            if (id == null)
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Cotizaciones c = new Cotizaciones();
-            c = db.Cotizaciones.Find(id);
+                if (id == null)
+                {
+                    return RedirectToAction("Index");
+                }
+                Cotizaciones c = new Cotizaciones();
+                c = db.Cotizaciones.Find(id);
 
-            if (c.estado == "Cotizado")
-            {
-                return View("Details", new { id = id });
+                if (c.estado == "Cotizado")
+                {
+                    return View("Details", new { id = id });
+                }
+                if (c.estado == "Vendido")
+                {
+                    return View("DetallesVenta", new { id = id });
+                }
+                Facturas facturas = db.Facturas.SingleOrDefault(f => f.idCotizacion == id);
+                ViewBag.Detalles = db.DetallesCotizacion.Where(r => r.idCotizacion == id).ToList();
+                if (facturas == null)
+                {
+                    ViewBag.Error = "No se encuentra la factura que busca, intente buscar en la tabla general";
+                    return View("Index", db.Facturas.ToList());
+                }
+                return View(facturas);
+
             }
-            if (c.estado == "Vendido")
+            catch (Exception ex)
             {
-                return View("DetallesVenta", new { id = id });
+                ViewBag.Error = "No se ha podido recuperar la vista, mensaje de error:" + ex.Message;
+                Facturas facturas = new Facturas();
+                ViewBag.Detalles = new List<DetallesCotizacion>();
+                return View(facturas);
+
             }
-            Facturas facturas = db.Facturas.SingleOrDefault(f=> f.idCotizacion ==id);
-            ViewBag.Detalles = db.DetallesCotizacion.Where(r => r.idCotizacion == id).ToList();
-            if (facturas == null)
-            {
-                ViewBag.Error = "No se encuentra la factura que busca, intente buscar en la tabla general";
-                return View("Index", db.Facturas.ToList());
-            }
-            return View(facturas);
+           
         }
+        
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
 
         // GET: Cotizaciones/Create
         public ActionResult Create()
@@ -126,6 +176,7 @@ namespace SistemaDeFacturacion.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "idCotizacion,nombre,fecha,subTotal,descuento,total,usuario,estado")] Cotizaciones cotizaciones)
         {
+            
             if (ModelState.IsValid)
             {
                 db.Cotizaciones.Add(cotizaciones);
@@ -194,29 +245,7 @@ namespace SistemaDeFacturacion.Controllers
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
-        public ActionResult Vender(int id)
-        {
-            try
-            {
-                Cotizaciones coti = new Cotizaciones();
-                coti = db.Cotizaciones.Find(id);
-                coti.estado = "Venta";
-                db.SaveChanges();
-                return RedirectToAction("Details", "Cotizaciones", new { id = id });
-            }
-            catch
-            {
-                return RedirectToAction("Details", "Cotizaciones", new { id = id });
-            }
-        }
+    */
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
     }
 }

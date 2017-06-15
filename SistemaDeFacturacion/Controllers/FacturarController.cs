@@ -233,81 +233,14 @@ namespace SistemaDeFacturacion.Controllers
             return View();
         }
 
-        // GET: Facturar/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }    
-        // GET: Facturar/Create
-        public ActionResult Create()
-        {
-            return View();
-        }    
-        // POST: Facturar/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Facturar/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Facturar/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Facturar/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Facturar/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+       
         public ActionResult Exportarcotizacion(int idCotizacion)
         {//reporte que exporta todos los productos
-            //creamos la lista para el origen de datos
-         
-           
-            Cotizaciones coti = new Cotizaciones();
+         //creamos la lista para el origen de datos
+
+            try
+            {
+                Cotizaciones coti = new Cotizaciones();
             coti = ctx.Cotizaciones.Find(idCotizacion);
             CotizacionClon clonCoti = new CotizacionClon();
             clonCoti.idCotizacion = coti.idCotizacion;
@@ -356,8 +289,7 @@ namespace SistemaDeFacturacion.Controllers
             Response.Buffer = false;
             Response.ClearContent();
             Response.ClearHeaders();
-            try
-            {
+            
                 Stream stream = repDocument.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
                 stream.Seek(0, SeekOrigin.Begin);
                 return File(stream, "application/pdf", "Cotizacion.pdf");
@@ -367,6 +299,14 @@ namespace SistemaDeFacturacion.Controllers
                 ViewBag.Error = "Lo sentimos, no se pudo exportar el informe " + ex.Message;
                 return View("RealizarVenta", new { id = idCotizacion });
             }
+        }
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                ctx.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }

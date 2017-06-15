@@ -34,17 +34,28 @@ namespace SistemaDeFacturacion.Controllers
         // GET: Proveedores/Details/5
         public ActionResult Details(string id)
         {
-            if (id == null)
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    // return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    return RedirectToAction("Index");
+                }
+                Proveedores proveedores = db.Proveedores.Find(id);
+                if (proveedores == null)
+                {
+                    //return HttpNotFound();
+                    RedirectToAction("Index");
+                }
+                return View(proveedores);
             }
-            Proveedores proveedores = db.Proveedores.Find(id);
-            if (proveedores == null)
+            catch(Exception ex)
             {
-                //return HttpNotFound();
-                RedirectToAction("Index");
+                ViewBag.Error = "No se ha podido cargar el registro, mensaje de error: " + ex.Message;
+                return View(new Proveedores());
             }
-            return View(proveedores);
+
+            
         }
 
         // GET: Proveedores/Create
@@ -60,39 +71,56 @@ namespace SistemaDeFacturacion.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "idProveedor,empresa,nombre,direccion,telefono,email,creado,modificado")] Proveedores proveedores)
         {
-
-            if (ModelState.IsValid)
+            try
             {
-                if (db.Proveedores.FindAsync(proveedores.idProveedor) != null)
+                if (ModelState.IsValid)
                 {
-                    ViewBag.Error = "El Codigo del registro que ingreso ya esta siendo utilizado con otro registro, pruebe cambiar el id. ";
-                    return View(proveedores);
+                    if (db.Proveedores.FindAsync(proveedores.idProveedor) != null)
+                    {
+                        ViewBag.Error = "El Codigo del registro que ingreso ya esta siendo utilizado con otro registro, pruebe cambiar el id. ";
+                        return View(proveedores);
+                    }
+                    proveedores.creado = DateTime.Now;
+                    proveedores.modificado = DateTime.Now;
+                    db.Proveedores.Add(proveedores);
+                    db.SaveChanges();
+                    ViewBag.Mensaje = "Registro Creado";
+                    return View("Index", db.Proveedores.ToList());
                 }
-                proveedores.creado = DateTime.Now;
-                proveedores.modificado = DateTime.Now;
-                db.Proveedores.Add(proveedores);
-                db.SaveChanges();
-                ViewBag.Mensaje = "Registro Creado";
-                return View("Index", db.Proveedores.ToList());
+                ViewBag.Error = "No se pudo crear el registro en la base de datos";
+                return View(proveedores);
             }
-            ViewBag.Error = "No se pudo crear el registro en la base de datos";
-            return View(proveedores);
+            catch (Exception ex)
+            {
+                ViewBag.Error = "No se ha podido cargar el registro, mensaje de error: " + ex.Message;
+                return View(proveedores);
+            }
         }
 
         // GET: Proveedores/Edit/5
         public ActionResult Edit(string id)
         {
-            if (id == null)
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Proveedores proveedores = db.Proveedores.Find(id);
+                if (proveedores == null)
+                {
+                    //return HttpNotFound();
+                    RedirectToAction("Index");
+                }
+                return View(proveedores);
             }
-            Proveedores proveedores = db.Proveedores.Find(id);
-            if (proveedores == null)
+            catch (Exception ex)
             {
-                //return HttpNotFound();
-                RedirectToAction("Index");
+                ViewBag.Error = "No se ha podido cargar el registro, mensaje de error: " + ex.Message;
+                return View(new Proveedores());
             }
-            return View(proveedores);
         }
 
         // POST: Proveedores/Edit/5
@@ -102,33 +130,52 @@ namespace SistemaDeFacturacion.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "idProveedor,empresa,nombre,direccion,telefono,email,creado,modificado")] Proveedores proveedores)
         {
-
-            if (ModelState.IsValid)
+            try
             {
-                proveedores.modificado = DateTime.Now;
-                db.Entry(proveedores).State = EntityState.Modified;
-                db.SaveChanges();
-                ViewBag.Mensaje = "Registro Actualizado";
-                return View("Index", db.Proveedores.ToList());
+
+
+                if (ModelState.IsValid)
+                {
+                    proveedores.modificado = DateTime.Now;
+                    db.Entry(proveedores).State = EntityState.Modified;
+                    db.SaveChanges();
+                    ViewBag.Mensaje = "Registro Actualizado";
+                    return View("Index", db.Proveedores.ToList());
+                }
+                ViewBag.Error = "No se pudo actualizar los datos del proveedor";
+                return View(proveedores);
             }
-            ViewBag.Error = "No se pudo actualizar los datos del proveedor";
-            return View(proveedores);
+            catch (Exception ex)
+            {
+                ViewBag.Error = "No se ha podido cargar el registro, mensaje de error: " + ex.Message;
+                return View(proveedores);
+            }
         }
 
         // GET: Proveedores/Delete/5
         public ActionResult Delete(string id)
         {
-            if (id == null)
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Proveedores proveedores = db.Proveedores.Find(id);
+                if (proveedores == null)
+                {
+                    //return HttpNotFound();
+                    RedirectToAction("Index");
+                }
+                return View(proveedores);
             }
-            Proveedores proveedores = db.Proveedores.Find(id);
-            if (proveedores == null)
+            catch (Exception ex)
             {
-                //return HttpNotFound();
-                RedirectToAction("Index");
+                ViewBag.Error = "No se ha podido cargar el registro, mensaje de error: " + ex.Message;
+                return View(new Proveedores());
             }
-            return View(proveedores);
         }
 
         // POST: Proveedores/Delete/5
@@ -146,10 +193,11 @@ namespace SistemaDeFacturacion.Controllers
                 ViewBag.Mensaje = "Se ha eliminado un registro de la base de datos";
                 return View("Index", db.Proveedores.ToList());
             }
-            catch
+            catch(Exception ex)
             {
-                ViewBag.Error = "No se pudo elimianar el registro";
-                return View(id);
+                ViewBag.Error = "No se pudo elimianar el registro, mesaje de error: "+ex.Message;
+                Proveedores proveedores = db.Proveedores.Find(id);
+                return View(proveedores);
             }
         }
 

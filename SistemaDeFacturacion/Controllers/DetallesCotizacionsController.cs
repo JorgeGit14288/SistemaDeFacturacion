@@ -15,7 +15,9 @@ namespace SistemaDeFacturacion.Controllers
     public class DetallesCotizacionsController : Controller
     {
         private FacturacionDbEntities db = new FacturacionDbEntities();
-
+        /**
+         * 
+         * 
         // GET: DetallesCotizacions
         public async Task<ActionResult> Index()
         {
@@ -134,5 +136,6 @@ namespace SistemaDeFacturacion.Controllers
             }
             base.Dispose(disposing);
         }
+    **/
     }
 }
