@@ -74,7 +74,7 @@ namespace SistemaDeFacturacion.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    if (db.TipoPago.FindAsync(tipoPago.id) != null)
+                    if (db.TipoPago.Where(r => r.id == tipoPago.id).Count() > 0)
                     {
                         ViewBag.Error = "El Codigo del registro que ingreso ya esta siendo utilizado con otro registro, pruebe cambiar el id. ";
                         return View(tipoPago);

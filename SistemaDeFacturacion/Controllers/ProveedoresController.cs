@@ -75,7 +75,7 @@ namespace SistemaDeFacturacion.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    if (db.Proveedores.FindAsync(proveedores.idProveedor) != null)
+                    if (db.Proveedores.Where(r => r.idProveedor == proveedores.idProveedor).Count() > 0)
                     {
                         ViewBag.Error = "El Codigo del registro que ingreso ya esta siendo utilizado con otro registro, pruebe cambiar el id. ";
                         return View(proveedores);

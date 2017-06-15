@@ -127,38 +127,48 @@ namespace SistemaDeFacturacion.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "idProducto,nombre,precio,existencia,observacion,idCategoria,imagen")] Productos productos, HttpPostedFileBase imagenMunicipio, FormCollection form)
         {
-            //HttpPostedFileBase laImagen = Convert.toh form["imagenProducto"];
-
-            if (imagenMunicipio != null && imagenMunicipio.ContentLength > 0)
+            try
             {
-                byte[] imageData = null;
-                using (var binaryReader = new BinaryReader(imagenMunicipio.InputStream))
-                {
-                    imageData = binaryReader.ReadBytes(imagenMunicipio.ContentLength);
-                }
-                //setear la imagen a la entidad que se creara
-                productos.imagen = imageData;
-            }
-            productos.existencia = 0;
-            productos.precioCompra = 0;
+                //HttpPostedFileBase laImagen = Convert.toh form["imagenProducto"];
 
-            if (ModelState.IsValid)
-            {
-                if (db.Productos.FindAsync(productos.idProducto) != null)
+                if (imagenMunicipio != null && imagenMunicipio.ContentLength > 0)
                 {
-                    ViewBag.Error = "El Codigo del registro que ingreso ya esta siendo utilizado con otro registro, pruebe cambiar el id. ";
-                    return View(productos);
+                    byte[] imageData = null;
+                    using (var binaryReader = new BinaryReader(imagenMunicipio.InputStream))
+                    {
+                        imageData = binaryReader.ReadBytes(imagenMunicipio.ContentLength);
+                    }
+                    //setear la imagen a la entidad que se creara
+                    productos.imagen = imageData;
                 }
-                productos.creado = DateTime.Now;
-                productos.modificado = DateTime.Now;
-                db.Productos.Add(productos);
-                db.SaveChanges();
-                ViewBag.Mensaje = "Se ha registrado un nuevo producto";
-                return View("Index", db.Productos.ToList());
+                productos.existencia = 0;
+                productos.precioCompra = 0;
+                ViewBag.idCategoria = new SelectList(db.Categorias, "idCategoria", "nombre");
+                if (ModelState.IsValid)
+                {
+                    if (db.Productos.Where(r => r.idProducto == productos.idProducto).Count() > 0)
+                    {
+                        ViewBag.Error = "El Codigo del registro que ingreso ya esta siendo utilizado con otro registro, pruebe cambiar el id. ";
+                        return View(productos);
+                    }
+                    productos.creado = DateTime.Now;
+                    productos.modificado = DateTime.Now;
+                    db.Productos.Add(productos);
+                    db.SaveChanges();
+                    ViewBag.Mensaje = "Se ha registrado un nuevo producto";
+                    return View("Index", db.Productos.ToList());
+                }
+                
+                ViewBag.Error = "No se ha podido registrar el producto, verifique que no exista ya uno similar o con el mismo id, de lo contrario contacte con el tecnico";
+                return View(productos);
             }
-            ViewBag.idCategoria = new SelectList(db.Categorias, "idCategoria", "nombre");
-            ViewBag.Error = "No se ha podido registrar el producto, verifique que no exista ya uno similar o con el mismo id, de lo contrario contacte con el tecnico";
-            return View(productos);
+            catch(Exception ex)
+            {
+                ViewBag.Error = "Ha ocurrido un error al intentar crear el registro, el mensaje de error es: "+ex.Message;
+                ViewBag.idCategoria = new SelectList(db.Categorias, "idCategoria", "nombre");
+                return View(productos);
+            }
+           
         }
 
         // GET: Productos/Edit/5
@@ -182,6 +192,7 @@ namespace SistemaDeFacturacion.Controllers
             }
             catch(Exception ex)
             {
+                ViewBag.idCategoria = new SelectList(db.Categorias, "idCategoria", "nombre");
                 ViewBag.Error = "No se ha podido cargar el registro, mensaje de error: " + ex.Message;
                 return View(new Productos());
             }
@@ -198,8 +209,6 @@ namespace SistemaDeFacturacion.Controllers
         {
             try
             {
-
-
                 if (ModelState.IsValid)
                 {
                     productos.modificado = DateTime.Now;
@@ -214,6 +223,7 @@ namespace SistemaDeFacturacion.Controllers
             }
             catch (Exception ex)
             {
+                ViewBag.idCategoria = new SelectList(db.Categorias, "idCategoria", "nombre");
                 ViewBag.Error = "No se ha podido cargar el registro, mensaje de error: " + ex.Message;
                 return View(productos);
             }

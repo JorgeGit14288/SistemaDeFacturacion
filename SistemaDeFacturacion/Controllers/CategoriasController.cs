@@ -79,7 +79,8 @@ namespace SistemaDeFacturacion.Controllers
         {
             if (ModelState.IsValid)
             {
-                if(db.Categorias.FindAsync(categorias.idCategoria)!=null)
+               // int existe = db.Categorias.Where(r => r.idCategoria == categorias.idCategoria).Count();
+                if(db.Categorias.Where(r => r.idCategoria == categorias.idCategoria).Count()>0)
                 {
                     ViewBag.Error = "El id esta siendo utilizado por otro registro, intente cambiar el id ";
                     return View(categorias);

@@ -64,7 +64,7 @@ namespace SistemaDeFacturacion.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    if (db.Clientes.FindAsync(clientes.nit) != null)
+                    if (db.Clientes.Where(r => r.nit == clientes.nit).Count() > 0)
                     {
                         ViewBag.Error = "El id esta siendo utilizado por otro registro, intente cambiar el id ";
                         return View(clientes);
