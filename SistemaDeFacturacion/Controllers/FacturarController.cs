@@ -104,8 +104,12 @@ namespace SistemaDeFacturacion.Controllers
             }
             catch(Exception ex)
             {
+                Cotizaciones cotiz = new Cotizaciones();
+                List<DetallesCotizacion> detalles = new List<DetallesCotizacion>();
+                cotiz = ctx.Cotizaciones.Find(id);
+                detalles = ctx.DetallesCotizacion.Where(r => r.idCotizacion == id).ToList();
                 ViewBag.Error = ex.Message;
-                return View(id);
+                return View(cotiz);
             }           
         }
         [HttpPost]
@@ -150,7 +154,7 @@ namespace SistemaDeFacturacion.Controllers
                 }
 
                 //verificamos si la factura ya existe
-                if (ctx.Facturas.FindAsync(factura.idFactura) != null)
+                if (ctx.Facturas.Where(r=> r.idFactura== factura.idFactura).Count()>0)
                 {
                    
                     Cotizaciones coti = new Cotizaciones();
@@ -224,7 +228,19 @@ namespace SistemaDeFacturacion.Controllers
             catch (Exception ex)
             {
                 ViewBag.Error = ex.Message;
-                return View(id);
+                
+                Cotizaciones coti = new Cotizaciones();
+                List<DetallesCotizacion> detalles = new List<DetallesCotizacion>();
+                coti = ctx.Cotizaciones.Find(id);
+                detalles = ctx.DetallesCotizacion.Where(r => r.idCotizacion == id).ToList();
+                //  factura = ctx.Facturas.SingleOrDefault(f => f.idCotizacion == coti.idCotizacion);
+                List<TipoPago> tipoPagos = new List<TipoPago>();
+                tipoPagos = ctx.TipoPago.ToList();
+               // ViewBag.Factura = factura;
+                ViewBag.TipoPago = tipoPagos;
+                ViewBag.Detalles = detalles;
+                ViewBag.Cotizacion = coti;
+                return View("RealizarVenta", coti);            
             }
         }
         // GET: Facturar
